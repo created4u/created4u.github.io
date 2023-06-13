@@ -226,4 +226,25 @@
         <tag>Database</tag>
       </tags>
   </entry>
+  <entry>
+    <title>关于我自己</title>
+    <url>/created4u/2023/06/06/about-CN/</url>
+    <content><![CDATA[<p>简体中文 | <a href="../about/index.html">English</a></p>
+<h1 id="你好！"><a href="#你好！" class="headerlink" title="你好！"></a>你好！</h1>]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>About Me</title>
+    <url>/created4u/2023/06/06/about/</url>
+    <content><![CDATA[<p><a href="../about-CN/index.html">简体中文</a> | English</p>
+<img src="/created4u/2023/06/06/about/code.png" class="" title="Programming is art.">
+
+<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello!"></a>Hello!</h1><p>I’m a student.</p>
+]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
 </search>
