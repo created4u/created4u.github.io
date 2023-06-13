@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ignacio Song">
+
+
+    <meta name="subtitle" content="Code With Love & Design With Passion">
+
+
+    <meta name="description" content="A coder who is crazy about designing.">
+
+
+
+
+
+<title>数据库复习 | Mi-X-Lab</title>
+
+
+
+    <link rel="icon" href="/created4u/icons.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/created4u/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/created4u/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/created4u/">
+          
+            Mi-X-Lab
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/categories/gallery/">Gallery</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/about/">About</a>
+              </li> 
+                   
+          
+          
+            <li class="menu-item search-btn">
+              <a href="#">Search</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/created4u/tags/Database/">
+                            Database
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                数据库复习
+            
+            
+        </div>
+        <span class="post-date">
+            Feb 19, 2023
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h2><ol>
+<li>data-management system(DBMS), is a collection of interrelated data and a set of programs to access those data.</li>
+<li>database, a collection of data that contains information relevant to an enterprise.</li>
+<li>online transaction processing, where a large number of users use the database, with each user retrieving relatively small amounts of data, and performing small updates.</li>
+<li>data analytics, the processing of data to draw conclusions, and infer rules or decision procedures, which are then used to drive business decisions.</li>
+<li>data inconsistency, the various copies of the same data may no longer agree.</li>
+<li>instance of database, the collection of information stored in the database at a particular moment.</li>
+<li>database schema, the overall design of the database.</li>
+</ol>
+<h2 id="Some-Views"><a href="#Some-Views" class="headerlink" title="Some Views"></a>Some Views</h2><h3 id="1-Disadvantages-of-FPS"><a href="#1-Disadvantages-of-FPS" class="headerlink" title="1. Disadvantages of FPS"></a>1. Disadvantages of FPS</h3><ul>
+<li>Data redundancy and inconsistency<ul>
+<li>same information may be duplicated in several files</li>
+<li>the various copies of the same data may no longer agree</li>
+</ul>
+</li>
+<li>Difficulty in accessing data<ul>
+<li>conventional file-processing environment do not allow needed data to be retrieved in a convinent and efficient manner</li>
+</ul>
+</li>
+<li>Data isolation<ul>
+<li>data are scattered in various files, and files may be in different formats</li>
+</ul>
+</li>
+<li>Integrity problems<ul>
+<li>difficult to ensure consistency constraints when constraints invovle several data items from different files</li>
+</ul>
+</li>
+<li>Atomicity problems<ul>
+<li>hard to ensure atomicity in a conventional file-processing system</li>
+</ul>
+</li>
+<li>Concurrent-access anomalies</li>
+<li>Security problems</li>
+</ul>
+<h3 id="2-Data-Models"><a href="#2-Data-Models" class="headerlink" title="2. Data Models"></a>2. Data Models</h3><ul>
+<li><strong>Relational Models</strong><ul>
+<li>a collection of tables to represent both data and the relationships among those data</li>
+<li>each table has multiple columns, each column has a <em>unique</em> name</li>
+</ul>
+</li>
+<li><strong>Entity-Relationship Model</strong><ul>
+<li>a collection of <em>entities</em>, and relationships among entities</li>
+<li>an entity, is a “thing” or “object” in the real world that is <em>distinguishable</em> from other objects</li>
+</ul>
+</li>
+<li><strong>Semi-Structured Data Model</strong><ul>
+<li>permits the specification of data where individual data items of the same type may have <em>different sets of attributes</em></li>
+<li>widely used in JSON and Extensible Markup Language(XML)</li>
+</ul>
+</li>
+<li><strong>Object-Based Data Model</strong></li>
+</ul>
+<h3 id="3-Levels-of-Data-Abstraction"><a href="#3-Levels-of-Data-Abstraction" class="headerlink" title="3. Levels of Data Abstraction"></a>3. Levels of Data Abstraction</h3><ul>
+<li><strong>Physical Level</strong><ul>
+<li>the lowest level</li>
+<li><em>how</em> data stored</li>
+<li>describles complex low-level data structures in detail</li>
+</ul>
+</li>
+<li><strong>Logical Level</strong><ul>
+<li>the middle level</li>
+<li><em>what</em> data are stored and <em>what</em> relationships exist among those data</li>
+<li>describles the entire database in terms of a small numbers of relatively simple structures</li>
+</ul>
+</li>
+<li><strong>View Level</strong><ul>
+<li>the highest level</li>
+<li>describles only part of the entire database</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Instance-amp-Schema"><a href="#4-Instance-amp-Schema" class="headerlink" title="4. Instance &amp; Schema"></a>4. Instance &amp; Schema</h3><p>Database systems have several schemas, partitioned according to the levels of the abstraction:</p>
+<ul>
+<li>Physical Schema</li>
+<li>Logical Schema</li>
+<li>Subschema</li>
+</ul>
+<h3 id="5-Database-Languages"><a href="#5-Database-Languages" class="headerlink" title="5. Database Languages"></a>5. Database Languages</h3><h4 id="DDL-Data-Definition-Language"><a href="#DDL-Data-Definition-Language" class="headerlink" title="DDL, Data-Definition Language"></a>DDL, Data-Definition Language</h4><p>DDL is used to specify a database schema and addtional properties of the data.</p>
+<h4 id="DML-Data-Manipulation-Language"><a href="#DML-Data-Manipulation-Language" class="headerlink" title="DML, Data-Manipulation Language"></a>DML, Data-Manipulation Language</h4>
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/created4u/2023/03/09/DatabaseOperations/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/created4u/2022/12/23/AWSCloudPractionerEssential/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                © Ignacio Song | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-popup">
+    <div class="search-popup-overlay">  
+    </div>
+    <div class="search-popup-window" >
+        <div class="search-header">
+            <div class="search-input-container">
+              <input autocomplete="off" autocapitalize="off" maxlength="80"
+                     placeholder="Something you want to search..." spellcheck="false"
+                     type="search" class="search-input">
+            </div>
+            <div class="search-close-btn">
+                <div class="icon close-btn"></div>
+            </div>
+        </div>
+        <div class="search-result-container">
+        </div>
+    </div>
+</div>
+
+<script>
+    const searchConfig = {
+        path             : "/created4u/search.xml",
+        top_n_per_article: "1",
+        unescape         : "false",
+        trigger: "auto",
+        preload: "false"
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+<script src="/js/search.js"></script>
+    
+    
+
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>AWS Notes</title>
+    <url>/created4u/2022/12/23/AWSCloudPractionerEssential/</url>
+    <content><![CDATA[<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>云计算就是通过互联网<strong>按需提供</strong> IT 资源并采用<strong>按需付费</strong>定价模式。</p>
+<h2 id="部署模式"><a href="#部署模式" class="headerlink" title="部署模式"></a>部署模式</h2><ul>
+<li>云端部署<ul>
+<li>在云中运行应用程序的所有组件</li>
+<li>将现有应用程序迁移到云</li>
+<li>在云中设计和构建新的应用程序</li>
+</ul>
+</li>
+<li>本地部署&#x2F;私有云部署<ul>
+<li>利用虚拟化工具和资源管理工具部署资源</li>
+<li>利用应用程序和虚拟化技术提高资源利用率</li>
+</ul>
+</li>
+<li>混合部署<ul>
+<li>将基于云的资源与本地基础设施连接</li>
+<li>将基于云的资源与传统 IT 应用程序集成</li>
+</ul>
+</li>
+</ul>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><ol>
+<li><p>将前期费用变成可变支出</p>
+<p> 前期费用是指您在使用数据中心、物理服务器和其他资源之前需要为其投入的费用。可变支出意味着您只需为消耗的计算资源付费，而不需要在知道自己会如何使用数据中心和服务器之前进行大量投资。</p>
+</li>
+<li><p>无需在数据中心运行和维护方面投入资金</p>
+</li>
+<li><p>无需猜测容量</p>
+</li>
+<li><p>实现规模经济效益</p>
+</li>
+<li><p>提高速度和敏捷性</p>
+</li>
+<li><p>几分钟内实现全球化部署</p>
+</li>
+</ol>
+<h1 id="EC2"><a href="#EC2" class="headerlink" title="EC2"></a>EC2</h1><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><ol>
+<li><p>启动</p>
+<p> 为实例选择具有基本配置的模板，包括操作系统，应用程序服务器或应用程序。还要选择实例类型，即实例的具体硬件配置。</p>
+</li>
+<li><p>连接</p>
+</li>
+<li><p>使用</p>
+</li>
+</ol>
+<h2 id="实例类型"><a href="#实例类型" class="headerlink" title="实例类型"></a>实例类型</h2><ol>
+<li><p>通用型</p>
+<p> 实现计算，内存和网络资源的均衡。</p>
+<ul>
+<li>应用程序服务器</li>
+<li>游戏服务器</li>
+<li>企业应用程序的后端服务器</li>
+<li>中小型数据库</li>
+</ul>
+</li>
+<li><p>计算优化型</p>
+<p> 适合需要使用高性能处理器的计算密集型应用程序。</p>
+<ul>
+<li>高性能 Web 服务器</li>
+<li>计算密集型应用程序服务器</li>
+<li>专用游戏服务器</li>
+<li>成组处理多个事务的批处理工作负载</li>
+</ul>
+</li>
+<li><p>内存优化型</p>
+<p> 提高用于处理内存中的大型数据集的工作负载的性能。</p>
+<ul>
+<li>高性能数据库</li>
+</ul>
+</li>
+<li><p>加速计算型</p>
+<p> 使用硬件加速器或协同处理器来执行一些功能。</p>
+<ul>
+<li>浮点数计算</li>
+<li>图形处理</li>
+<li>数据模式匹配</li>
+</ul>
+</li>
+<li><p>存储优化型</p>
+<p> 适用于需要对本地存储上的大型数据集进行高速连续读写访问的工作负载。</p>
+<ul>
+<li>分布式文件系统</li>
+<li>数据仓库应用程序</li>
+<li>高频在线事务处理系统</li>
+</ul>
+</li>
+</ol>
+<h2 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h2><p>可扩展性是指仅从需要的资源开始，并且设计架构以便自动扩展和缩减，从而响应不断变化的需求。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数据库复习</title>
+    <url>/created4u/2023/02/19/DatabaseSystemConceptsChapter0/</url>
+    <content><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h2><ol>
+<li>data-management system(DBMS), is a collection of interrelated data and a set of programs to access those data.</li>
+<li>database, a collection of data that contains information relevant to an enterprise.</li>
+<li>online transaction processing, where a large number of users use the database, with each user retrieving relatively small amounts of data, and performing small updates.</li>
+<li>data analytics, the processing of data to draw conclusions, and infer rules or decision procedures, which are then used to drive business decisions.</li>
+<li>data inconsistency, the various copies of the same data may no longer agree.</li>
+<li>instance of database, the collection of information stored in the database at a particular moment.</li>
+<li>database schema, the overall design of the database.</li>
+</ol>
+<h2 id="Some-Views"><a href="#Some-Views" class="headerlink" title="Some Views"></a>Some Views</h2><h3 id="1-Disadvantages-of-FPS"><a href="#1-Disadvantages-of-FPS" class="headerlink" title="1. Disadvantages of FPS"></a>1. Disadvantages of FPS</h3><ul>
+<li>Data redundancy and inconsistency<ul>
+<li>same information may be duplicated in several files</li>
+<li>the various copies of the same data may no longer agree</li>
+</ul>
+</li>
+<li>Difficulty in accessing data<ul>
+<li>conventional file-processing environment do not allow needed data to be retrieved in a convinent and efficient manner</li>
+</ul>
+</li>
+<li>Data isolation<ul>
+<li>data are scattered in various files, and files may be in different formats</li>
+</ul>
+</li>
+<li>Integrity problems<ul>
+<li>difficult to ensure consistency constraints when constraints invovle several data items from different files</li>
+</ul>
+</li>
+<li>Atomicity problems<ul>
+<li>hard to ensure atomicity in a conventional file-processing system</li>
+</ul>
+</li>
+<li>Concurrent-access anomalies</li>
+<li>Security problems</li>
+</ul>
+<h3 id="2-Data-Models"><a href="#2-Data-Models" class="headerlink" title="2. Data Models"></a>2. Data Models</h3><ul>
+<li><strong>Relational Models</strong><ul>
+<li>a collection of tables to represent both data and the relationships among those data</li>
+<li>each table has multiple columns, each column has a <em>unique</em> name</li>
+</ul>
+</li>
+<li><strong>Entity-Relationship Model</strong><ul>
+<li>a collection of <em>entities</em>, and relationships among entities</li>
+<li>an entity, is a “thing” or “object” in the real world that is <em>distinguishable</em> from other objects</li>
+</ul>
+</li>
+<li><strong>Semi-Structured Data Model</strong><ul>
+<li>permits the specification of data where individual data items of the same type may have <em>different sets of attributes</em></li>
+<li>widely used in JSON and Extensible Markup Language(XML)</li>
+</ul>
+</li>
+<li><strong>Object-Based Data Model</strong></li>
+</ul>
+<h3 id="3-Levels-of-Data-Abstraction"><a href="#3-Levels-of-Data-Abstraction" class="headerlink" title="3. Levels of Data Abstraction"></a>3. Levels of Data Abstraction</h3><ul>
+<li><strong>Physical Level</strong><ul>
+<li>the lowest level</li>
+<li><em>how</em> data stored</li>
+<li>describles complex low-level data structures in detail</li>
+</ul>
+</li>
+<li><strong>Logical Level</strong><ul>
+<li>the middle level</li>
+<li><em>what</em> data are stored and <em>what</em> relationships exist among those data</li>
+<li>describles the entire database in terms of a small numbers of relatively simple structures</li>
+</ul>
+</li>
+<li><strong>View Level</strong><ul>
+<li>the highest level</li>
+<li>describles only part of the entire database</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-Instance-amp-Schema"><a href="#4-Instance-amp-Schema" class="headerlink" title="4. Instance &amp; Schema"></a>4. Instance &amp; Schema</h3><p>Database systems have several schemas, partitioned according to the levels of the abstraction:</p>
+<ul>
+<li>Physical Schema</li>
+<li>Logical Schema</li>
+<li>Subschema</li>
+</ul>
+<h3 id="5-Database-Languages"><a href="#5-Database-Languages" class="headerlink" title="5. Database Languages"></a>5. Database Languages</h3><h4 id="DDL-Data-Definition-Language"><a href="#DDL-Data-Definition-Language" class="headerlink" title="DDL, Data-Definition Language"></a>DDL, Data-Definition Language</h4><p>DDL is used to specify a database schema and addtional properties of the data.</p>
+<h4 id="DML-Data-Manipulation-Language"><a href="#DML-Data-Manipulation-Language" class="headerlink" title="DML, Data-Manipulation Language"></a>DML, Data-Manipulation Language</h4>]]></content>
+      <tags>
+        <tag>Database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Database System Concept</title>
+    <url>/created4u/2023/03/09/DatabaseOperations/</url>
+    <content><![CDATA[<h1 id="SQL-Basic"><a href="#SQL-Basic" class="headerlink" title="SQL Basic"></a>SQL Basic</h1><p>此教程结合 <a href="https://www.runoob.com/sql/sql-tutorial.html">菜鸟教程</a> 以及 Database System Concepts(7th Edition) 数据库系统概念附带的 <a href="https://www.db-book.com/university-lab-dir/sqljs.html">Online SQL Interpreter</a>，在网站上自己实践效果更好。</p>
+<blockquote>
+<ol>
+<li>SQL 大小写不敏感，以下所有命令都可以采用大写。</li>
+<li>有些数据库不加分号 <code>;</code> 也可以，比如 IBM DB2。</li>
+</ol>
+</blockquote>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><h3 id="format"><a href="#format" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> TABLE_NAME;</span><br><span class="line"><span class="keyword">select</span> COLUMUN_NAME <span class="keyword">from</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g"><a href="#e-g" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom;</span><br><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom;</span><br></pre></td></tr></table></figure>
+
+<h2 id="select-distinct"><a href="#select-distinct" class="headerlink" title="select distinct"></a>select distinct</h2><h3 id="format-1"><a href="#format-1" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-1"><a href="#e-g-1" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> dept_name <span class="keyword">from</span> course;</span><br></pre></td></tr></table></figure>
+
+<h2 id="where"><a href="#where" class="headerlink" title="where"></a>where</h2><h3 id="format-2"><a href="#format-2" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> COLUMN_NAME operator <span class="keyword">VALUE</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="operator"><a href="#operator" class="headerlink" title="operator"></a>operator</h2><ul>
+<li><code>=</code></li>
+<li><code>&lt;&gt;</code> 或 <code>!=</code></li>
+<li><code>&gt;</code></li>
+<li><code>&lt;</code></li>
+<li><code>&gt;=</code></li>
+<li><code>&lt;=</code></li>
+<li><code>between</code></li>
+<li><code>like</code></li>
+<li><code>in</code></li>
+</ul>
+<h3 id="e-g-2"><a href="#e-g-2" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom <span class="keyword">where</span> building<span class="operator">=</span><span class="string">&#x27;Packard&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="and-x2F-or"><a href="#and-x2F-or" class="headerlink" title="and&#x2F;or"></a>and&#x2F;or</h2><h3 id="format-3"><a href="#format-3" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> CONDITION_ONE <span class="keyword">and</span><span class="operator">/</span><span class="keyword">or</span> CONDITION_TWO;</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-3"><a href="#e-g-3" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> course <span class="keyword">where</span> credits<span class="operator">=</span><span class="string">&#x27;3&#x27;</span> <span class="keyword">and</span> dept_name<span class="operator">=</span>&quot;Music&quot;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h2><h3 id="format-4"><a href="#format-4" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME <span class="keyword">order</span> <span class="keyword">by</span> COLUMN_NAME (<span class="keyword">desc</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-4"><a href="#e-g-4" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom <span class="keyword">order</span> <span class="keyword">by</span> building;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom <span class="keyword">order</span> <span class="keyword">by</span> building <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="insert-into"><a href="#insert-into" class="headerlink" title="insert into"></a>insert into</h2><h3 id="format-5"><a href="#format-5" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME (COLUMN_1,COLUMN_2,COLUMN_3,...) <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-5"><a href="#e-g-5" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> classroom <span class="keyword">values</span>(&quot;Classroom&quot;,&quot;666&quot;,<span class="number">88</span>);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/created4u/2023/06/12/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
