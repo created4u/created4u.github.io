@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Database System Concept</title>
+    <url>/created4u/2023/03/09/DatabaseOperations/</url>
+    <content><![CDATA[<h1 id="SQL-Basic"><a href="#SQL-Basic" class="headerlink" title="SQL Basic"></a>SQL Basic</h1><p>此教程结合 <a href="https://www.runoob.com/sql/sql-tutorial.html">菜鸟教程</a> 以及 Database System Concepts(7th Edition) 数据库系统概念附带的 <a href="https://www.db-book.com/university-lab-dir/sqljs.html">Online SQL Interpreter</a>，在网站上自己实践效果更好。</p>
+<blockquote>
+<ol>
+<li>SQL 大小写不敏感，以下所有命令都可以采用大写。</li>
+<li>有些数据库不加分号 <code>;</code> 也可以，比如 IBM DB2。</li>
+</ol>
+</blockquote>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><h3 id="format"><a href="#format" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> TABLE_NAME;</span><br><span class="line"><span class="keyword">select</span> COLUMUN_NAME <span class="keyword">from</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g"><a href="#e-g" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom;</span><br><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom;</span><br></pre></td></tr></table></figure>
+
+<h2 id="select-distinct"><a href="#select-distinct" class="headerlink" title="select distinct"></a>select distinct</h2><h3 id="format-1"><a href="#format-1" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-1"><a href="#e-g-1" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> dept_name <span class="keyword">from</span> course;</span><br></pre></td></tr></table></figure>
+
+<h2 id="where"><a href="#where" class="headerlink" title="where"></a>where</h2><h3 id="format-2"><a href="#format-2" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> COLUMN_NAME operator <span class="keyword">VALUE</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="operator"><a href="#operator" class="headerlink" title="operator"></a>operator</h2><ul>
+<li><code>=</code></li>
+<li><code>&lt;&gt;</code> 或 <code>!=</code></li>
+<li><code>&gt;</code></li>
+<li><code>&lt;</code></li>
+<li><code>&gt;=</code></li>
+<li><code>&lt;=</code></li>
+<li><code>between</code></li>
+<li><code>like</code></li>
+<li><code>in</code></li>
+</ul>
+<h3 id="e-g-2"><a href="#e-g-2" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom <span class="keyword">where</span> building<span class="operator">=</span><span class="string">&#x27;Packard&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="and-x2F-or"><a href="#and-x2F-or" class="headerlink" title="and&#x2F;or"></a>and&#x2F;or</h2><h3 id="format-3"><a href="#format-3" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> CONDITION_ONE <span class="keyword">and</span><span class="operator">/</span><span class="keyword">or</span> CONDITION_TWO;</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-3"><a href="#e-g-3" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> course <span class="keyword">where</span> credits<span class="operator">=</span><span class="string">&#x27;3&#x27;</span> <span class="keyword">and</span> dept_name<span class="operator">=</span>&quot;Music&quot;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h2><h3 id="format-4"><a href="#format-4" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME <span class="keyword">order</span> <span class="keyword">by</span> COLUMN_NAME (<span class="keyword">desc</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-4"><a href="#e-g-4" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom <span class="keyword">order</span> <span class="keyword">by</span> building;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom <span class="keyword">order</span> <span class="keyword">by</span> building <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="insert-into"><a href="#insert-into" class="headerlink" title="insert into"></a>insert into</h2><h3 id="format-5"><a href="#format-5" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME (COLUMN_1,COLUMN_2,COLUMN_3,...) <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br></pre></td></tr></table></figure>
+
+<h3 id="e-g-5"><a href="#e-g-5" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> classroom <span class="keyword">values</span>(&quot;Classroom&quot;,&quot;666&quot;,<span class="number">88</span>);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Database</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AWS Notes</title>
     <url>/created4u/2022/12/23/AWSCloudPractionerEssential/</url>
     <content><![CDATA[<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>云计算就是通过互联网<strong>按需提供</strong> IT 资源并采用<strong>按需付费</strong>定价模式。</p>
@@ -92,55 +141,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Database System Concept</title>
-    <url>/created4u/2023/03/09/DatabaseOperations/</url>
-    <content><![CDATA[<h1 id="SQL-Basic"><a href="#SQL-Basic" class="headerlink" title="SQL Basic"></a>SQL Basic</h1><p>此教程结合 <a href="https://www.runoob.com/sql/sql-tutorial.html">菜鸟教程</a> 以及 Database System Concepts(7th Edition) 数据库系统概念附带的 <a href="https://www.db-book.com/university-lab-dir/sqljs.html">Online SQL Interpreter</a>，在网站上自己实践效果更好。</p>
-<blockquote>
-<ol>
-<li>SQL 大小写不敏感，以下所有命令都可以采用大写。</li>
-<li>有些数据库不加分号 <code>;</code> 也可以，比如 IBM DB2。</li>
-</ol>
-</blockquote>
-<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><h3 id="format"><a href="#format" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> TABLE_NAME;</span><br><span class="line"><span class="keyword">select</span> COLUMUN_NAME <span class="keyword">from</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
-
-<h3 id="e-g"><a href="#e-g" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom;</span><br><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom;</span><br></pre></td></tr></table></figure>
-
-<h2 id="select-distinct"><a href="#select-distinct" class="headerlink" title="select distinct"></a>select distinct</h2><h3 id="format-1"><a href="#format-1" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
-
-<h3 id="e-g-1"><a href="#e-g-1" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> dept_name <span class="keyword">from</span> course;</span><br></pre></td></tr></table></figure>
-
-<h2 id="where"><a href="#where" class="headerlink" title="where"></a>where</h2><h3 id="format-2"><a href="#format-2" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> COLUMN_NAME operator <span class="keyword">VALUE</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="operator"><a href="#operator" class="headerlink" title="operator"></a>operator</h2><ul>
-<li><code>=</code></li>
-<li><code>&lt;&gt;</code> 或 <code>!=</code></li>
-<li><code>&gt;</code></li>
-<li><code>&lt;</code></li>
-<li><code>&gt;=</code></li>
-<li><code>&lt;=</code></li>
-<li><code>between</code></li>
-<li><code>like</code></li>
-<li><code>in</code></li>
-</ul>
-<h3 id="e-g-2"><a href="#e-g-2" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom <span class="keyword">where</span> building<span class="operator">=</span><span class="string">&#x27;Packard&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="and-x2F-or"><a href="#and-x2F-or" class="headerlink" title="and&#x2F;or"></a>and&#x2F;or</h2><h3 id="format-3"><a href="#format-3" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> CONDITION_ONE <span class="keyword">and</span><span class="operator">/</span><span class="keyword">or</span> CONDITION_TWO;</span><br></pre></td></tr></table></figure>
-
-<h3 id="e-g-3"><a href="#e-g-3" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> course <span class="keyword">where</span> credits<span class="operator">=</span><span class="string">&#x27;3&#x27;</span> <span class="keyword">and</span> dept_name<span class="operator">=</span>&quot;Music&quot;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h2><h3 id="format-4"><a href="#format-4" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME <span class="keyword">order</span> <span class="keyword">by</span> COLUMN_NAME (<span class="keyword">desc</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="e-g-4"><a href="#e-g-4" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom <span class="keyword">order</span> <span class="keyword">by</span> building;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> classroom <span class="keyword">order</span> <span class="keyword">by</span> building <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="insert-into"><a href="#insert-into" class="headerlink" title="insert into"></a>insert into</h2><h3 id="format-5"><a href="#format-5" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME (COLUMN_1,COLUMN_2,COLUMN_3,...) <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br></pre></td></tr></table></figure>
-
-<h3 id="e-g-5"><a href="#e-g-5" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> classroom <span class="keyword">values</span>(&quot;Classroom&quot;,&quot;666&quot;,<span class="number">88</span>);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Database</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据库复习</title>
     <url>/created4u/2023/02/19/DatabaseSystemConceptsChapter0/</url>
     <content><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Terms"><a href="#Terms" class="headerlink" title="Terms"></a>Terms</h2><ol>
@@ -225,23 +225,5 @@
       <tags>
         <tag>Database</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/created4u/2023/06/12/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
