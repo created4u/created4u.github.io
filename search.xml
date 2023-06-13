@@ -1,97 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AWS Notes</title>
-    <url>/created4u/2022/12/23/AWSCloudPractionerEssential/</url>
-    <content><![CDATA[<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>云计算就是通过互联网<strong>按需提供</strong> IT 资源并采用<strong>按需付费</strong>定价模式。</p>
-<h2 id="部署模式"><a href="#部署模式" class="headerlink" title="部署模式"></a>部署模式</h2><ul>
-<li>云端部署<ul>
-<li>在云中运行应用程序的所有组件</li>
-<li>将现有应用程序迁移到云</li>
-<li>在云中设计和构建新的应用程序</li>
-</ul>
-</li>
-<li>本地部署&#x2F;私有云部署<ul>
-<li>利用虚拟化工具和资源管理工具部署资源</li>
-<li>利用应用程序和虚拟化技术提高资源利用率</li>
-</ul>
-</li>
-<li>混合部署<ul>
-<li>将基于云的资源与本地基础设施连接</li>
-<li>将基于云的资源与传统 IT 应用程序集成</li>
-</ul>
-</li>
-</ul>
-<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><ol>
-<li><p>将前期费用变成可变支出</p>
-<p> 前期费用是指您在使用数据中心、物理服务器和其他资源之前需要为其投入的费用。可变支出意味着您只需为消耗的计算资源付费，而不需要在知道自己会如何使用数据中心和服务器之前进行大量投资。</p>
-</li>
-<li><p>无需在数据中心运行和维护方面投入资金</p>
-</li>
-<li><p>无需猜测容量</p>
-</li>
-<li><p>实现规模经济效益</p>
-</li>
-<li><p>提高速度和敏捷性</p>
-</li>
-<li><p>几分钟内实现全球化部署</p>
-</li>
-</ol>
-<h1 id="EC2"><a href="#EC2" class="headerlink" title="EC2"></a>EC2</h1><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><ol>
-<li><p>启动</p>
-<p> 为实例选择具有基本配置的模板，包括操作系统，应用程序服务器或应用程序。还要选择实例类型，即实例的具体硬件配置。</p>
-</li>
-<li><p>连接</p>
-</li>
-<li><p>使用</p>
-</li>
-</ol>
-<h2 id="实例类型"><a href="#实例类型" class="headerlink" title="实例类型"></a>实例类型</h2><ol>
-<li><p>通用型</p>
-<p> 实现计算，内存和网络资源的均衡。</p>
-<ul>
-<li>应用程序服务器</li>
-<li>游戏服务器</li>
-<li>企业应用程序的后端服务器</li>
-<li>中小型数据库</li>
-</ul>
-</li>
-<li><p>计算优化型</p>
-<p> 适合需要使用高性能处理器的计算密集型应用程序。</p>
-<ul>
-<li>高性能 Web 服务器</li>
-<li>计算密集型应用程序服务器</li>
-<li>专用游戏服务器</li>
-<li>成组处理多个事务的批处理工作负载</li>
-</ul>
-</li>
-<li><p>内存优化型</p>
-<p> 提高用于处理内存中的大型数据集的工作负载的性能。</p>
-<ul>
-<li>高性能数据库</li>
-</ul>
-</li>
-<li><p>加速计算型</p>
-<p> 使用硬件加速器或协同处理器来执行一些功能。</p>
-<ul>
-<li>浮点数计算</li>
-<li>图形处理</li>
-<li>数据模式匹配</li>
-</ul>
-</li>
-<li><p>存储优化型</p>
-<p> 适用于需要对本地存储上的大型数据集进行高速连续读写访问的工作负载。</p>
-<ul>
-<li>分布式文件系统</li>
-<li>数据仓库应用程序</li>
-<li>高频在线事务处理系统</li>
-</ul>
-</li>
-</ol>
-<h2 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h2><p>可扩展性是指仅从需要的资源开始，并且设计架构以便自动扩展和缩减，从而响应不断变化的需求。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Database System Concept</title>
     <url>/created4u/2023/03/09/DatabaseOperations/</url>
     <content><![CDATA[<h1 id="SQL-Basic"><a href="#SQL-Basic" class="headerlink" title="SQL Basic"></a>SQL Basic</h1><p>此教程结合 <a href="https://www.runoob.com/sql/sql-tutorial.html">菜鸟教程</a> 以及 Database System Concepts(7th Edition) 数据库系统概念附带的 <a href="https://www.db-book.com/university-lab-dir/sqljs.html">Online SQL Interpreter</a>，在网站上自己实践效果更好。</p>
@@ -236,12 +145,103 @@
       </categories>
   </entry>
   <entry>
+    <title>AWS Notes</title>
+    <url>/created4u/2022/12/23/AWSCloudPractionerEssential/</url>
+    <content><![CDATA[<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>云计算就是通过互联网<strong>按需提供</strong> IT 资源并采用<strong>按需付费</strong>定价模式。</p>
+<h2 id="部署模式"><a href="#部署模式" class="headerlink" title="部署模式"></a>部署模式</h2><ul>
+<li>云端部署<ul>
+<li>在云中运行应用程序的所有组件</li>
+<li>将现有应用程序迁移到云</li>
+<li>在云中设计和构建新的应用程序</li>
+</ul>
+</li>
+<li>本地部署&#x2F;私有云部署<ul>
+<li>利用虚拟化工具和资源管理工具部署资源</li>
+<li>利用应用程序和虚拟化技术提高资源利用率</li>
+</ul>
+</li>
+<li>混合部署<ul>
+<li>将基于云的资源与本地基础设施连接</li>
+<li>将基于云的资源与传统 IT 应用程序集成</li>
+</ul>
+</li>
+</ul>
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><ol>
+<li><p>将前期费用变成可变支出</p>
+<p> 前期费用是指您在使用数据中心、物理服务器和其他资源之前需要为其投入的费用。可变支出意味着您只需为消耗的计算资源付费，而不需要在知道自己会如何使用数据中心和服务器之前进行大量投资。</p>
+</li>
+<li><p>无需在数据中心运行和维护方面投入资金</p>
+</li>
+<li><p>无需猜测容量</p>
+</li>
+<li><p>实现规模经济效益</p>
+</li>
+<li><p>提高速度和敏捷性</p>
+</li>
+<li><p>几分钟内实现全球化部署</p>
+</li>
+</ol>
+<h1 id="EC2"><a href="#EC2" class="headerlink" title="EC2"></a>EC2</h1><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><ol>
+<li><p>启动</p>
+<p> 为实例选择具有基本配置的模板，包括操作系统，应用程序服务器或应用程序。还要选择实例类型，即实例的具体硬件配置。</p>
+</li>
+<li><p>连接</p>
+</li>
+<li><p>使用</p>
+</li>
+</ol>
+<h2 id="实例类型"><a href="#实例类型" class="headerlink" title="实例类型"></a>实例类型</h2><ol>
+<li><p>通用型</p>
+<p> 实现计算，内存和网络资源的均衡。</p>
+<ul>
+<li>应用程序服务器</li>
+<li>游戏服务器</li>
+<li>企业应用程序的后端服务器</li>
+<li>中小型数据库</li>
+</ul>
+</li>
+<li><p>计算优化型</p>
+<p> 适合需要使用高性能处理器的计算密集型应用程序。</p>
+<ul>
+<li>高性能 Web 服务器</li>
+<li>计算密集型应用程序服务器</li>
+<li>专用游戏服务器</li>
+<li>成组处理多个事务的批处理工作负载</li>
+</ul>
+</li>
+<li><p>内存优化型</p>
+<p> 提高用于处理内存中的大型数据集的工作负载的性能。</p>
+<ul>
+<li>高性能数据库</li>
+</ul>
+</li>
+<li><p>加速计算型</p>
+<p> 使用硬件加速器或协同处理器来执行一些功能。</p>
+<ul>
+<li>浮点数计算</li>
+<li>图形处理</li>
+<li>数据模式匹配</li>
+</ul>
+</li>
+<li><p>存储优化型</p>
+<p> 适用于需要对本地存储上的大型数据集进行高速连续读写访问的工作负载。</p>
+<ul>
+<li>分布式文件系统</li>
+<li>数据仓库应用程序</li>
+<li>高频在线事务处理系统</li>
+</ul>
+</li>
+</ol>
+<h2 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h2><p>可扩展性是指仅从需要的资源开始，并且设计架构以便自动扩展和缩减，从而响应不断变化的需求。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>About Me</title>
     <url>/created4u/2023/06/06/about/</url>
     <content><![CDATA[<p><a href="../about-CN/index.html">简体中文</a> | English</p>
 <img src="/created4u/2023/06/06/about/code.png" class="" title="Programming is art.">
 
-<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello!"></a>Hello!</h1><p>I’m a student.</p>
+<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello!"></a>Hello!</h1><p>I’m an undergraduate of College of Computer Science and Technology, Jilin University.</p>
 ]]></content>
       <categories>
         <category>-[about]</category>
