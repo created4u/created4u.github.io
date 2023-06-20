@@ -229,8 +229,41 @@
   <entry>
     <title>关于我自己</title>
     <url>/created4u/2023/06/06/about-CN/</url>
-    <content><![CDATA[<p>简体中文 | <a href="../about/index.html">English</a></p>
-<h1 id="你好！"><a href="#你好！" class="headerlink" title="你好！"></a>你好！</h1>]]></content>
+    <content><![CDATA[<p>简体中文 | <a href="../about-TCN/index.html">繁體中文</a> | <a href="../about/index.html">English</a> | <a href="../about-FR/index.html">Français</a></p>
+<img src="/created4u/2023/06/06/about-CN/code.png" class="" title="Programming is art.">
+
+<h1 id="你好！"><a href="#你好！" class="headerlink" title="你好！"></a>你好！</h1><p>欢迎访问我的个人主页，我也非常荣幸能够同你这样有趣的灵魂在此相遇。</p>
+<h1 id="学习经历"><a href="#学习经历" class="headerlink" title="学习经历"></a>学习经历</h1><ul>
+<li>2017 - 2020，高中，安徽省亳州市第一中学</li>
+<li>2020 - 至今，本科，吉林大学计算机科学与技术学院</li>
+</ul>
+<h1 id="参与项目"><a href="#参与项目" class="headerlink" title="参与项目"></a>参与项目</h1><ul>
+<li>RISC-V 指令集软件仿真</li>
+<li>基于 YOLOv5 的智能捡拾机器人</li>
+<li>我自己的 Repositories<ul>
+<li><a href="https://github.com/created4u/heartbeat.git">Heartbeat</a></li>
+<li><a href="https://github.com/created4u/Coursea.git">Coursea</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="所获荣誉"><a href="#所获荣誉" class="headerlink" title="所获荣誉"></a>所获荣誉</h1><p>（截止至 2023 年 6 月）</p>
+<ul>
+<li>2020 - 2021，吉林大学三等奖学金</li>
+<li>2021 - 2022，吉林大学二等奖学金</li>
+<li>2021 - 2022，吉林大学计算机科学与技术学院院优秀学生</li>
+</ul>
+<h1 id="兴趣爱好"><a href="#兴趣爱好" class="headerlink" title="兴趣爱好"></a>兴趣爱好</h1><ul>
+<li>语言学习。空余时间会学习各种有趣的语言，例如 Français，Русский，Español 等语言。</li>
+<li>绘画（约等于～乱画）。没有系统地学过相关知识，就是想画啥画啥。</li>
+<li>阅读文学。<a href="https://en.wikipedia.org/wiki/Franz_Kafka">Kafka</a> 和 <a href="https://en.wikipedia.org/wiki/Virginia_Woolf">Woolf</a> 是我最喜欢的作家之一，虽然有时候看不太懂，但是更让我痴迷不已。</li>
+<li>设计各种有意思的东西，执着于用平凡的材料创造出不平凡的事物，用颜色表达情感。</li>
+<li>摄影。用相机记录下每一个值得回忆的瞬间。</li>
+</ul>
+<h2 id="我的小作品"><a href="#我的小作品" class="headerlink" title="我的小作品 :)"></a>我的小作品 :)</h2><p>这是几年前我画的第一幅画。</p>
+<img src="/created4u/2023/06/06/about-CN/him.PNG" class="" title="The first man I drew.">
+
+<p>这是我家仙人掌开的花。</p>
+<img src="/created4u/2023/06/06/about-CN/cactus.jpeg" class="" title="Cactus flower.">]]></content>
       <categories>
         <category>-[about]</category>
       </categories>
@@ -238,11 +271,125 @@
   <entry>
     <title>About Me</title>
     <url>/created4u/2023/06/06/about/</url>
-    <content><![CDATA[<p><a href="../about-CN/index.html">简体中文</a> | English</p>
+    <content><![CDATA[<p>English | <a href="../about-TCN/index.html">繁體中文</a> | <a href="../about-CN/index.html">简体中文</a> | <a href="../about-FR/index.html">Français</a></p>
 <img src="/created4u/2023/06/06/about/code.png" class="" title="Programming is art.">
 
-<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello!"></a>Hello!</h1><p>I’m an undergraduate of College of Computer Science and Technology, Jilin University.</p>
-]]></content>
+<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello!"></a>Hello!</h1><p>Welcome to my personal homepage, and I’m glad to meet such an interesting soul as you.</p>
+<h1 id="Experience"><a href="#Experience" class="headerlink" title="Experience"></a>Experience</h1><ul>
+<li>2017 - 2020, No.1 High School of Bozhou, Anhui Province</li>
+<li>2020 - 2024, College of Computer Science and Technology, Jilin University</li>
+</ul>
+<h1 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h1><ul>
+<li>Emulator based on RISC-V</li>
+<li>Intelligent picking robot using YOLOv5</li>
+<li>Some repositories<ul>
+<li><a href="https://github.com/created4u/heartbeat.git">Heartbeat</a></li>
+<li><a href="https://github.com/created4u/Coursea.git">Coursea</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="Awards"><a href="#Awards" class="headerlink" title="Awards"></a>Awards</h1><p>(Updated on 6, June, 2023)</p>
+<ul>
+<li>2020 - 2021, Second Class Scholarship, Jilin University</li>
+<li>2021 - 2022, Third Class Scholarship, Jilin University</li>
+<li>2021 - 2022, College Excellent Student, Jilin University</li>
+</ul>
+<h1 id="Hobbies"><a href="#Hobbies" class="headerlink" title="Hobbies"></a>Hobbies</h1><ul>
+<li>Learning languages. When I’m free, learning different languages is a wonderful way to consume time, Français, Русский, Español… those are my favorites.</li>
+<li>Painting. Just for fun :P.</li>
+<li>Reading. <a href="https://en.wikipedia.org/wiki/Franz_Kafka">Kafka</a> and <a href="https://en.wikipedia.org/wiki/Virginia_Woolf">Woolf</a> are among my favorite authors. Although sometimes I don’t fully understand their brilliant work, it makes me even more engrossed.</li>
+<li>Design all kinds of interesting things, insist on creating extraordinary things with ordinary materials, and express emotions with colors.</li>
+<li>Photography. Recording every moment of normal life with camera.</li>
+</ul>
+<h2 id="My-Works"><a href="#My-Works" class="headerlink" title="My Works :)"></a>My Works :)</h2><p>Here is the first work I painted several years ago.</p>
+<img src="/created4u/2023/06/06/about/him.PNG" class="" title="The first man I drew.">
+
+<p>And this is a flower of cactus in my home.</p>
+<img src="/created4u/2023/06/06/about/cactus.jpeg" class="" title="Cactus flower.">]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>關於我自己</title>
+    <url>/created4u/2023/06/06/about-TCN/</url>
+    <content><![CDATA[<p>繁體中文 | <a href="../about-CN/index.html">简体中文</a> | <a href="../about/index.html">English</a> | <a href="../about-FR/index.html">Français</a></p>
+<img src="/created4u/2023/06/06/about-TCN/code.png" class="" title="Programming is art.">
+
+<h1 id="你好！"><a href="#你好！" class="headerlink" title="你好！"></a>你好！</h1><p>歡迎訪問我嘅個人主頁，我都非常榮幸能夠同你咁有趣嘅靈魂在此相遇。</p>
+<h1 id="學習經歷"><a href="#學習經歷" class="headerlink" title="學習經歷"></a>學習經歷</h1><ul>
+<li>2017 - 2020，高中，安徽省亳州市第一中學</li>
+<li>2020 - 至今，本科，吉林大學計算機科學與技術學院</li>
+</ul>
+<h1 id="參與項目"><a href="#參與項目" class="headerlink" title="參與項目"></a>參與項目</h1><ul>
+<li>RISC-V 指令集軟件仿真</li>
+<li>基於 YOLOv5 嘅智能撿拾機械人</li>
+<li>我自己嘅 Repositories<ul>
+<li><a href="https://github.com/created4u/heartbeat.git">Heartbeat</a></li>
+<li><a href="https://github.com/created4u/Coursea.git">Coursea</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="所獲榮譽"><a href="#所獲榮譽" class="headerlink" title="所獲榮譽"></a>所獲榮譽</h1><p>（截止至 2023 年 6 月）</p>
+<ul>
+<li>2020 - 2021，吉林大學三等獎學金</li>
+<li>2021 - 2022，吉林大學二等獎學金</li>
+<li>2021 - 2022，吉林大學計算機科學與技術學院院優秀學生</li>
+</ul>
+<h1 id="興趣愛好"><a href="#興趣愛好" class="headerlink" title="興趣愛好"></a>興趣愛好</h1><ul>
+<li>語言學習。空餘時間會學習各種有趣嘅語言，例如 Français，Русский，Español 等語言。</li>
+<li>繪畫（約等於~亂畫）。冇系統咁學過相關知識，就係想畫啥畫啥。</li>
+<li>閱讀文學。<a href="https://en.wikipedia.org/wiki/Franz_Kafka">Kafka</a> 同 <a href="https://en.wikipedia.org/wiki/Virginia_Woolf">Woolf</a> 係我最鍾意嘅作家之一，雖然有時候睇唔係幾明，但係更令我癡迷不已。</li>
+<li>設計各種有意思嘅嘢，執著于用平凡嘅材料創造出不平凡嘅嘢，用顏色表達情感。</li>
+<li>攝影。用相機記錄的每一個值得回憶嘅瞬間。</li>
+</ul>
+<h2 id="個人作品"><a href="#個人作品" class="headerlink" title="個人作品 :)"></a>個人作品 :)</h2><p>係幾年前我畫嘅第一幅畫。</p>
+<img src="/created4u/2023/06/06/about-TCN/him.PNG" class="" title="The first man I drew.">
+
+<p>係我屋企仙人掌開嘅花。</p>
+<img src="/created4u/2023/06/06/about-TCN/cactus.jpeg" class="" title="Cactus flower.">]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Présentation de soi.</title>
+    <url>/created4u/2023/06/06/about-FR/</url>
+    <content><![CDATA[<p>Français | <a href="../about/index.html">English</a> | <a href="../about-TCN/index.html">繁體中文</a> | <a href="../about-CN/index.html">简体中文</a></p>
+<img src="/created4u/2023/06/06/about-FR/code.png" class="" title="Programming is art.">
+
+<h1 id="Bonjour"><a href="#Bonjour" class="headerlink" title="Bonjour!"></a>Bonjour!</h1><p>Bienvenue sur ma page d’accueil personnelle, et je suis heureux de rencontrer une âme aussi intéressante que vous.</p>
+<h1 id="Experience"><a href="#Experience" class="headerlink" title="Expérience"></a>Expérience</h1><ul>
+<li>2017 - 2020, Premier Lycée de Bozhou, Province d’Anhui</li>
+<li>2020 - 2024, Collège d’informatique et de technologie, Université de Jilin</li>
+</ul>
+<h1 id="Projets"><a href="#Projets" class="headerlink" title="Projets"></a>Projets</h1><ul>
+<li>Émulateur basé sur RISC-V</li>
+<li>Robot de prélèvement intelligent utilisant YOLOv5</li>
+<li>Certains  Github Repositories<ul>
+<li><a href="https://github.com/created4u/heartbeat.git">Heartbeat</a></li>
+<li><a href="https://github.com/created4u/Coursea.git">Coursea</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="Recompenses-et-Honneurs"><a href="#Recompenses-et-Honneurs" class="headerlink" title="Récompenses et Honneurs"></a>Récompenses et Honneurs</h1><p>(Mise à jour le 6 juin 2023)</p>
+<ul>
+<li>2020 - 2021, Bourse de deuxième classe, Université de Jilin</li>
+<li>2021 - 2022, Bourse de troisième classe, Université de Jilin</li>
+<li>2021 - 2022, Excellent étudiant universitaire, Université de Jilin</li>
+</ul>
+<h1 id="Loisirs"><a href="#Loisirs" class="headerlink" title="Loisirs"></a>Loisirs</h1><ul>
+<li>Apprendre des langues. Quand je suis libre, apprendre différentes langues est une merveilleuse façon de gagner du temps, Français, Русский, Español… ce sont mes préférées.</li>
+<li>Peinture. Juste pour le fun :P.</li>
+<li>En lisant. <a href="https://en.wikipedia.org/wiki/Franz_Kafka">Kafka</a> et <a href="https://en.wikipedia.org/wiki/Virginia_Woolf">Woolf</a> sont parmi mes auteurs préférés. Bien que parfois je ne comprenne pas entièrement leur travail brillant, cela me rend encore plus captivé.</li>
+<li>Concevez toutes sortes de choses intéressantes, insistez pour créer des choses extraordinaires avec des matériaux ordinaires et exprimez des émotions avec des couleurs.</li>
+<li>La photographie. Enregistrement de chaque instant de la vie normale avec caméra.</li>
+</ul>
+<h2 id="Ma-Creation"><a href="#Ma-Creation" class="headerlink" title="Ma Création :)"></a>Ma Création :)</h2><p>Voici la première œuvre que j’ai peinte il y a plusieurs années.</p>
+<img src="/created4u/2023/06/06/about-FR/him.PNG" class="" title="The first man I drew.">
+
+<p>Et c’est une fleur de cactus chez moi.</p>
+<img src="/created4u/2023/06/06/about-FR/cactus.jpeg" class="" title="Cactus flower.">]]></content>
       <categories>
         <category>-[about]</category>
       </categories>
