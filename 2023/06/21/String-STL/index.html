@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ignacio Song">
+
+
+    <meta name="subtitle" content="Code With Love & Design With Passion">
+
+
+    <meta name="description" content="A coder who is crazy about designing.">
+
+
+
+
+
+<title>STL 之字符串 | Mi-X-Lab</title>
+
+
+
+    <link rel="icon" href="/created4u/icons.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/created4u/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/created4u/js/menu.js"></script>
+    
+    <script src="/created4u/js/search.js"></script>
+    
+    <script src="/created4u/js/format.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/created4u/">
+          
+            Mi-X-Lab
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/categories/about/">About</a>
+              </li> 
+                   
+          
+          
+            <li class="menu-item search-btn">
+              <a href="#">Search</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/created4u/tags/STL/">
+                            STL
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                STL 之字符串
+            
+            
+        </div>
+        <span class="post-date">
+            Jun 21, 2023
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">string <span class="title">s1</span><span class="params">(<span class="string">&quot;Milo_Song_2120&quot;</span>)</span></span>;</span><br><span class="line">    <span class="type">char</span> ch[] = <span class="string">&quot;Hello_Cpp&quot;</span>;</span><br><span class="line">    <span class="function">string <span class="title">s2</span><span class="params">(s1)</span></span>;                       <span class="comment">// 复制字符串</span></span><br><span class="line">    <span class="function">string <span class="title">s3</span><span class="params">(s1, <span class="number">2</span>, <span class="number">5</span>)</span></span>;                 <span class="comment">// 从 s1[2] 开始，复制 5 个字符</span></span><br><span class="line">    <span class="function">string <span class="title">s4</span><span class="params">(ch, <span class="number">4</span>)</span></span>;                    <span class="comment">// 复制 ch 的前 4 个字符</span></span><br><span class="line">    <span class="function">string <span class="title">s5</span><span class="params">(<span class="number">9</span>, <span class="string">&#x27;6&#x27;</span>)</span></span>;                   <span class="comment">// 9 个字符 &#x27;6&#x27;</span></span><br><span class="line">    <span class="function">string <span class="title">s6</span><span class="params">(s1.begin(), s1.end())</span></span>;     <span class="comment">// 复制整个字符串</span></span><br><span class="line">    <span class="function">string <span class="title">s7</span><span class="params">(s1.begin(), s1.end() - <span class="number">1</span>)</span></span>; <span class="comment">// 复制除最后一个字符以外的所有字符</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;s1 = &quot;</span> &lt;&lt; s1 &lt;&lt; <span class="string">&quot;;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;s2 = &quot;</span> &lt;&lt; s2 &lt;&lt; <span class="string">&quot;;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;s3 = &quot;</span> &lt;&lt; s3 &lt;&lt; <span class="string">&quot;;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;s4 = &quot;</span> &lt;&lt; s4 &lt;&lt; <span class="string">&quot;;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;s5 = &quot;</span> &lt;&lt; s5 &lt;&lt; <span class="string">&quot;;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;s6 = &quot;</span> &lt;&lt; s6 &lt;&lt; <span class="string">&quot;;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;s7 = &quot;</span> &lt;&lt; s7 &lt;&lt; <span class="string">&quot;;&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s1 = Milo_Song_2120;</span><br><span class="line">s2 = Milo_Song_2120;</span><br><span class="line">s3 = lo_So;</span><br><span class="line">s4 = Hell;</span><br><span class="line">s5 = 666666666;</span><br><span class="line">s6 = Milo_Song_2120;</span><br><span class="line">s7 = Milo_Song_212;</span><br></pre></td></tr></table></figure>
+
+<h2 id="string-的大小和容量"><a href="#string-的大小和容量" class="headerlink" title="string 的大小和容量"></a>string 的大小和容量</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Size of s: &quot;</span> &lt;&lt; s.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Length of s: &quot;</span> &lt;&lt; s.<span class="built_in">length</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Max size of s: &quot;</span> &lt;&lt; s.<span class="built_in">max_size</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Capacity of s: &quot;</span> &lt;&lt; s.<span class="built_in">capacity</span>() &lt;&lt; endl;</span><br><span class="line">    s.<span class="built_in">reserve</span>(<span class="number">66</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Capacity of s: &quot;</span> &lt;&lt; s.<span class="built_in">capacity</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Size of s: 5</span><br><span class="line">Length of s: 5</span><br><span class="line">Max size of s: 9223372036854775791</span><br><span class="line">Capacity of s: 22</span><br><span class="line">Capacity of s: 79</span><br></pre></td></tr></table></figure>
+
+<p>⚠️ <code>s.reserve()</code> 和 <code>s.capacity()</code> 这两个函数没搞太懂。</p>
+<h2 id="string-读取"><a href="#string-读取" class="headerlink" title="string 读取"></a>string 读取</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;Hello_Song&quot;</span>)</span></span>;</span><br><span class="line">    cout &lt;&lt; s.<span class="built_in">at</span>(<span class="number">4</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; s.<span class="built_in">at</span>(s.<span class="built_in">length</span>() - <span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; s[s.<span class="built_in">length</span>()] &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; s[s.<span class="built_in">length</span>() - <span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">o</span><br><span class="line">g</span><br><span class="line"> </span><br><span class="line">g</span><br></pre></td></tr></table></figure>
+
+<h2 id="string-比较"><a href="#string-比较" class="headerlink" title="string 比较"></a>string 比较</h2><p><code>compare()</code> 函数</p>
+<ul>
+<li><code>string1.compare(pos, n, string2)</code></li>
+<li>比较结果相同，返回 0 值</li>
+<li>比较结果不同<ul>
+<li><code>string1</code> 的字典序先于 <code>string2</code>，返回负值</li>
+<li>否则，返回正值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">string <span class="title">s1</span><span class="params">(<span class="string">&quot;abcdef&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">string <span class="title">s2</span><span class="params">(<span class="string">&quot;hijkl&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">string <span class="title">s3</span><span class="params">(<span class="string">&quot;abcdef&quot;</span>)</span></span>;</span><br><span class="line">    <span class="function">string <span class="title">s4</span><span class="params">(<span class="string">&quot;abcd&quot;</span>)</span></span>;</span><br><span class="line">    cout &lt;&lt; s1.<span class="built_in">compare</span>(s2) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; s1.<span class="built_in">compare</span>(s3) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; s1.<span class="built_in">compare</span>(s4) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; s1.<span class="built_in">compare</span>(<span class="number">0</span>, <span class="number">4</span>, s4);   <span class="comment">//s1 -&gt; abcd 与 s4 比较</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-7</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以直接使用比较运算符来比较。</p>
+<h2 id="string-的修改和替换"><a href="#string-的修改和替换" class="headerlink" title="string 的修改和替换"></a>string 的修改和替换</h2><p><code>assign()</code> 和 <code>swap()</code> 函数可以正常使用，但是 <code>erase()</code> 函数出现问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">string <span class="title">s1</span><span class="params">(<span class="string">&quot;ABCDEFG&quot;</span>)</span></span>;</span><br><span class="line">    string s2, s3, s4, s5;</span><br><span class="line">    s2.<span class="built_in">assign</span>(s1);</span><br><span class="line">    cout &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">    s3.<span class="built_in">assign</span>(s1, <span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">    cout &lt;&lt; s3 &lt;&lt; endl;</span><br><span class="line">    s4.<span class="built_in">assign</span>(<span class="number">6</span>, <span class="string">&#x27;X&#x27;</span>);</span><br><span class="line">    cout &lt;&lt; s4 &lt;&lt; endl;</span><br><span class="line">    s5.<span class="built_in">swap</span>(s1);</span><br><span class="line">    cout &lt;&lt; s5 &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ABCDEFG</span></span><br><span class="line"><span class="comment">// BCD</span></span><br><span class="line"><span class="comment">// XXXXXX</span></span><br><span class="line"><span class="comment">// ABCDEFG</span></span><br></pre></td></tr></table></figure>
+
+<p><code>insert()</code> 函数的使用如下。</p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/created4u/2023/06/21/WirelessNetwork/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                © Ignacio Song | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-popup">
+    <div class="search-popup-overlay">  
+    </div>
+    <div class="search-popup-window" >
+        <div class="search-header">
+            <div class="search-input-container">
+              <input autocomplete="off" autocapitalize="off" maxlength="80"
+                     placeholder="Search Anything" spellcheck="false"
+                     type="search" class="search-input">
+            </div>
+            <div class="search-close-btn">
+                <div class="icon close-btn"></div>
+            </div>
+        </div>
+        <div class="search-result-container">
+        </div>
+    </div>
+</div>
+
+<script>
+    const searchConfig = {
+        path             : "/created4u/search.xml",
+        top_n_per_article: "1",
+        unescape         : "false",
+        trigger: "auto",
+        preload: "false"
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+<script src="/js/search.js"></script>
+    
+    
+
+  </body>
+</html>

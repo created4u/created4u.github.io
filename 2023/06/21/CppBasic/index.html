@@ -18,7 +18,7 @@
 
 
 
-<title>关于我自己 | Mi-X-Lab</title>
+<title>C++ 基础回顾 | Mi-X-Lab</title>
 
 
 
@@ -127,16 +127,24 @@
     <div class="post-info">
         <div class="tag-list">
             
+                
+                    <span class="post-tag">
+                        <a href="/created4u/tags/C/">
+                            C++
+                        </a>
+                    </span>    
+                           
+            
         </div>
         <div class="post-title">
             
             
-                关于我自己
+                C++ 基础回顾
             
             
         </div>
         <span class="post-date">
-            Jun 6, 2023
+            Jun 21, 2023
         </span>
     </div>
     <div class="post-img">
@@ -146,41 +154,15 @@
     </div>
 </div>
     <div class="post-content">
-    <p>简体中文 | <a href="../about-TCN/index.html">繁體中文</a> | <a href="../about/index.html">English</a> | <a href="../about-FR/index.html">Français</a></p>
-<img src="/created4u/2023/06/06/about-CN/code.png" class="" title="Programming is art.">
+    <h1 id="类和面向对象"><a href="#类和面向对象" class="headerlink" title="类和面向对象"></a>类和面向对象</h1><h2 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h2><p>如果一个成员变量被声明为 <code>static</code>，则该类的所有对象均可以访问该变量。如果一个成员函数被声明为 <code>static</code>，则它可以在类的任何实例被定义之前调用。</p>
+<p><strong>静态成员变量必须在类中声明，在类外部定义。</strong></p>
+<h2 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h2><h2 id="派生"><a href="#派生" class="headerlink" title="派生"></a>派生</h2><h3 id="构造与析构"><a href="#构造与析构" class="headerlink" title="构造与析构"></a>构造与析构</h3><p>派生类对象构造时，先调用基类的构造函数，再调用自身的构造函数。<br>派生类对象析构时，先调用自身的析构函数，再调用基类的析构函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="built_in">A</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Hello A&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">A</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Bye A&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span>: <span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="built_in">B</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Hello B&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">B</span>() &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Bye B&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    B b;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="你好！"><a href="#你好！" class="headerlink" title="你好！"></a>你好！</h1><p>欢迎访问我的个人主页，我也非常荣幸能够同你这样有趣的灵魂在此相遇。</p>
-<h1 id="学习经历"><a href="#学习经历" class="headerlink" title="学习经历"></a>学习经历</h1><ul>
-<li>2017 - 2020，高中，安徽省亳州市第一中学</li>
-<li>2020 - 至今，本科，吉林大学计算机科学与技术学院</li>
-</ul>
-<h1 id="参与项目"><a href="#参与项目" class="headerlink" title="参与项目"></a>参与项目</h1><ul>
-<li>RISC-V 指令集软件仿真</li>
-<li>基于 YOLOv5 的智能捡拾机器人</li>
-<li>我自己的 Repositories<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/created4u/heartbeat.git">Heartbeat</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/created4u/Coursea.git">Coursea</a></li>
-</ul>
-</li>
-</ul>
-<h1 id="所获荣誉"><a href="#所获荣誉" class="headerlink" title="所获荣誉"></a>所获荣誉</h1><p>（截止至 2023 年 6 月）</p>
-<ul>
-<li>2020 - 2021，吉林大学三等奖学金</li>
-<li>2021 - 2022，吉林大学二等奖学金</li>
-<li>2021 - 2022，吉林大学计算机科学与技术学院院优秀学生</li>
-</ul>
-<h1 id="兴趣爱好"><a href="#兴趣爱好" class="headerlink" title="兴趣爱好"></a>兴趣爱好</h1><ul>
-<li>语言学习。空余时间会学习各种有趣的语言，例如 Français，Русский，Español 等语言。</li>
-<li>绘画（约等于～乱画）。没有系统地学过相关知识，就是想画啥画啥。</li>
-<li>阅读文学。<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Franz_Kafka">Kafka</a> 和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Virginia_Woolf">Woolf</a> 是我最喜欢的作家之一，虽然有时候看不太懂，但是更让我痴迷不已。</li>
-<li>设计各种有意思的东西，执着于用平凡的材料创造出不平凡的事物，用颜色表达情感。</li>
-<li>摄影。用相机记录下每一个值得回忆的瞬间。</li>
-</ul>
-<h2 id="我的小作品"><a href="#我的小作品" class="headerlink" title="我的小作品 :)"></a>我的小作品 :)</h2><p>这是几年前我画的第一幅画。</p>
-<img src="/created4u/2023/06/06/about-CN/him.PNG" class="" title="The first man I drew.">
+<p>输出结果为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Hello A</span><br><span class="line">Hello A</span><br><span class="line">Hello B</span><br><span class="line">Bye B</span><br><span class="line">Bye A</span><br><span class="line">Bye A</span><br></pre></td></tr></table></figure>
 
-<p>这是我家仙人掌开的花。</p>
-<img src="/created4u/2023/06/06/about-CN/cactus.jpeg" class="" title="Cactus flower.">
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2>
 </div> 
 
 <script>
@@ -193,7 +175,7 @@
            
                 <div class="icon arrow-left"></div>
                 <div class="post-link">
-                    <a href="/created4u/2023/06/21/CppBasic/">Prev</a>
+                    <a href="/created4u/2023/06/21/WirelessNetwork/">Prev</a>
                 </div>
             
         </div>
@@ -201,7 +183,7 @@
             
                 <div class="icon arrow-right"></div>
                 <div class="post-link">
-                  <a href="/created4u/2023/06/06/about/">Next</a>  
+                  <a href="/created4u/2023/06/06/about-CN/">Next</a>  
                 </div>  
             
         </div>
