@@ -508,4 +508,77 @@
         <tag>Data Structure</tag>
       </tags>
   </entry>
+  <entry>
+    <title>无线网络技术</title>
+    <url>/created4u/2023/06/22/Wireless-Network-Review/</url>
+    <content><![CDATA[<h1 id="英文缩写"><a href="#英文缩写" class="headerlink" title="英文缩写"></a>英文缩写</h1><ul>
+<li>ITU, International Telecommunication Union</li>
+<li>ISO, International Standards Organization</li>
+<li>IEEE, Institute of Electrical and Electronics Engineers</li>
+<li>IAB, Internet Architecture Board</li>
+<li>IETF, Internet Engineering Task Force</li>
+<li>IRTF, Internet Research Task Force</li>
+<li>FHSS, Frequency Hopping Spread Spectrum</li>
+<li>THSS, Time Hopping Spread Spectrum</li>
+<li>DSSS, Direct Sequence Spread Spectrum</li>
+<li>ARQ, Automatic Repeat Request</li>
+</ul>
+<h1 id="无线传输技术"><a href="#无线传输技术" class="headerlink" title="无线传输技术"></a>无线传输技术</h1><h2 id="传输媒体"><a href="#传输媒体" class="headerlink" title="传输媒体"></a>传输媒体</h2><p>数据传输系统中发送器和接收器之间的物理路径。可以分为导向的（如双绞线，同轴电缆，光纤）和非导向的（例如大气）。</p>
+<h3 id="3-个重要的电磁波频段"><a href="#3-个重要的电磁波频段" class="headerlink" title="3 个重要的电磁波频段"></a>3 个重要的电磁波频段</h3><ul>
+<li>1GHz - 100GHz，微波，可用于点对点传输以及卫星通信</li>
+<li>30MHz - 1GHz，无线电广播</li>
+<li>$3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用</li>
+</ul>
+<h2 id="扩频"><a href="#扩频" class="headerlink" title="扩频"></a>扩频</h2><p>扩频技术（Spread Spectrum）是一种在无线通信中广泛应用的技术，它通过将信号在更宽的频带上进行传输，以提高通信的可靠性、抗干扰性和安全性。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>扩频技术基于信号的频谱扩展原理，通过将原始信号与一个宽带的扩频码进行数学运算，使信号在更大的频带范围内传输。这个扩频码可以是一个伪随机序列，也称为扩频序列或码片。</p>
+<h3 id="扩频序列"><a href="#扩频序列" class="headerlink" title="扩频序列"></a>扩频序列</h3><p>扩频序列是一串伪随机的二进制码片序列，其特点是具有较好的互相关性。发送端使用扩频序列将原始数据进行编码，接收端使用相同的扩频序列进行解码，以还原出原始数据。常用的扩频序列包括加法扩频码（例如 N 序列）和乘法扩频码（例如 Gold 码）。</p>
+<h3 id="扩频方式"><a href="#扩频方式" class="headerlink" title="扩频方式"></a>扩频方式</h3><ul>
+<li>直接序列扩频（Direct Sequence Spread Spectrum，DSSS）：发送端将原始信号与扩频码进行逐位的直接相乘，从而实现频谱的扩展。接收端通过与发送端使用相同的扩频码进行相关运算，将扩展的信号还原为原始信号。</li>
+<li>跳频扩频（Frequency Hopping Spread Spectrum，FHSS）：发送端在一个较宽的频带内划分多个子信道，并按照一定的规律，周期性地在这些子信道之间进行切换。接收端需要与发送端保持同步，并按照相同的规律进行频道的切换，以恢复原始信号。</li>
+<li>跳时扩频（Time Hopping Spread Spectrum，THSS）基于时间域上的扩频原理，在信号传输过程中，将原始信号分割成短时隙，并根据扩频码的规则进行时隙的跳跃。在每个时隙中，信号以窄带方式传输，并在不同的时隙中通过改变扩频码进行频谱扩展。</li>
+<li>脉冲调频。使用调频脉冲进行数据传输，扩频函数控制调频模式。</li>
+<li>混合扩频。</li>
+</ul>
+<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ul>
+<li>抗干扰性：扩频技术可以有效抵抗窄带干扰，因为干扰信号只会在整个频带范围内被均匀分布，而且接收端只有在正确的扩频序列下才能还原出原始信号。</li>
+<li>安全性：由于扩频码是伪随机的，只有知道正确的扩频序列的接收端才能正确解码，从而实现了一定的安全性。</li>
+<li>高可靠性：由于信号在更宽的频带上传输，扩频技术对信道衰落和多径效应具有较好的容忍性，提供了更可靠的通信连接。</li>
+</ul>
+<p>扩频技术在许多应用中得到广泛应用，包括无线局域网（WLAN）、蓝牙、CDMA 手机通信等。通过扩展信号的频谱，扩频技术提高了通信系统的性能和可靠性，使得无线通信更加稳定和安全。</p>
+<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><ul>
+<li>差错检测</li>
+<li>差错纠错</li>
+</ul>
+<h3 id="ARQ"><a href="#ARQ" class="headerlink" title="ARQ"></a>ARQ</h3><p>自动重发请求（Automatic Repeat Request，ARQ）是一种差错控制技术，用于在计算机网络中检测和纠正数据传输中的错误。ARQ 通过发送方发送数据包并等待接收方的确认（ACK）来实现错误检测和纠正。</p>
+<ol>
+<li><p>发送方工作流程：</p>
+<ul>
+<li>发送数据：发送方将数据分成较小的数据包，并通过网络发送给接收方。</li>
+<li>等待确认：发送方等待接收方发送确认（ACK）信号，表示数据包已正确接收。</li>
+<li>超时重发：如果发送方在一定时间内未收到确认信号，即发生超时，发送方会假设数据包丢失或损坏，并重新发送相同的数据包。</li>
+</ul>
+</li>
+<li><p>接收方工作流程：</p>
+<ul>
+<li>接收数据：接收方接收发送方发送的数据包。</li>
+<li>校验数据：接收方对接收到的数据包进行校验，以检测是否有错误发生。</li>
+<li>发送确认：如果数据包没有错误，接收方发送确认信号（ACK）给发送方。</li>
+<li>检测和丢弃重复数据包：接收方检测重复的数据包，并将其丢弃，以防止重复处理。</li>
+</ul>
+</li>
+<li><p>ARQ 的重发机制：</p>
+<ul>
+<li>确认丢失：如果发送方发送了数据包但未收到确认信号，发送方假设数据包丢失，并重新发送相同的数据包。</li>
+<li>错误检测：接收方在校验数据包时发现错误，将不发送确认信号，以指示发送方需要重新发送数据包。</li>
+<li>超时重发：发送方设置一个超时定时器，如果在规定的时间内未收到确认信号，则认为数据包丢失，并重新发送数据包。</li>
+</ul>
+</li>
+</ol>
+<p>ARQ 的优点是能够在数据传输过程中检测和纠正错误，提高了数据的可靠性。然而，ARQ 的缺点是增加了网络的延迟和带宽开销，因为需要重复发送数据包和等待确认信号。</p>
+<p>在 ARQ 中，还存在多种变体，如停止等待 ARQ 和连续 ARQ。停止等待 ARQ 是一种简单的 ARQ 方法，发送方在发送数据包后，等待接收到确认信号后才发送下一个数据包。连续 ARQ 是一种更高效的 ARQ 方法，允许发送方连续发送多个数据包，而无需等待每个数据包的确认信号。</p>
+]]></content>
+      <tags>
+        <tag>Wireless Network</tag>
+      </tags>
+  </entry>
 </search>
