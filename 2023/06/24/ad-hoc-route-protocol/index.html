@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ignacio Song">
+
+
+    <meta name="subtitle" content="Code With Love & Design With Passion">
+
+
+    <meta name="description" content="A coder who is crazy about designing.">
+
+
+
+
+
+<title>Ad hoc 网络路由协议 | Mi-X-Lab</title>
+
+
+
+    <link rel="icon" href="/created4u/icons.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/created4u/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/created4u/js/menu.js"></script>
+    
+    <script src="/created4u/js/search.js"></script>
+    
+    <script src="/created4u/js/format.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/created4u/">
+          
+            Mi-X-Lab
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/created4u/categories/about/">About</a>
+              </li> 
+                   
+          
+          
+            <li class="menu-item search-btn">
+              <a href="#">Search</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/created4u/tags/Wireless-Network/">
+                            Wireless Network
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/created4u/tags/ad-hoc/">
+                            ad hoc
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Ad hoc 网络路由协议
+            
+            
+        </div>
+        <span class="post-date">
+            Jun 24, 2023
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>自组路由协议</p>
+<ul>
+<li>扁平路由<ul>
+<li>先验式（由表驱动），路由与交通模式无关，包括普通的路由和距离向量路由<ul>
+<li>FSR</li>
+<li>FSLS</li>
+<li>OLSR</li>
+<li>TBRPF</li>
+</ul>
+</li>
+<li>反应式（按需模式），需要时才保持路由状态<ul>
+<li><strong>AODV</strong></li>
+<li><strong>DSR</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分级路由，在平面网络中引入层次概念<ul>
+<li>HSR</li>
+<li>CGSR</li>
+<li>ZRP</li>
+<li>LANMAR</li>
+</ul>
+</li>
+<li>地理位置协助路由<ul>
+<li>GPSR</li>
+<li>GeoCast</li>
+<li>LAR</li>
+<li>DREAM</li>
+</ul>
+</li>
+</ul>
+<h1 id="Flooding"><a href="#Flooding" class="headerlink" title="Flooding"></a>Flooding</h1><p>洪泛路由算法（Flood Routing Algorithm）是一种简单而有效的网络路由算法，它用于在没有中央控制的网络中，将数据包从源节点传递到目标节点。该算法的基本原理是在网络中的每个节点接收到数据包后，将数据包向除了发送节点之外的所有相邻节点进行转发，以便数据包能够通过网络传播，直到到达目标节点。</p>
+<p>以下是洪泛路由算法的详细介绍：</p>
+<ol>
+<li><p>初始化：在网络中，每个节点都维护一个路由表，记录了与其相邻的节点信息。开始时，每个节点只知道它直接相连的邻居节点。</p>
+</li>
+<li><p>发送数据包：当一个节点要发送数据包到目标节点时，它首先检查自己的路由表，找到一个相邻节点作为下一跳，将数据包发送给该节点。</p>
+</li>
+<li><p>数据包接收和处理：当一个节点接收到数据包时，它<strong>首先检查数据包的目标地址</strong>。如果目标地址是自己，那么该节点就完成了数据包的传递。否则，该节点会检查数据包的源地址，并在路由表中查找下一跳节点。</p>
+</li>
+<li><p>数据包转发：节点在确定了下一跳节点后，将数据包复制并发送给除了源节点和下一跳节点之外的所有相邻节点。这样，数据包就会在网络中以广播的方式传播。</p>
+</li>
+<li><p>循环检测：为了防止数据包在网络中无限循环，每个节点都需要维护一个已经接收过的数据包列表。当节点接收到一个数据包时，它会检查列表中是否已经存在相同的数据包。如果是，则丢弃该数据包，以避免循环。</p>
+</li>
+<li><p>目标节点的确认：当数据包到达目标节点时，目标节点可以通过特定的方式向源节点发送确认消息，通知源节点数据包已经成功到达。</p>
+</li>
+</ol>
+<p>尽管洪泛路由算法具有简单和容错性的优点，但也存在一些问题。其中一个主要问题是网络中的节点数量增加时，数据包的传递路径变得非常复杂，导致网络拥塞和资源浪费。为了解决这个问题，现实世界中的网络通常采用更复杂的路由算法，如距离矢量路由算法（Distance Vector Routing）和链路状态路由算法（Link State Routing），以提高网络效率和性能。</p>
+<h1 id="DSR"><a href="#DSR" class="headerlink" title="DSR"></a>DSR</h1><p>DSR（Dynamic Source Routing）路由协议是一种无线自组织网络中的路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。DSR 协议的主要特点是源节点动态地确定数据包的路由路径，而不依赖于中央控制或固定的路由表。</p>
+<ol>
+<li><p>节点地址</p>
+<ul>
+<li>每个节点在网络中都有唯一的地址标识。</li>
+</ul>
+</li>
+<li><p>路由发现</p>
+<ul>
+<li>源节点在发送数据包之前不知道数据包的完整路由路径。</li>
+<li>当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。</li>
+<li>如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。</li>
+</ul>
+</li>
+<li><p>路由维护</p>
+<ul>
+<li>当其他节点收到路由请求消息时，如果发现自己是目标节点或者拥有目标节点的缓存路由记录，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。</li>
+<li>源节点接收到路由回复消息后，它就可以构建出数据包的完整路由路径，并将数据包发送到下一跳节点。</li>
+<li>中间节点收到数据包后，根据数据包中的路由信息将其转发给下一跳节点，直到数据包到达目标节点。</li>
+</ul>
+</li>
+<li><p>路由维护和更新</p>
+<ul>
+<li>在数据包传递过程中，每个节点都会维护已经接收到的路由路径，以便在需要时进行路由回复。</li>
+<li>如果某个节点发现路由路径发生了变化（如节点移动或网络拓扑改变），它将发送路由错误（Route Error）消息通知网络中的其他节点，以便更新路由表和缓存记录。</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>DSR 协议适用于无线自组织网络，特别是移动自组织网络和无线传感器网络，具有很好的适应性和灵活性。</li>
+<li>由于路由路径是在数据包传递时动态确定的，因此可以避免中心化的路由控制和静态的路由表维护。</li>
+<li>DSR 协议支持多路径路由，可以提高网络的容错性和可靠性。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>DSR 协议需要较大的路由请求和回复消息开销，特别是在网络规模较大时。</li>
+<li>节点移动频繁或网络拓扑变化剧烈时，路由发现和维护过程可能会引起较高的网络开销和延迟。</li>
+<li>DSR 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。</li>
+</ul>
+</li>
+</ol>
+<p>总体而言，DSR 路由协议是一种灵活而适应性强的无线自组织网络路由协议，通过动态地确定数据包的路由路径，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。</p>
+<h1 id="AODV"><a href="#AODV" class="headerlink" title="AODV"></a>AODV</h1><p>AODV（Ad hoc On-Demand Distance Vector）路由协议是一种无线自组织网络中的距离向量路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。AODV 协议的设计目标是提供一种有效的路由选择机制，以适应节点的移动性和动态网络拓扑。</p>
+<ol>
+<li><p>节点地址</p>
+<ul>
+<li>每个节点在网络中都有唯一的地址标识。</li>
+</ul>
+</li>
+<li><p>路由发现和维护</p>
+<ul>
+<li>源节点在发送数据包之前不知道数据包的完整路由路径。</li>
+<li>当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。</li>
+<li>如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。</li>
+</ul>
+</li>
+<li><p>路由请求和回复</p>
+<ul>
+<li>中间节点收到路由请求消息后，会检查自己的路由表并决定是否能够到达目标节点。</li>
+<li>如果中间节点具有到目标节点的有效路由，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。</li>
+<li>如果中间节点无法到达目标节点，它将转发路由请求消息，以便其他节点能够响应。</li>
+</ul>
+</li>
+<li><p>路由表维护</p>
+<ul>
+<li>每个节点都维护一个路由表，记录了到达其他节点的下一跳节点和跳数等信息。</li>
+<li>当节点接收到路由回复消息后，它将更新自己的路由表，并缓存该路由以备将来使用。</li>
+<li>路由表中的路由项会根据节点的移动性和网络拓扑的变化而进行动态更新。</li>
+</ul>
+</li>
+<li><p>路由错误处理</p>
+<ul>
+<li>当节点发现某个路由不再可用（如节点移动或链路中断），它将发送路由错误（Route Error）消息通知网络中的其他节点。</li>
+<li>收到路由错误消息的节点会更新自己的路由表，删除无效的路由路径。</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>AODV 协议是一种基于需求的路由协议，只在需要时才发起路由请求，减少了网络开销和延迟。</li>
+<li>AODV 协议支持适应节点的移动性和动态网络拓扑，能够及时更新路由表并适应变化的网络环境。</li>
+<li>AODV 协议具有较好的扩展性，适用于中小规模的无线自组织网络。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>AODV 协议在高度移动的网络中可能会产生较高的路由维护开销，尤其是在大规模网络中。</li>
+<li>AODV 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。</li>
+</ul>
+</li>
+</ol>
+<p>总体而言，AODV 路由协议是一种有效的无线自组织网络路由协议，通过根据需求发起路由请求并动态维护路由表，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。</p>
+<h1 id="LAR"><a href="#LAR" class="headerlink" title="LAR"></a>LAR</h1>
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/created4u/2023/06/24/wireless-network-basic/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/created4u/2023/06/22/Wireless-Network-Review/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                © Ignacio Song | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+      <div class="search-popup">
+    <div class="search-popup-overlay">  
+    </div>
+    <div class="search-popup-window" >
+        <div class="search-header">
+            <div class="search-input-container">
+              <input autocomplete="off" autocapitalize="off" maxlength="80"
+                     placeholder="Search Anything" spellcheck="false"
+                     type="search" class="search-input">
+            </div>
+            <div class="search-close-btn">
+                <div class="icon close-btn"></div>
+            </div>
+        </div>
+        <div class="search-result-container">
+        </div>
+    </div>
+</div>
+
+<script>
+    const searchConfig = {
+        path             : "/created4u/search.xml",
+        top_n_per_article: "1",
+        unescape         : "false",
+        trigger: "auto",
+        preload: "false"
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+<script src="/js/search.js"></script>
+    
+    
+
+  </body>
+</html>

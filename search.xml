@@ -413,9 +413,14 @@
   <entry>
     <title>无线网络课程复习</title>
     <url>/created4u/2023/06/21/WirelessNetwork/</url>
-    <content><![CDATA[<h1 id="DV-和-DSDV"><a href="#DV-和-DSDV" class="headerlink" title="DV 和 DSDV"></a>DV 和 DSDV</h1><h2 id="DV"><a href="#DV" class="headerlink" title="DV"></a>DV</h2><h2 id="DSDV"><a href="#DSDV" class="headerlink" title="DSDV"></a>DSDV</h2><p>Ref. <a href="https://blog.csdn.net/qq_21324665/article/details/79159080%E3%80%82">https://blog.csdn.net/qq_21324665/article/details/79159080。</a></p>
-<h2 id="按需路由协议"><a href="#按需路由协议" class="headerlink" title="按需路由协议"></a>按需路由协议</h2><h3 id="DSR"><a href="#DSR" class="headerlink" title="DSR"></a>DSR</h3><p>Ref. <a href="https://blog.csdn.net/weixin_42982240/article/details/125033059%E3%80%82">https://blog.csdn.net/weixin_42982240/article/details/125033059。</a></p>
-<h3 id="AODV"><a href="#AODV" class="headerlink" title="AODV"></a>AODV</h3>]]></content>
+    <content><![CDATA[<h1 id="DV-和-DSDV"><a href="#DV-和-DSDV" class="headerlink" title="DV 和 DSDV"></a>DV 和 DSDV</h1><h2 id="DV"><a href="#DV" class="headerlink" title="DV"></a>DV</h2><h2 id="DSDV"><a href="#DSDV" class="headerlink" title="DSDV"></a>DSDV</h2><p>Ref. <a href="https://blog.csdn.net/qq_21324665/article/details/79159080">https://blog.csdn.net/qq_21324665/article/details/79159080</a></p>
+<h2 id="按需路由协议"><a href="#按需路由协议" class="headerlink" title="按需路由协议"></a>按需路由协议</h2><blockquote>
+<p>为什么没有开销？<br>Route discovery</p>
+</blockquote>
+<h3 id="DSR"><a href="#DSR" class="headerlink" title="DSR"></a>DSR</h3><p>8 分左右。</p>
+<p>Ref. <a href="https://blog.csdn.net/weixin_42982240/article/details/125033059">https://blog.csdn.net/weixin_42982240/article/details/125033059</a></p>
+<h3 id="AODV"><a href="#AODV" class="headerlink" title="AODV"></a>AODV</h3><p>Wi-Fi，无线网状网，zi</p>
+]]></content>
       <tags>
         <tag>无线网络技术</tag>
       </tags>
@@ -493,6 +498,8 @@
 
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printOne</span><span class="params">(<span class="type">const</span> <span class="type">int</span> &amp;num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printAll</span><span class="params">(string name, list&lt;<span class="type">int</span>&gt; &amp;li)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; name &lt;&lt; <span class="string">&quot;: &quot;</span>;</span><br><span class="line">    for_each(li.<span class="built_in">begin</span>(), li.<span class="built_in">end</span>(), printOne);</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    list&lt;<span class="type">int</span>&gt; li;</span><br><span class="line">    list&lt;<span class="type">int</span>&gt; li2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        li.<span class="built_in">push_back</span>(<span class="built_in">rand</span>() % <span class="number">100</span>);</span><br><span class="line">        li2.<span class="built_in">push_back</span>(<span class="built_in">rand</span>() % <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Original(li)&quot;</span>, li);</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Original(li2)&quot;</span>, li2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// insert()</span></span><br><span class="line">    li.<span class="built_in">insert</span>(li.<span class="built_in">begin</span>(), <span class="number">999</span>);</span><br><span class="line">    li.<span class="built_in">insert</span>(li.<span class="built_in">end</span>(), <span class="number">3</span>, <span class="number">777</span>);</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Insert(li)&quot;</span>, li);</span><br><span class="line">    list&lt;<span class="type">int</span>&gt;::iterator it = li2.<span class="built_in">begin</span>();</span><br><span class="line">    it++;</span><br><span class="line">    li2.<span class="built_in">insert</span>(it, <span class="number">3</span>, <span class="number">444</span>);</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Insert(li2)&quot;</span>, li2);</span><br><span class="line">    li.<span class="built_in">insert</span>(li.<span class="built_in">begin</span>(), li2.<span class="built_in">begin</span>(), li2.<span class="built_in">end</span>());</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Insert(li)&quot;</span>, li);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// erase()</span></span><br><span class="line">    li.<span class="built_in">erase</span>(li.<span class="built_in">begin</span>());</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Erase(li)&quot;</span>, li);</span><br><span class="line">    li.<span class="built_in">erase</span>(li.<span class="built_in">begin</span>(), li.<span class="built_in">end</span>());</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Erase(li)&quot;</span>, li);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// clear()</span></span><br><span class="line">    li2.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="built_in">printAll</span>(<span class="string">&quot;Clear(li2)&quot;</span>, li2);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Original(li): 7 73 30 44 23 40 92 87 27 40</span></span><br><span class="line"><span class="comment">// Original(li2): 49 58 72 78 9 65 42 3 29 12</span></span><br><span class="line"><span class="comment">// Insert(li): 999 7 73 30 44 23 40 92 87 27 40 777 777 777</span></span><br><span class="line"><span class="comment">// Insert(li2): 49 444 444 444 58 72 78 9 65 42 3 29 12</span></span><br><span class="line"><span class="comment">// Insert(li): 49 444 444 444 58 72 78 9 65 42 3 29 12 999 7 73 30 44 23 40 92 87 27 40 777 777 777</span></span><br><span class="line"><span class="comment">// Erase(li): 444 444 444 58 72 78 9 65 42 3 29 12 999 7 73 30 44 23 40 92 87 27 40 777 777 777</span></span><br><span class="line"><span class="comment">// Erase(li):</span></span><br><span class="line"><span class="comment">// Clear(li2):</span></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> &amp;li)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; li &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    list&lt;<span class="type">int</span>&gt; li1, li2;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">10</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        li1.<span class="built_in">push_back</span>(<span class="built_in">rand</span>() % <span class="number">100</span>);</span><br><span class="line">        li2.<span class="built_in">push_back</span>(<span class="built_in">rand</span>() % <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//list&lt;int&gt;::iterator it;</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;li1: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    for_each(li1.<span class="built_in">begin</span>(), li1.<span class="built_in">end</span>(), print);</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;li2: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    for_each(li2.<span class="built_in">begin</span>(), li2.<span class="built_in">end</span>(), print);</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;li1, sort(), default: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    li1.<span class="built_in">sort</span>();</span><br><span class="line">    for_each(li1.<span class="built_in">begin</span>(), li1.<span class="built_in">end</span>(), print);</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;li2, sort(), decrease: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    li2.<span class="built_in">sort</span>(<span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());<span class="comment">//降序排列</span></span><br><span class="line">    for_each(li2.<span class="built_in">begin</span>(), li2.<span class="built_in">end</span>(), print);</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;merge li1 and li2: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    li1.<span class="built_in">merge</span>(li2);</span><br><span class="line">    for_each(li1.<span class="built_in">begin</span>(), li1.<span class="built_in">end</span>(), print);</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;after merge, li2: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    for_each(li2.<span class="built_in">begin</span>(), li2.<span class="built_in">end</span>(), print);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;li2, add elements: &quot;</span> &lt;&lt; endl;</span><br><span class="line">    li2.<span class="built_in">push_back</span>(<span class="number">999</span>);</span><br><span class="line">    li2.<span class="built_in">push_front</span>(<span class="number">100</span>);</span><br><span class="line">    for_each(li2.<span class="built_in">begin</span>(), li2.<span class="built_in">end</span>(), print);</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;li2, remove(): &quot;</span> &lt;&lt; endl;</span><br><span class="line">    li2.<span class="built_in">remove</span>(<span class="number">999</span>);</span><br><span class="line">    for_each(li2.<span class="built_in">begin</span>(), li2.<span class="built_in">end</span>(), print);</span><br><span class="line">    <span class="comment">//li2.remove_if()</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h1><h1 id="set"><a href="#set" class="headerlink" title="set"></a>set</h1><h1 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a>multiset</h1><h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><h1 id="multimap"><a href="#multimap" class="headerlink" title="multimap"></a>multimap</h1>]]></content>
       <tags>
         <tag>STL</tag>
@@ -501,8 +508,9 @@
   <entry>
     <title>基本数据结构 template</title>
     <url>/created4u/2023/06/22/Data-Structure/</url>
-    <content><![CDATA[<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_SIZE 66</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SqList</span> &#123;</span><br><span class="line">    T data[MAX_SIZE];</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ListInsert</span><span class="params">(SqList&lt;T&gt; &amp;L, <span class="type">int</span> i, T e)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// i 取值为 1 &lt;= i &lt;= length + 1</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; L.length + <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= MAX_SIZE)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = L.length; j &gt;= i; j--)</span><br><span class="line">        L.data[j] = L.data[j - <span class="number">1</span>];</span><br><span class="line">    L.data[i - <span class="number">1</span>] = e;</span><br><span class="line">    L.length++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ListDelete</span><span class="params">(SqList&lt;T&gt; &amp;L, <span class="type">int</span> i, T &amp;e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; L.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    e = L.data[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; L.length; j++)</span><br><span class="line">        L.data[j - <span class="number">1</span>] = L.data[j];</span><br><span class="line">    L.length--;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">LocateElem</span><span class="params">(<span class="type">const</span> SqList&lt;T&gt; &amp;L, T &amp;e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L.length; i++)</span><br><span class="line">        <span class="keyword">if</span> (L.data[i] == e)</span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(<span class="type">const</span> SqList&lt;T&gt; &amp;L)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;This is SqList: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L.length; i++)</span><br><span class="line">        cout &lt;&lt; L.data[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
+    <content><![CDATA[<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><h2 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_SIZE 66</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SqList</span> &#123;</span><br><span class="line">    T data[MAX_SIZE];</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ListInsert</span><span class="params">(SqList&lt;T&gt; &amp;L, <span class="type">int</span> i, T e)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// i 取值为 1 &lt;= i &lt;= length + 1</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; L.length + <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= MAX_SIZE)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = L.length; j &gt;= i; j--)</span><br><span class="line">        L.data[j] = L.data[j - <span class="number">1</span>];</span><br><span class="line">    L.data[i - <span class="number">1</span>] = e;</span><br><span class="line">    L.length++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ListDelete</span><span class="params">(SqList&lt;T&gt; &amp;L, <span class="type">int</span> i, T &amp;e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; L.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    e = L.data[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; L.length; j++)</span><br><span class="line">        L.data[j - <span class="number">1</span>] = L.data[j];</span><br><span class="line">    L.length--;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">LocateElem</span><span class="params">(<span class="type">const</span> SqList&lt;T&gt; &amp;L, T &amp;e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L.length; i++)</span><br><span class="line">        <span class="keyword">if</span> (L.data[i] == e)</span><br><span class="line">            <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(<span class="type">const</span> SqList&lt;T&gt; &amp;L)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;This is SqList: &quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; L.length; i++)</span><br><span class="line">        cout &lt;&lt; L.data[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h2>]]></content>
       <tags>
         <tag>C++</tag>
         <tag>Data Structure</tag>
@@ -529,27 +537,272 @@
 <li>30MHz - 1GHz，无线电广播</li>
 <li>$3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用</li>
 </ul>
-<h2 id="扩频"><a href="#扩频" class="headerlink" title="扩频"></a>扩频</h2><p>扩频技术（Spread Spectrum）是一种在无线通信中广泛应用的技术，它通过将信号在更宽的频带上进行传输，以提高通信的可靠性、抗干扰性和安全性。</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>扩频技术基于信号的频谱扩展原理，通过将原始信号与一个宽带的扩频码进行数学运算，使信号在更大的频带范围内传输。这个扩频码可以是一个伪随机序列，也称为扩频序列或码片。</p>
-<h3 id="扩频序列"><a href="#扩频序列" class="headerlink" title="扩频序列"></a>扩频序列</h3><p>扩频序列是一串伪随机的二进制码片序列，其特点是具有较好的互相关性。发送端使用扩频序列将原始数据进行编码，接收端使用相同的扩频序列进行解码，以还原出原始数据。常用的扩频序列包括加法扩频码（例如 N 序列）和乘法扩频码（例如 Gold 码）。</p>
-<h3 id="扩频方式"><a href="#扩频方式" class="headerlink" title="扩频方式"></a>扩频方式</h3><ul>
+<h1 id="无线局域网"><a href="#无线局域网" class="headerlink" title="无线局域网"></a>无线局域网</h1>]]></content>
+      <tags>
+        <tag>Wireless Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ad hoc 网络路由协议</title>
+    <url>/created4u/2023/06/24/ad-hoc-route-protocol/</url>
+    <content><![CDATA[<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>自组路由协议</p>
+<ul>
+<li>扁平路由<ul>
+<li>先验式（由表驱动），路由与交通模式无关，包括普通的路由和距离向量路由<ul>
+<li>FSR</li>
+<li>FSLS</li>
+<li>OLSR</li>
+<li>TBRPF</li>
+</ul>
+</li>
+<li>反应式（按需模式），需要时才保持路由状态<ul>
+<li><strong>AODV</strong></li>
+<li><strong>DSR</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分级路由，在平面网络中引入层次概念<ul>
+<li>HSR</li>
+<li>CGSR</li>
+<li>ZRP</li>
+<li>LANMAR</li>
+</ul>
+</li>
+<li>地理位置协助路由<ul>
+<li>GPSR</li>
+<li>GeoCast</li>
+<li>LAR</li>
+<li>DREAM</li>
+</ul>
+</li>
+</ul>
+<h1 id="Flooding"><a href="#Flooding" class="headerlink" title="Flooding"></a>Flooding</h1><p>洪泛路由算法（Flood Routing Algorithm）是一种简单而有效的网络路由算法，它用于在没有中央控制的网络中，将数据包从源节点传递到目标节点。该算法的基本原理是在网络中的每个节点接收到数据包后，将数据包向除了发送节点之外的所有相邻节点进行转发，以便数据包能够通过网络传播，直到到达目标节点。</p>
+<p>以下是洪泛路由算法的详细介绍：</p>
+<ol>
+<li><p>初始化：在网络中，每个节点都维护一个路由表，记录了与其相邻的节点信息。开始时，每个节点只知道它直接相连的邻居节点。</p>
+</li>
+<li><p>发送数据包：当一个节点要发送数据包到目标节点时，它首先检查自己的路由表，找到一个相邻节点作为下一跳，将数据包发送给该节点。</p>
+</li>
+<li><p>数据包接收和处理：当一个节点接收到数据包时，它<strong>首先检查数据包的目标地址</strong>。如果目标地址是自己，那么该节点就完成了数据包的传递。否则，该节点会检查数据包的源地址，并在路由表中查找下一跳节点。</p>
+</li>
+<li><p>数据包转发：节点在确定了下一跳节点后，将数据包复制并发送给除了源节点和下一跳节点之外的所有相邻节点。这样，数据包就会在网络中以广播的方式传播。</p>
+</li>
+<li><p>循环检测：为了防止数据包在网络中无限循环，每个节点都需要维护一个已经接收过的数据包列表。当节点接收到一个数据包时，它会检查列表中是否已经存在相同的数据包。如果是，则丢弃该数据包，以避免循环。</p>
+</li>
+<li><p>目标节点的确认：当数据包到达目标节点时，目标节点可以通过特定的方式向源节点发送确认消息，通知源节点数据包已经成功到达。</p>
+</li>
+</ol>
+<p>尽管洪泛路由算法具有简单和容错性的优点，但也存在一些问题。其中一个主要问题是网络中的节点数量增加时，数据包的传递路径变得非常复杂，导致网络拥塞和资源浪费。为了解决这个问题，现实世界中的网络通常采用更复杂的路由算法，如距离矢量路由算法（Distance Vector Routing）和链路状态路由算法（Link State Routing），以提高网络效率和性能。</p>
+<h1 id="DSR"><a href="#DSR" class="headerlink" title="DSR"></a>DSR</h1><p>DSR（Dynamic Source Routing）路由协议是一种无线自组织网络中的路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。DSR 协议的主要特点是源节点动态地确定数据包的路由路径，而不依赖于中央控制或固定的路由表。</p>
+<ol>
+<li><p>节点地址</p>
+<ul>
+<li>每个节点在网络中都有唯一的地址标识。</li>
+</ul>
+</li>
+<li><p>路由发现</p>
+<ul>
+<li>源节点在发送数据包之前不知道数据包的完整路由路径。</li>
+<li>当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。</li>
+<li>如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。</li>
+</ul>
+</li>
+<li><p>路由维护</p>
+<ul>
+<li>当其他节点收到路由请求消息时，如果发现自己是目标节点或者拥有目标节点的缓存路由记录，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。</li>
+<li>源节点接收到路由回复消息后，它就可以构建出数据包的完整路由路径，并将数据包发送到下一跳节点。</li>
+<li>中间节点收到数据包后，根据数据包中的路由信息将其转发给下一跳节点，直到数据包到达目标节点。</li>
+</ul>
+</li>
+<li><p>路由维护和更新</p>
+<ul>
+<li>在数据包传递过程中，每个节点都会维护已经接收到的路由路径，以便在需要时进行路由回复。</li>
+<li>如果某个节点发现路由路径发生了变化（如节点移动或网络拓扑改变），它将发送路由错误（Route Error）消息通知网络中的其他节点，以便更新路由表和缓存记录。</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>DSR 协议适用于无线自组织网络，特别是移动自组织网络和无线传感器网络，具有很好的适应性和灵活性。</li>
+<li>由于路由路径是在数据包传递时动态确定的，因此可以避免中心化的路由控制和静态的路由表维护。</li>
+<li>DSR 协议支持多路径路由，可以提高网络的容错性和可靠性。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>DSR 协议需要较大的路由请求和回复消息开销，特别是在网络规模较大时。</li>
+<li>节点移动频繁或网络拓扑变化剧烈时，路由发现和维护过程可能会引起较高的网络开销和延迟。</li>
+<li>DSR 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。</li>
+</ul>
+</li>
+</ol>
+<p>总体而言，DSR 路由协议是一种灵活而适应性强的无线自组织网络路由协议，通过动态地确定数据包的路由路径，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。</p>
+<h1 id="AODV"><a href="#AODV" class="headerlink" title="AODV"></a>AODV</h1><p>AODV（Ad hoc On-Demand Distance Vector）路由协议是一种无线自组织网络中的距离向量路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。AODV 协议的设计目标是提供一种有效的路由选择机制，以适应节点的移动性和动态网络拓扑。</p>
+<ol>
+<li><p>节点地址</p>
+<ul>
+<li>每个节点在网络中都有唯一的地址标识。</li>
+</ul>
+</li>
+<li><p>路由发现和维护</p>
+<ul>
+<li>源节点在发送数据包之前不知道数据包的完整路由路径。</li>
+<li>当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。</li>
+<li>如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。</li>
+</ul>
+</li>
+<li><p>路由请求和回复</p>
+<ul>
+<li>中间节点收到路由请求消息后，会检查自己的路由表并决定是否能够到达目标节点。</li>
+<li>如果中间节点具有到目标节点的有效路由，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。</li>
+<li>如果中间节点无法到达目标节点，它将转发路由请求消息，以便其他节点能够响应。</li>
+</ul>
+</li>
+<li><p>路由表维护</p>
+<ul>
+<li>每个节点都维护一个路由表，记录了到达其他节点的下一跳节点和跳数等信息。</li>
+<li>当节点接收到路由回复消息后，它将更新自己的路由表，并缓存该路由以备将来使用。</li>
+<li>路由表中的路由项会根据节点的移动性和网络拓扑的变化而进行动态更新。</li>
+</ul>
+</li>
+<li><p>路由错误处理</p>
+<ul>
+<li>当节点发现某个路由不再可用（如节点移动或链路中断），它将发送路由错误（Route Error）消息通知网络中的其他节点。</li>
+<li>收到路由错误消息的节点会更新自己的路由表，删除无效的路由路径。</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>AODV 协议是一种基于需求的路由协议，只在需要时才发起路由请求，减少了网络开销和延迟。</li>
+<li>AODV 协议支持适应节点的移动性和动态网络拓扑，能够及时更新路由表并适应变化的网络环境。</li>
+<li>AODV 协议具有较好的扩展性，适用于中小规模的无线自组织网络。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>AODV 协议在高度移动的网络中可能会产生较高的路由维护开销，尤其是在大规模网络中。</li>
+<li>AODV 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。</li>
+</ul>
+</li>
+</ol>
+<p>总体而言，AODV 路由协议是一种有效的无线自组织网络路由协议，通过根据需求发起路由请求并动态维护路由表，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。</p>
+<h1 id="LAR"><a href="#LAR" class="headerlink" title="LAR"></a>LAR</h1>]]></content>
+      <tags>
+        <tag>Wireless Network</tag>
+        <tag>ad hoc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>无线传输技术</title>
+    <url>/created4u/2023/06/24/wireless-network-basic/</url>
+    <content><![CDATA[<h1 id="无线传输媒体"><a href="#无线传输媒体" class="headerlink" title="无线传输媒体"></a>无线传输媒体</h1><ul>
+<li>导向的</li>
+<li>非导向的</li>
+</ul>
+<h2 id="常用频段"><a href="#常用频段" class="headerlink" title="常用频段"></a>常用频段</h2><ul>
+<li>1GHz - 100GHz，微波，可用于点对点传输以及卫星通信</li>
+<li>30MHz - 1GHz，无线电广播</li>
+<li>$3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用</li>
+</ul>
+<h2 id="衰减"><a href="#衰减" class="headerlink" title="衰减"></a>衰减</h2><p>微波传输衰减公式</p>
+<p>$$L&#x3D;10\lg{\left(\frac{4\pi d}{\lambda}\right)^2}$$</p>
+<h1 id="天线"><a href="#天线" class="headerlink" title="天线"></a>天线</h1><h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ul>
+<li>偶极天线</li>
+<li>抛物反射天线</li>
+</ul>
+<h2 id="天线增益"><a href="#天线增益" class="headerlink" title="天线增益"></a>天线增益</h2><p>天线增益和有效面积之间的关系</p>
+<p>$$G&#x3D;\frac{4\pi A_e}{\lambda^2}&#x3D;\frac{4\pi f^2A_e}{c^2}$$</p>
+<ul>
+<li>$G$ 为天线的增益</li>
+<li>$A_e$ 为天线的有效面积</li>
+<li>$f$ 为载波频率</li>
+<li>$c$ 为光速</li>
+<li>$\lambda$ 为载波波长</li>
+</ul>
+<h1 id="传播方式"><a href="#传播方式" class="headerlink" title="传播方式"></a>传播方式</h1><ul>
+<li>天波传播（&lt;2MHz）</li>
+<li>地波传播（2-30MHz）</li>
+<li>直线传播（&gt;30MHz）</li>
+</ul>
+<h1 id="传输损耗"><a href="#传输损耗" class="headerlink" title="传输损耗"></a>传输损耗</h1><ul>
+<li>衰减和衰减失真</li>
+<li>自由空间损耗</li>
+<li>噪声<ul>
+<li>热噪声</li>
+<li>互调噪声</li>
+<li>串扰</li>
+<li>脉冲噪声</li>
+</ul>
+</li>
+<li>大气吸收</li>
+<li>多径</li>
+<li>折射</li>
+</ul>
+<h1 id="移动环境中的衰退"><a href="#移动环境中的衰退" class="headerlink" title="移动环境中的衰退"></a>移动环境中的衰退</h1><p>衰退类型</p>
+<ul>
+<li>平面&#x2F;非选择性衰退</li>
+<li>选择性衰退</li>
+</ul>
+<p>差错补偿</p>
+<ul>
+<li>前向纠错</li>
+<li>适应性均衡</li>
+<li>分集技术</li>
+</ul>
+<h1 id="多普勒效应"><a href="#多普勒效应" class="headerlink" title="多普勒效应"></a>多普勒效应</h1><p>在无线电通信中，多普勒效应是指由于移动设备（如移动电话、无人机、雷达等）和基站之间的相对运动而导致信号频率发生变化的现象。这种变化可能会对通信系统的性能和可靠性产生影响，因此需要考虑和处理多普勒效应。</p>
+<p>当移动设备和基站之间相对运动时，根据多普勒效应的原理，信号的频率会发生变化。具体而言，如果移动设备向基站靠近，观测者（基站）会感知到信号频率变高，称为正多普勒效应。相反，如果移动设备远离基站，观测者会感知到信号频率变低，称为负多普勒效应。</p>
+<p>在无线电通信系统中，多普勒效应的处理是至关重要的，特别是对于高速移动设备或基站的情况。以下是一些常见的处理多普勒效应的方法：</p>
+<ol>
+<li><p>频率补偿<br>基站可以根据移动设备和基站之间的相对速度，对接收到的信号频率进行补偿。通过测量相对速度并应用适当的频率偏移，可以消除多普勒效应引起的频率偏差，从而保持通信的可靠性。</p>
+</li>
+<li><p>盲速估计和补偿<br>在某些情况下，移动设备可能无法直接提供其运动信息。此时，基站可以使用盲速估计算法来估计移动设备的相对速度，并相应地对接收到的信号进行频率补偿。</p>
+</li>
+<li><p>多天线技术<br>多天线技术（如天线阵列）可以通过空间分集和波束成形的方法减轻多普勒效应的影响。通过多路径传播的信号可以从多个方向接收，并在接收端进行合并处理，以降低多普勒效应带来的干扰。</p>
+</li>
+<li><p>自适应调制<br>自适应调制技术可以根据信道条件的变化，自动调整调制方式和参数。通过根据多普勒效应的影响来选择适当的调制方式，可以提高信号的可靠性和传输效率。</p>
+</li>
+</ol>
+<h1 id="扩频"><a href="#扩频" class="headerlink" title="扩频"></a>扩频</h1><p>扩频技术（Spread Spectrum）是一种在无线通信中广泛应用的技术，它通过将信号在更宽的频带上进行传输，以提高通信的可靠性、抗干扰性和安全性。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>扩频技术基于信号的频谱扩展原理，通过将原始信号与一个宽带的扩频码进行数学运算，使信号在更大的频带范围内传输。这个扩频码可以是一个伪随机序列，也称为扩频序列或码片。</p>
+<h2 id="扩频序列"><a href="#扩频序列" class="headerlink" title="扩频序列"></a>扩频序列</h2><p>扩频序列是一串伪随机的二进制码片序列，其特点是具有较好的互相关性。发送端使用扩频序列将原始数据进行编码，接收端使用相同的扩频序列进行解码，以还原出原始数据。常用的扩频序列包括加法扩频码（例如 N 序列）和乘法扩频码（例如 Gold 码）。</p>
+<h2 id="扩频方式"><a href="#扩频方式" class="headerlink" title="扩频方式"></a>扩频方式</h2><ul>
 <li>直接序列扩频（Direct Sequence Spread Spectrum，DSSS）：发送端将原始信号与扩频码进行逐位的直接相乘，从而实现频谱的扩展。接收端通过与发送端使用相同的扩频码进行相关运算，将扩展的信号还原为原始信号。</li>
 <li>跳频扩频（Frequency Hopping Spread Spectrum，FHSS）：发送端在一个较宽的频带内划分多个子信道，并按照一定的规律，周期性地在这些子信道之间进行切换。接收端需要与发送端保持同步，并按照相同的规律进行频道的切换，以恢复原始信号。</li>
 <li>跳时扩频（Time Hopping Spread Spectrum，THSS）基于时间域上的扩频原理，在信号传输过程中，将原始信号分割成短时隙，并根据扩频码的规则进行时隙的跳跃。在每个时隙中，信号以窄带方式传输，并在不同的时隙中通过改变扩频码进行频谱扩展。</li>
 <li>脉冲调频。使用调频脉冲进行数据传输，扩频函数控制调频模式。</li>
 <li>混合扩频。</li>
 </ul>
-<h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ul>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
 <li>抗干扰性：扩频技术可以有效抵抗窄带干扰，因为干扰信号只会在整个频带范围内被均匀分布，而且接收端只有在正确的扩频序列下才能还原出原始信号。</li>
 <li>安全性：由于扩频码是伪随机的，只有知道正确的扩频序列的接收端才能正确解码，从而实现了一定的安全性。</li>
 <li>高可靠性：由于信号在更宽的频带上传输，扩频技术对信道衰落和多径效应具有较好的容忍性，提供了更可靠的通信连接。</li>
 </ul>
 <p>扩频技术在许多应用中得到广泛应用，包括无线局域网（WLAN）、蓝牙、CDMA 手机通信等。通过扩展信号的频谱，扩频技术提高了通信系统的性能和可靠性，使得无线通信更加稳定和安全。</p>
-<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><ul>
-<li>差错检测</li>
-<li>差错纠错</li>
-</ul>
-<h3 id="ARQ"><a href="#ARQ" class="headerlink" title="ARQ"></a>ARQ</h3><p>自动重发请求（Automatic Repeat Request，ARQ）是一种差错控制技术，用于在计算机网络中检测和纠正数据传输中的错误。ARQ 通过发送方发送数据包并等待接收方的确认（ACK）来实现错误检测和纠正。</p>
+<h1 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h1><h2 id="差错检测码"><a href="#差错检测码" class="headerlink" title="差错检测码"></a>差错检测码</h2><p>差错检测码（Error Detection Code）是一种用于检测数据传输过程中错误的编码技术。它通过在数据中添加冗余位（校验位）来帮助接收方检测传输过程中可能发生的错误。差错检测码广泛应用于计算机网络、通信系统和存储介质等领域，以确保数据的可靠性和完整性。</p>
+<ol>
+<li><p>奇偶校验（Parity Check）<br>奇偶校验是一种基本的差错检测码。在奇偶校验中，发送方在数据中添加一个奇偶位，使得数据中 1 的个数为奇数（奇校验）或偶数（偶校验）。接收方在接收数据后重新计算奇偶位，并与接收到的校验位进行比较，以检测错误。奇偶校验可以检测到单比特错误，但无法纠正错误。</p>
+</li>
+<li><p>循环冗余检验（Cyclic Redundancy Check，CRC）<br>CRC 是一种常见的差错检测码，也可以用于纠正错误。CRC 通过除法运算将数据进行多项式编码，并将编码后的冗余校验码添加到数据中。接收方通过再次进行多项式除法运算，并检查接收到的冗余校验码是否匹配，以确定是否有错误发生。CRC 可以检测和纠正多比特错误。</p>
+</li>
+<li><p>奇偶纠错码（BCH Code）<br>奇偶纠错码是一种用于检测和纠正多比特错误的差错检测码。它在数据中添加冗余位，并使用数学算法来检测和纠正错误。奇偶纠错码可以根据不同的需求和纠错能力进行选择。</p>
+</li>
+<li><p>校验和（Checksum）<br>校验和是一种简单的差错检测码，常用于网络传输中。发送方将数据分成较小的块，对每个块计算校验和，并将校验和添加到数据中。接收方在接收到数据后，再次计算校验和，并与接收到的校验和进行比较。如果校验和不匹配，则认为数据存在错误。</p>
+</li>
+</ol>
+<p>差错检测码在数据传输过程中起着重要的作用，可以帮助接收方检测传输中的错误。通过选择适当的差错检测码，可以提高数据传输的可靠性，并及时发现和处理错误。</p>
+<h2 id="差错纠错码"><a href="#差错纠错码" class="headerlink" title="差错纠错码"></a>差错纠错码</h2><p>差错纠错码（Error Correction Code）是一种用于检测和纠正数据传输中的错误的编码技术。与差错检测码只能检测错误不同，差错纠错码能够在一定范围内检测错误并纠正它们，从而提高数据的可靠性和完整性。</p>
+<ol>
+<li><p>海明码（Hamming Code）<br>海明码是一种常用的差错纠错码。它通过在数据中添加冗余位（校验位）来纠正错误。海明码使用特定的编码规则，在数据中插入校验位，使得校验位与数据中的比特按照一定规则进行排列。接收方通过比较接收到的数据和校验位，可以检测并纠正单比特错误。海明码可以纠正单比特错误，并检测多比特错误。</p>
+</li>
+<li><p>重复编码<br>重复编码是一种简单的差错纠错码方法。发送方将每个比特重复发送多次，接收方通过多次接收并比较来检测和纠正错误。例如，将每个比特发送三次，如果接收到的比特中有两个或三个相同，则接收方将判断为正确。重复编码可以纠正少量的比特错误，但会增加传输的开销。</p>
+</li>
+<li><p>BCH 码（Bose-Chaudhuri-Hocquenghem Code）<br>BCH 码是一类常见的差错纠错码，用于纠正多比特错误。BCH 码根据所需的纠错能力和数据长度选择不同的参数。它利用数学算法将数据进行编码，并在接收方使用纠错算法对接收到的数据进行解码和纠正。BCH 码能够纠正多比特错误，具有较高的纠错能力。</p>
+</li>
+<li><p>RS 码（Reed-Solomon Code）<br>RS 码是一种常用的差错纠错码，被广泛应用于数据存储和通信系统中。RS 码使用多项式运算来进行编码和解码，具有强大的纠错能力。它可以纠正多比特错误，包括突发错误和随机错误。</p>
+</li>
+</ol>
+<p>差错纠错码通过添加冗余位和利用纠错算法来提供数据纠正能力。它们在数据通信中起着重要的作用，可以检测和纠正传输过程中的错误，提高数据的可靠性和完整性。选择适当的差错纠错码取决于纠错能力要求和系统的特定需求。</p>
+<h2 id="ARQ"><a href="#ARQ" class="headerlink" title="ARQ"></a>ARQ</h2><p>自动重发请求（Automatic Repeat Request，ARQ）是一种差错控制技术，用于在计算机网络中检测和纠正数据传输中的错误。ARQ 通过发送方发送数据包并等待接收方的确认（ACK）来实现错误检测和纠正。</p>
 <ol>
 <li><p>发送方工作流程：</p>
 <ul>
@@ -580,5 +833,40 @@
       <tags>
         <tag>Wireless Network</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>WLAN</title>
+    <url>/created4u/2023/06/24/wireless-network-wlan/</url>
+    <content><![CDATA[<h1 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h1><ul>
+<li>站 Station, STA<ul>
+<li>终端用户设备</li>
+<li>无线网络接口</li>
+<li>网络软件</li>
+</ul>
+</li>
+<li>无线介质 Wireless Medium, VM</li>
+<li>基站&#x2F;接入点 Base Station, BS &#x2F; Access Point, AP</li>
+<li>分布式系统 Distribution System, DS</li>
+</ul>
+<h1 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h1><ul>
+<li>分布对等式拓扑</li>
+<li>基础结构集中式拓扑</li>
+<li>ESS 网络拓扑</li>
+<li>中继或桥接型网络拓扑</li>
+</ul>
+<h1 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h1><ul>
+<li>STA 服务 SS</li>
+<li>分布式系统服务 DSS</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Wireless Network</tag>
+        <tag>WLAN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>wireless-network-conclusion</title>
+    <url>/created4u/2023/06/25/wireless-network-conclusion/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
