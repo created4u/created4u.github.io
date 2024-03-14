@@ -6,10 +6,10 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta name="author" content="Ignacio Song">
+    <meta name="author" content="Zile Song">
 
 
-    <meta name="subtitle" content="Code With Love & Design With Passion">
+    <meta name="subtitle" content="Code With Love & Design With Passion.">
 
 
     <meta name="description" content="A coder who is crazy about designing.">
@@ -52,20 +52,125 @@
 
 
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
 
 
 
 
+  <meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
 
-  <!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
   <body>
     <div class="mask-border">
     </div>
@@ -78,7 +183,7 @@
       <div class="site-brand-container">
         <a href="/created4u/">
           
-            Mi-X-Lab
+            <img class="logo-img" src="/created4u/self_photo.png" alt="logo_image">
           
         </a>
       </div>
@@ -182,11 +287,11 @@
 <li><code>like</code></li>
 <li><code>in</code></li>
 </ul>
-<h3 id="e-g-2"><a href="#e-g-2" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom <span class="keyword">where</span> building<span class="operator">=</span><span class="string">&#x27;Packard&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="e-g-2"><a href="#e-g-2" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> building <span class="keyword">from</span> classroom <span class="keyword">where</span> building<span class="operator">=</span><span class="string">'Packard'</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="and-x2F-or"><a href="#and-x2F-or" class="headerlink" title="and&#x2F;or"></a>and&#x2F;or</h2><h3 id="format-3"><a href="#format-3" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> CONDITION_ONE <span class="keyword">and</span><span class="operator">/</span><span class="keyword">or</span> CONDITION_TWO;</span><br></pre></td></tr></table></figure>
+<h2 id="and-x2F-or"><a href="#and-x2F-or" class="headerlink" title="and/or"></a>and/or</h2><h3 id="format-3"><a href="#format-3" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME</span><br><span class="line"><span class="keyword">where</span> CONDITION_ONE <span class="keyword">and</span><span class="operator">/</span><span class="keyword">or</span> CONDITION_TWO;</span><br></pre></td></tr></table></figure>
 
-<h3 id="e-g-3"><a href="#e-g-3" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> course <span class="keyword">where</span> credits<span class="operator">=</span><span class="string">&#x27;3&#x27;</span> <span class="keyword">and</span> dept_name<span class="operator">=</span>&quot;Music&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="e-g-3"><a href="#e-g-3" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> course <span class="keyword">where</span> credits<span class="operator">=</span><span class="string">'3'</span> <span class="keyword">and</span> dept_name<span class="operator">=</span>"Music";</span><br></pre></td></tr></table></figure>
 
 <h2 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h2><h3 id="format-4"><a href="#format-4" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> COLUMN_NAME <span class="keyword">from</span> TABLE_NAME <span class="keyword">order</span> <span class="keyword">by</span> COLUMN_NAME (<span class="keyword">desc</span>);</span><br></pre></td></tr></table></figure>
 
@@ -194,7 +299,7 @@
 
 <h2 id="insert-into"><a href="#insert-into" class="headerlink" title="insert into"></a>insert into</h2><h3 id="format-5"><a href="#format-5" class="headerlink" title="format"></a>format</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> TABLE_NAME (COLUMN_1,COLUMN_2,COLUMN_3,...) <span class="keyword">values</span>(VALUE_1,VALUE_2,VALUE_3,...);</span><br></pre></td></tr></table></figure>
 
-<h3 id="e-g-5"><a href="#e-g-5" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> classroom <span class="keyword">values</span>(&quot;Classroom&quot;,&quot;666&quot;,<span class="number">88</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="e-g-5"><a href="#e-g-5" class="headerlink" title="e.g."></a>e.g.</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> classroom <span class="keyword">values</span>("Classroom","666",<span class="number">88</span>);</span><br></pre></td></tr></table></figure>
 
 </div> 
 
@@ -208,7 +313,7 @@
            
                 <div class="icon arrow-left"></div>
                 <div class="post-link">
-                    <a href="/created4u/2023/06/06/about-FR/">Prev</a>
+                    <a href="/created4u/2023/06/06/about/">Prev</a>
                 </div>
             
         </div>
@@ -244,7 +349,7 @@
         <div class="footer-text">
             
             
-                © Ignacio Song | 
+                © Zile Song | 
             
             
                 Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
@@ -281,7 +386,7 @@
         top_n_per_article: "1",
         unescape         : "false",
         trigger: "auto",
-        preload: "false"
+        preload: "true"
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
