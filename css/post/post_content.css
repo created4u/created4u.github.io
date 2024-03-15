@@ -15,6 +15,7 @@ blockquote {
   margin-right: 0;
   margin-top: $margin-m-2;
   border-left: $margin-s-2 solid $color-text-secondary;
+  background: $color-underline-text;
 }
 blockquote p {
   margin-left: $margin-m-2;

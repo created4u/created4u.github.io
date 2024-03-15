@@ -69,8 +69,8 @@
 }
 .search-header .search-close-btn {
   flex-grow: 0;
-  margin-left: $margin-m-1;
-  margin: auto;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 @media (max-width: 688px) {

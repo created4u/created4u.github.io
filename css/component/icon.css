@@ -17,6 +17,8 @@
   mask-image: url("../icon/arrow-right.svg");
 }
 .close-btn {
+  width: 24px;
+  height: 24px;
   -webkit-mask-image: url("../icon/close-btn.svg");
   mask-image: url("../icon/close-btn.svg");
 }
