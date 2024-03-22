@@ -28,7 +28,7 @@
   flex-grow: 1;
 }
 .menu-item-active:after {
-  border-bottom: solid $line-secondary;
+  border-bottom: solid $line-secondary $color-text-secondary;
   width: 100%;
 }
 .logo-img {

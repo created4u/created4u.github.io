@@ -11,13 +11,10 @@ table {
 }
 td,
 th {
-  padding: $margin-m-1;
+  padding: $margin-s-2;
 }
 th {
   font-variation-settings: 'wght' $font-weight-medium;
-}
-td {
-  font-variation-settings: 'wght' $font-weight-light;
 }
 table,
 tboby,
