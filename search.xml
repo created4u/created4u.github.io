@@ -988,7 +988,9 @@ In this paper, we first make a systematic analysis of the performance of DL tech
 
 As a result, we propose RouteNet-Fermi (RouteNet-F), a GNN architecture for network modeling. RouteNet-F shares the same goals as Queuing Theory. It provides performance estimates (delay, jitter, and packet-loss) on given network scenarios (Figure 1) with remarkable accuracy and speed. The proposed model is not limited to Markovian traffic as Queuing Theory; it supports arbitrary models (including auto-correlated processes) which better represent the properties of real-world traffic. Interestingly, it also overcomes one of the main limitations of DL-based models: RouteNet-F generalises and provides accurate estimates in network scenarios not seen in training (e.g., different topologies, traffic metrics, routing configurations). We benchmark RouteNet-F against a state-of-the-art DL-based model (MimicNet) and with a state-of-the-art queuing theory model. We show that our model outperforms both baselines in all scenarios, achieving a 5.64% error when tested in a dataset with packet traces coming from a real-world network, an 11% error when evaluated in a physical testbed, and a 6.24% error when estimating the delay on networks over a large dataset with 1,000 network examples, with topologies ranging from 50 to 300 nodes.
 
-{% asset_img  Fig_1.png Black-box representation of RouteNet-F %}
+
+
+![Black-box representation of RouteNet-F](Fig_1.png)
 
 As any Deep Learning model, RouteNet-Fermi does not provide strong mathematical performance guarantees. However, the error of the estimates produced by the model is strongly bounded. The minimum estimated delay assumes no queuing across the path while the maximum assumes that all the queues are full. RouteNet-Fermi will not produce delay estimates outside these bounds.
 
