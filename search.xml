@@ -1102,35 +1102,6 @@ Knowing this, we can see how there is a circular dependency between the flows an
 If we apply a standard GNN over this example, the state of each flow is not updated at each hop. Therefore, the GNN does not have a structure that represents how the delay depends on both the links (topology) and the flows that go through each specific router.
 
 Hence, we conclude that feeding the MPNN directly with the network topology graph is not sufficient to accurately perform network modeling. However, more complex and customised GNN-based architectures can still be powerful for modeling the inter-dependencies between the different network elements and generalising over new network scenarios by exploiting the underlying graph structure.
-
-[zheshihe](http://www.baidu.com)
-
-```C
-int main(){
-	int i = 1;
-}
-```
-
-> Hello this is 
-
-
-| ahsbaj | dcbjs |
-| ------ | ----- |
-| 2939   | 9399  |
-|        |       |
-|        |       |
-|        |       |
-
-- djndsjcj
-- diwdi
-- dvd
-
-1. dicso
-2. dvre
-3. gbfb
-
-鲜绿色 43b244
-栀子黄 ebb10d
 ]]></content>
       <categories>
         <category>论文</category>
@@ -1533,7 +1504,7 @@ Wi-Fi，无线网状网，zi]]></content>
     <content><![CDATA[
 简体中文 | [繁體中文](../about-TCN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
 
-{% asset_img code.png Programming is art.%}
+![Programming is art.](code.png)
 
 # 你好！
 
@@ -1581,11 +1552,11 @@ Wi-Fi，无线网状网，zi]]></content>
 
 这是几年前我画的第一幅画。
 
-{% asset_img him.PNG The first man I drew. %}
+![The first man I drew.](him.PNG)
 
 这是我家仙人掌开的花。
 
-{% asset_img cactus.jpeg Cactus flower. %}
+![Cactus flower.](cactus.jpeg)
 ]]></content>
       <categories>
         <category>-[about]</category>
@@ -1597,7 +1568,7 @@ Wi-Fi，无线网状网，zi]]></content>
     <content><![CDATA[
 Français | [English](../about/index.html) | [繁體中文](../about-TCN/index.html) | [简体中文](../about-CN/index.html)
 
-{% asset_img code.png Programming is art.%}
+![Programming is art.](code.png)
 
 # Bonjour!
 
@@ -1645,11 +1616,11 @@ Bienvenue sur ma page d'accueil personnelle, et je suis heureux de rencontrer un
 
 Voici la première œuvre que j'ai peinte il y a plusieurs années.
 
-{% asset_img him.PNG The first man I drew. %}
+![The first man I drew.](him.PNG)
 
 Et c'est une fleur de cactus chez moi.
 
-{% asset_img cactus.jpeg Cactus flower. %}
+![Cactus flower.](cactus.jpeg)
 ]]></content>
       <categories>
         <category>-[about]</category>
@@ -1661,7 +1632,7 @@ Et c'est une fleur de cactus chez moi.
     <content><![CDATA[
 English | [繁體中文](../about-TCN/index.html) | [简体中文](../about-CN/index.html) | [Français](../about-FR/index.html)
 
-{% asset_img code.png Programming is art.%}
+![Programming is art.](code.png)
 
 # Hello!
 
@@ -1713,7 +1684,7 @@ Here is the first work I painted several years ago.
 
 And this is a flower of cactus in my home.
 
-{% asset_img cactus.jpeg Cactus flower. %}
+![Cactus flower.](cactus.jpeg)
 ]]></content>
       <categories>
         <category>-[about]</category>
@@ -1725,7 +1696,7 @@ And this is a flower of cactus in my home.
     <content><![CDATA[
 繁體中文 | [简体中文](../about-CN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
 
-{% asset_img code.png Programming is art.%}
+![Programming is art.](code.png)
 
 # 你好！
 
@@ -1773,11 +1744,10 @@ And this is a flower of cactus in my home.
 
 係幾年前我畫嘅第一幅畫。
 
-{% asset_img him.PNG The first man I drew. %}
-
+![The first man I drew.](him.PNG)
 係我屋企仙人掌開嘅花。
 
-{% asset_img cactus.jpeg Cactus flower. %}
+![Cactus flower.](cactus.jpeg)
 ]]></content>
       <categories>
         <category>-[about]</category>
