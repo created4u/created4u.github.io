@@ -954,160 +954,16 @@ DDL is used to specify a database schema and addtional properties of the data.
       </tags>
   </entry>
   <entry>
-    <title>RouteNet-Fermi, Network Modeling with Graph Neural Networks</title>
-    <url>/2024/03/14/RouteNet-Fermi/</url>
-    <content><![CDATA[**Authors**
+    <title>震惊！玛雅神庙又有新发现。</title>
+    <url>/2024/03/22/For-Lark/</url>
+    <content><![CDATA[
+> 不久前，考古学家在南美玛雅神庙中发现了一张刻在石墙上的肖像，该肖像刻画的是一个俊美的男性，下面有一段文字还没有被完全破译。考古学家猜测，这段文字可能是对于该男子的描述。令人惊奇的一点是，肖像中的男子衣着非常现代，考古学家们一致认为，该男子可能是玛雅大祭司预言出的一位具有神秘力量的主宰者或者是一位先知，从未来穿越而来，给他们带来美好的未来。
 
-Miquel Ferriol-Galmés, Jordi Paillisse, José Suárez-Varela, Krzysztof Rusek, Shihan Xiao, Xiang Shi, Xiangle Cheng, Pere Barlet-Ros, Albert Cabellos-Aparicio
+几个月后，考古学家向媒体公布了该肖像画的进一步研究成果，他们一致认为，该名男子是来自公元2000多年后的贵州安顺地区的一名大学生，其名为Lark，在重庆读书，大学毕业后，一天晚上睡梦中穿越到了玛雅人的时代，给他们带来了先进的科技（小米手机等高科技设备），又教会了他们使用电力等未来技术，他们为他修建神庙，把他奉为先知。先知英俊潇洒，让无数男性和女性都心生爱慕，于是又被奉为俊美之神。
 
----
-
-## Abstract
-
-Network models are an essential block of modern networks. For example, they are widely used in network planning and optimization. However, as networks increase in scale and complexity, some models presents limitations, such as the assumption of Markovian traffic in queueing theory models, or the high computational cost of network simulators. Recent advances in machine learning, such as Graph Neural Networks(GNN), are enabling a new generation of network models that are data-driven and can learn complex non-linear behaviours. In this paper, we present RouteNet-Fermi, a custom GNN model that shares the same goal as queuing theory, while being considerably more accurate in the presence of realistic traffic models. The proposed model predicts accurately the delay, jitter, and packet loss of a network. We have tested RouteNet-Fermi in networks of increasing size (up yo 300 nodes), including samples with mixed traffic profiles - e.g., with complex non-Markovian models - and arbitrary routing and queue scheduling configurations. Our experimental results show that RouteNet-Fermi achieves similar accuracy as computationally-expensive packet-level simulators and scales accurately to larger networks. Our model produces delay estimates with a mean relative error of 6.24% when applied to a test dataset of 1,000 examples, including network topologies one order of magnitude larger than those seen during training. Finally, we have also evaluated RouteNet-Fermi with measurements from a physical testbed and packet traces from a real-life network.
-
-**Index terms:** Network Modeling, Graph Neural Networks, Queuing Theory
-
-## Introduction
-
-Network modeling is arguably one of the key tools when designing, building, and evaluating computer networks, even since the early days of networking. Network models are used in protocol design, performance evaluation, or network planning, just to cite a few examples. The wo most widespread network modeling techniques are analytical models based on Queuing Theory (QT), and packet-level simulators.
-
-However, the evolution of computer networks especially concerning complexity traffic characteristics, highlights some of the limitations of classical modeling techniques. Despite the tremendous success and widespread usage, some scenarios require more advanced techniques capable of accurately modeling complex traffic characteristics, while scaling to large real-world networks.
-
-Especially, two relevant applications can benefit from advanced network modeling techniques: Network Digital Twins (NDT), and the network optimization tools. Commonly, an NDT is referred to as a virtual replica of a physical network that can accurately mimic its behavior and can make performance predictions for any given input condition (e.g., traffic, topology change, or new routing configuration). In other words, an NDT is an accurate network model that can support a wide range of network configurations and that can accurately model the complex non-linear behaviors behind real-world networks. As a result, NDTs can be used to produce accurate performance predictions, carry out what-if analysis, or perform network optimization by pairing it with an optimization algorithm.
-
-In the context of network optimization, we can only optimize what we can model. Optimization algorithm operate by searching the network configuration space (e.g., to find an alternative routing scheme). For each configuration, a network model is used to estimate the resulting performance to see if it fulfills the optimization goal (e.g., minimize delay). To achieve efficient online optimization, it is essential to have an accurate and fast network model.
-
-State-of-the-art modeling techniques have important limitations in effectively supporting the stringent requirements of current packet-switched networks. Queuing Theory imposes strong assumptions on the packet arrival process (Poisson traffic generation), which often is not sufficient to model real-world networks. Internet traffic has been extensively analyzed in the past two decades, and despite the community has not agreed on universal model, there is consensus that in general aggregated traffic shows strong auto-correlation and a heavy-tail.
-
-Alternatively, packet-level simulators can accurately model networks. However, this comes at a high computational cost. The cost of a simulator depends linearly on the number of packets forwarded, which can be in the range of millions per second on a single 1Gbps link. In consequence, they are slow and impractical when considering large networks with realistic traffic volumes. This also severely limits its applicability to online network optimization, given the hard time constraints of such type of applications.
-
-In this context, Deep Learning (DL) offers an extraordinary set of techniques to build accurate data-driven network models. DL models cam be trained with real data, without making any assumptions about physical networks. This enables building models with unprecedented accuracy by modeling the entire range of non-linear and multidimensional characteristics.
-
-In this paper, we first make a systematic analysis of the performance of DL techniques for network modeling, using classical discrete-event network simulators as baseline. Specifically, we analyse the performance of Multilayer Perceptron-based (MLP), Recurrent Neural Network-based (RNN), and Graph Neural Network-based (GNN) models. We find that classical DL techniques, such as MLPs and RNNs are not practical enough for network modeling as they fail to provide accurate estimates when the network scenario differs from the examples seen during training (e.g., link failure). More recently, GNNs have been proposed as a novel neural network architecture specifically designed to learn over graph-structured data. They have been successfully used in other domains, such as quantum chemistry or logistics. However, in our analysis, we find that standard GNNs do not work well for network modeling and that we need a custom GNN architecture to model computer networks.
-
-As a result, we propose RouteNet-Fermi (RouteNet-F), a GNN architecture for network modeling. RouteNet-F shares the same goals as Queuing Theory. It provides performance estimates (delay, jitter, and packet-loss) on given network scenarios (Figure 1) with remarkable accuracy and speed. The proposed model is not limited to Markovian traffic as Queuing Theory; it supports arbitrary models (including auto-correlated processes) which better represent the properties of real-world traffic. Interestingly, it also overcomes one of the main limitations of DL-based models: RouteNet-F generalises and provides accurate estimates in network scenarios not seen in training (e.g., different topologies, traffic metrics, routing configurations). We benchmark RouteNet-F against a state-of-the-art DL-based model (MimicNet) and with a state-of-the-art queuing theory model. We show that our model outperforms both baselines in all scenarios, achieving a 5.64% error when tested in a dataset with packet traces coming from a real-world network, an 11% error when evaluated in a physical testbed, and a 6.24% error when estimating the delay on networks over a large dataset with 1,000 network examples, with topologies ranging from 50 to 300 nodes.
-
-
-
-![Black-box representation of RouteNet-F](Fig_1.png)
-
-As any Deep Learning model, RouteNet-Fermi does not provide strong mathematical performance guarantees. However, the error of the estimates produced by the model is strongly bounded. The minimum estimated delay assumes no queuing across the path while the maximum assumes that all the queues are full. RouteNet-Fermi will not produce delay estimates outside these bounds.
-
-The implementation of the model used in the evaluation in this paper is publicly available at [RouteNet-Fermi](https://github.com/BNN-UPC/Papers/wiki/RouteNet_Fermi).
-
-## Challenges of Data-Driven Network Modeling
-
-This section describes the main challenges that data-driven solutions need to address for network modeling. These challenges drove the core design of RouteNet-Fermi.
-
-**Traffic Models:** Networks carry different types of traffic, so, supporting arbitrary stochastic traffic model is crucial. Experimental observations show that traffic on the Internet has strong auto-correlation and heavy-tails. In this context, it is well-known that main limitation of Queuing Theory is that it fails to provide accurate estimates on realistic Markovian models with continuous state space, or non-Markovian traffic models. The challenge for DL-based modeling is: How can we design a neural network architecture that can accurately model realistic traffic models.
-
-**Training and Generalisation:** One of the main differences between analytical modeling (e.g., QT) and data-driven modeling is that the latter requires training. In DL, training involves obtaining a representative dataset of network measurements. The dataset needs to include a broad spectrum of network operational regimes, ranging from different congestion levels to various routing configurations, among others. In other words, the DL model cam predict only scenarios it has previously seen. Note that this is a common property of all neural network architectures.
-
-Ideally, we would obtain this training dataset from a production network, since they commonly have systems in place to measure performance. However, it would be difficult to obtain a representative dataset. As we mentioned previously, we would need to measure the production network when it is experiencing extreme performance degradation as the result of link failures, incorrect configurations, severe congestion, etc. However, these situations are not common in production networks, which limits the ability to generate the training dataset. A reasonable alternative is creating these datasets in controlled testbeds, where it is possible to use different traffic models, implement a broad set of configurations, and replicate a wide range of network failures. Thus, the DL model can be trained on samples from testbed and then, applied to production networks. Hence, the research challenge is: how to design a DL model that can provide accurate estimates in network not seen during training? This incudes topologies, traffic, and configurations (e.g., queuing scheduling, routing) different from those seen in the training network testbed.
-
-Leveraging a testbed that is smaller than a production network creates another challenge: the generalisation to larger networks. Real-world networks include hundreds or thousands of nodes, and building a network testbed at this scale is typically unfeasible. As a result, the Dl model should be able to learn from datasets with samples of small network testbeds and predict metrics for considerably larger networks, e.g., by a factor of 10-100x. Generalising to larger networks, or graphs in general, is currently an open research challenge in the field of GNNs.
-
-**Quality of Service and Scheduling Policies:** A key requirement of modern networks is supporting Quality of Service (QoS), usually implemented via scheduling policies and mapping of traffic flows to QoS classes. Hence, a DL model should be able to predict the performance of the input traffic flows with their associated QoS class, similarly to how QT models support a wide range of scheduling policies.
-
-## Limitations of Current Network Modeling Techniques
-
-This section explores the performance of different DL models with respect to an accurate packet-level simulator and discusses the main limitations of existing network modeling techniques.
-
-### A. Simulations as Network Modeling Technique
-
-Network simulators reproduce the network behaviour at the granularity of packet events. This way, they can offer excellent accuracy and can be easily extended to include virtually and feature, such as packet scheduling, wireless networks, etc. Some simulators, such as Omnet++ or ns-3, are widely used and maintained.
-
-However, their main limitation is the simulation time, especially for networks with high-speed links (10Gbps and above). Hence, depending on the amount of the traffic found in the target network, it may become unfeasible to simulate the network.
-
-To illustrate this limitation, we simulate different topologies using the Omnet++ simulator to calculate the delay of a set of source-destination flows (CPU Intel Xeon Silver 4210R @2.40GHz). Network topologies are artificially generated using the Power-Law Out-Degree Algorithm from [this paper](https://ieeexplore.ieee.org/abstract/document/892042) and a traffic distribution that follows a Poisson process.
-
-Figure shows the simulation time of such networks depending on the number of events. Here, an event refers to a transition in status of the network (e.g., adding a new packet to queue). We can see that the simulation time increases linearly and that simulating 4 billion events may appear a larger figure, consider that a 10Gbps link transmitting regular Ethernet frames translates to $\approx 820k$ events per seconds or 247 million events in 5 minutes of network activity for a single link. For example, in our experiments, the simulator takes around 8h to compute the performance metrics of a 300-node network.
-
-So, the main limitation of packet-level simulators is the simulation time. On the contrary, packet simulators offer unrivalled accuracy and can simulate virtually any scenario, from different routing configurations to replaying packet traces to simulate unknown traffic models. Because of this, hereafter, we consider the results from the simulator as the ground truth for the evaluations in this paper.
-
-### B. Neural Networks as Network Modeling Techniques
-
-The following sections review the performance of three common Neural Network (NN) architectures in the order of increasing complexity. First, we evaluate the Multilayer Perceptron, one of the simplest NNs. Next, Recurrent Neural Networks which are designed to work with sequences. Finally, we directly input the network into a Graph Neural Network specifically designed to work with graphs. The objective is to create a network model with the NN that can predict performance parameters for input networks with a wide range of characteristics. We are especially interested in the following parameters:
-
-- **Accuracy:** How close is the prediction to simulation values?
-- **Different Routing:** Does the accuracy degrade if we change the routing configuration?
-- **Link Failures:** Quantify if link failures affect the quality of predictions?
-
-We trained and test the three neural networks with the same dataset, obtained from simulations with Omnet++. The input values are the network characteristics (topology, routing configuration, traffic model and intensity, etc), and the output values are the delay for each path. Hence, all the errors are computed with respect to values of the simulator. We use four different datasets:
-
-- **Traffic Models:** In it, we consider traffic models that are non-Poisson, auto-correlated, and with heavy tails. Table IV details the different traffic models.
-- **Same Routing:** Where the testing and training datasets contain networks with the same routing configurations.
-- **Different Routing:** Where the training and testing datasets contain networks with different routing configurations.
-- **Link failures:** Here, we iteratively remove one link of the topology to replicate a link failure, until we transform the network graph into a connected acyclic graph. This scenario is the most complex since a link failure triggers a change both in the routing and the topology.
-
-To compare the different techniques, we compute the prediction error with respect to the accurate performance values produced by the simulator. Particularly we use the following error metrics:
-
-- Mean Absolute Percentage Error (MAPE),
-- Mean Squared Error (MSE),
-- Mean Absolute Error (MAE), and
-- Coefficient of Determination ($R^2$).
-
-### C. Multilayer Perceptron
-
-A Multilayer Perceptron (MLP) is a basic kind of NN from the family of feedforward NNs. In short, input data is propagated unidirectionally from the input neuron layer to the output layer. There may be an arbitrary number of hidden layers between these two layers, and this determines how deep is the NN.
-
-- **Design:** Several works have leveraged an MLP to predict network performance metrics. Based on this work, we have built an MLP to predict the mean delay for each source-destination pair of nodes of a given network. The MLP has 8,280 inputs and two hidden layers with 4096 neurons and uses Rectified Linear Units (ReLU) as activation functions.
-- **Evaluation:** Table I presents the error when predicting the network delay with respect to the results produced by the network simulator, including several traffic models. We can see that the MLP offers good accuracy for Poisson traffic, but the error increases significantly for the rest of the traffic models showing a MAPE between 23% and 84%.
-  
-Likewise, Table II shows the error of predicting the delay for the datasets with the same/different routing and link failures. We can see that the MLP cannot offer an accurate estimate when predicting the delay of a previously unseen routing configuration (1150% of error). This is due to the internal architecture of the MLP. During training, the MLP performs overfitting, meaning that the model only learns about the initial network topology used for training and not for any others. When we input a new topology, it does not have sufficient information to make an accurate prediction.
-
-### D. Recurrent Neural Networks
-
-Recurrent Neural Networks (RNN) are a more advanced type of NN. They have shown excellent performance when processing sequential data. This is mainly because they connect some layers to the previous ones, which gives them the ability to keep the state along sequences.  
-
-- **Design:** Several works propose RNNs as a way to predict network performance. In this experiment, we build a sequential model with an RNN (Figure 4). Particularly, we choose a Gated Recurrent Unit (GRU). We initialise the state of each path with the sequence of nodes in the path and the features of the traffic model (e.g., packets, bandwidth, $\lambda$, $\epsilon$, $\alpha$, or on-off time), and we update the state of each link across the path. As an example, Figure 4 shows the structure of an RNN to model the sample network from Figure 3. We can see that the path of $flow_1$ is composed of $L_1$ and $L_3$. Once the path state has been computed, an MLP with 2 hidden layers computes the final output.
-- **Evaluation:** We train the RNN with the same datasets as the previous subsection. Although the RNN supports better different traffic models than the MLP (Table I), it still struggles to produce accurate predictions when there are routing or topology changes (Table II), especially for different routing configurations (30% error), or when removing links (63%).
-
-The reason behind the lack of capability of RNNs to understand routing changes and link failures is due to its internal architecture. RNNs can accommodate different end-to-end paths in the network (i.e., series of routers and links), thereby, making it easier to perform predictions for paths never seen in the training phase. However, this structure cannot store and update the status of individual links in the topology due to the inter-dependency between links and traffic flows (i.e., routing). In other words, if the status of a link changes, it affects several flows, and vice-versa. This generates circular dependencies that RNNs are not able to model (see more details in Sec. IV).
-
-### Graph Neural Networks
-
-Networks are fundamentally represented as graphs, where networking devices are the graph nodes and the links connecting devices are the graph edges. This interconnection translates to the fact that the **different elements in the network are dependent on each other**. Since most standard DL models (e.g., MLP, RNN) assume independent flow-level data points. This renders them inaccurate for our use case. Hence, a model that is capable of processing directly the network graph is arguably more desirable for network modeling, because **it will be able, not only to obtain information from the individual nodes and edges but also from the underlying data structure** (i.e., the relationships between the different elements).
-
-GNNs are a type of neural network designed to work with graph-structured data. They have two key characteristics that make them a good candidate for a network model. First, GNNs have the ability to store node-level hidden states and update them in each iteration. Second, they process the input data directly as a graph, both during training and inference. This means that the internal structure of the neural network depends on the input graph. Hence, they can dynamically adapt to the underlying dependencies between the different elements of a network. The latter is of special importance, since changes in the network graph (e.g., routing modifications, link failures) are the main limitation of other DL-based models, such as MLPs and RNNs, as we have seen in the previous subsections.
-
-In this section, we build a standard GNN model to predict the mean per-flow delay in networks.
-
-**Design:** We implement a Message-Passing Neural Network (MPNN), a powerful state-of-the-art GNN architecture that can efficiently capture dependencies between the elements of input graphs. We define a graph $G$ described as a set of vertices (or nodes) $E$ and a set of edges (or links) $V$. Each node has a set of features $x_v$, and edges also have some features $e_{vw}$. The execution of an MPNN can be divided into three phases, an initialisation phase, a message-passing phase, and a readout phase. The first one defines a hidden state ($h_v^0$) using the node features ($x_v$). The second one is an iterative process that runs for $T$ time steps and that is defined by two functions: the message function $M_t$ and the update function $U_t$. During this phase, node hidden states ($h_v^t$), represented as fixed-size vectors, attempt to encode some meaningful information, and are iteratively updated by exchanging messages $m_v^{t+1}$ with their neighbours:
-
-$$
-m_v^{t+1} = \sum_{w \in N(v)}{M_t(h_v^t,h_w^t,e_{vw})}
-$$
-$$
-h_v^{t+1} = U_t(h_v^t,m_v^{t+1})
-$$
-
-where $N(v)$ represents the neighbours of $v$ in graph $G$. Finally, the readout phase computes the output vector using a readout function $R$ that takes as input the final hidden states $h_v^T$:  
-
-$$
-\hat{y} = R(\{h_v^T | v \in G\})
-$$
-
-In our case, the input of the MPNN is the network topology graph. It performs $T$$=$$4$ message-passing iterations and the hidden state dimension is 32. The readout function is implemented with a two-layer fully connected NN with ReLUs as activation functions for the hidden layers and a linear activation for the output layer.
-
-**Evaluation:** We evaluate the accuracy of the MPNN model when predicting the mean flow-level delay, as in previous subsections. Table III presents the delay prediction errors in the same scenarios of the previous experiments: routing configurations, both seen and not seen during training, and link failures. Unfortunately, the results are similar to those of the RNN: the routing configurations from the training dataset are easy to predict, with an error as low as 3%, while new routing configurations and link failures increase the error significantly (respectively, 50% and 125% of MAPE), thus showing even larger errors than the RNN model.  
-
-The main reason behind the poor accuracy of the MPNN model is that the architecture of this model is directly built based on the network topology without taking into account the paths traversed by different traffic flows (i.e., the routing configuration), which is a fundamental property to understand inter-dependencies between flows and links. More specifically, when we test the model with the same routing configuration, it learns the relationships between flows and links. However, when we change this configuration, those previously-learned relationships are no longer valid, and the model is not able to capture the relationships between elements in the new scenario.
-
-This intuition is better understood with an extreme packet loss example. Let’s suppose we have the sample network in Figure 3. The first flow ($Flow_1$) is transmitting at a rate of 2Gbps, and the second one ($Flow_2$) is transmitting at a rate of 0.5Gbps. As we can see, $L_1$ has a maximum capacity of 0.5Gbps. Because of this, $Flow_1$ will experience a large packet loss, which causes the traffic of $Flow_1$ at $L_3$ to be at most 0.5Gbps. Hence, instead of having 2Gbps+0.5Gbps of aggregated traffic at $L_3$, it will only have 1Gbps. Now, $Flow_2$, which initially could have experienced a lot of network congestion when going through the 2Gbps link will experience none as the state of the link changed.
-
-Knowing this, we can see how there is a circular dependency between the flows and links found in the network. At the same time, the state of a flow depends on the state of the links they traverse, and the state of the links depends on the state of the flows passing through them.
-
-If we apply a standard GNN over this example, the state of each flow is not updated at each hop. Therefore, the GNN does not have a structure that represents how the delay depends on both the links (topology) and the flows that go through each specific router.
-
-Hence, we conclude that feeding the MPNN directly with the network topology graph is not sufficient to accurately perform network modeling. However, more complex and customised GNN-based architectures can still be powerful for modeling the inter-dependencies between the different network elements and generalising over new network scenarios by exploiting the underlying graph structure.
-]]></content>
-      <categories>
-        <category>论文</category>
-      </categories>
+多年后，玛雅人的科技得以飞速发展，甚至可以长生不老和星际穿越，Lark深知地球在很多年后将会变得破旧不堪，难以让人类继续生存，于是率领玛雅人移民到了新的星球，并取名为Lark。]]></content>
       <tags>
-        <tag>GNN</tag>
+        <tag>Lark</tag>
       </tags>
   </entry>
   <entry>
@@ -1432,6 +1288,163 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>RouteNet-Fermi, Network Modeling with Graph Neural Networks</title>
+    <url>/2024/03/14/RouteNet-Fermi/</url>
+    <content><![CDATA[**Authors**
+
+Miquel Ferriol-Galmés, Jordi Paillisse, José Suárez-Varela, Krzysztof Rusek, Shihan Xiao, Xiang Shi, Xiangle Cheng, Pere Barlet-Ros, Albert Cabellos-Aparicio
+
+---
+
+## Abstract
+
+Network models are an essential block of modern networks. For example, they are widely used in network planning and optimization. However, as networks increase in scale and complexity, some models presents limitations, such as the assumption of Markovian traffic in queueing theory models, or the high computational cost of network simulators. Recent advances in machine learning, such as Graph Neural Networks(GNN), are enabling a new generation of network models that are data-driven and can learn complex non-linear behaviours. In this paper, we present RouteNet-Fermi, a custom GNN model that shares the same goal as queuing theory, while being considerably more accurate in the presence of realistic traffic models. The proposed model predicts accurately the delay, jitter, and packet loss of a network. We have tested RouteNet-Fermi in networks of increasing size (up yo 300 nodes), including samples with mixed traffic profiles - e.g., with complex non-Markovian models - and arbitrary routing and queue scheduling configurations. Our experimental results show that RouteNet-Fermi achieves similar accuracy as computationally-expensive packet-level simulators and scales accurately to larger networks. Our model produces delay estimates with a mean relative error of 6.24% when applied to a test dataset of 1,000 examples, including network topologies one order of magnitude larger than those seen during training. Finally, we have also evaluated RouteNet-Fermi with measurements from a physical testbed and packet traces from a real-life network.
+
+**Index terms:** Network Modeling, Graph Neural Networks, Queuing Theory
+
+## Introduction
+
+Network modeling is arguably one of the key tools when designing, building, and evaluating computer networks, even since the early days of networking. Network models are used in protocol design, performance evaluation, or network planning, just to cite a few examples. The two most widespread network modeling techniques are analytical models based on Queuing Theory (QT), and packet-level simulators.
+
+However, the evolution of computer networks especially concerning complexity traffic characteristics, highlights some of the limitations of classical modeling techniques. Despite the tremendous success and widespread usage, some scenarios require more advanced techniques capable of accurately modeling complex traffic characteristics, while scaling to large real-world networks.
+
+Especially, two relevant applications can benefit from advanced network modeling techniques: Network Digital Twins (NDT), and the network optimization tools. Commonly, an NDT is referred to as a virtual replica of a physical network that can accurately mimic its behavior and can make performance predictions for any given input condition (e.g., traffic, topology change, or new routing configuration). In other words, an NDT is an accurate network model that can support a wide range of network configurations and that can accurately model the complex non-linear behaviors behind real-world networks. As a result, NDTs can be used to produce accurate performance predictions, carry out what-if analysis, or perform network optimization by pairing it with an optimization algorithm.
+
+In the context of network optimization, we can only optimize what we can model. Optimization algorithm operate by searching the network configuration space (e.g., to find an alternative routing scheme). For each configuration, a network model is used to estimate the resulting performance to see if it fulfills the optimization goal (e.g., minimize delay). To achieve efficient online optimization, it is essential to have an accurate and fast network model.
+
+State-of-the-art modeling techniques have important limitations in effectively supporting the stringent requirements of current packet-switched networks. Queuing Theory imposes strong assumptions on the packet arrival process (Poisson traffic generation), which often is not sufficient to model real-world networks. Internet traffic has been extensively analyzed in the past two decades, and despite the community has not agreed on universal model, there is consensus that in general aggregated traffic shows strong auto-correlation and a heavy-tail.
+
+Alternatively, packet-level simulators can accurately model networks. However, this comes at a high computational cost. The cost of a simulator depends linearly on the number of packets forwarded, which can be in the range of millions per second on a single 1Gbps link. In consequence, they are slow and impractical when considering large networks with realistic traffic volumes. This also severely limits its applicability to online network optimization, given the hard time constraints of such type of applications.
+
+In this context, Deep Learning (DL) offers an extraordinary set of techniques to build accurate data-driven network models. DL models cam be trained with real data, without making any assumptions about physical networks. This enables building models with unprecedented accuracy by modeling the entire range of non-linear and multidimensional characteristics.
+
+In this paper, we first make a systematic analysis of the performance of DL techniques for network modeling, using classical discrete-event network simulators as baseline. Specifically, we analyse the performance of Multilayer Perceptron-based (MLP), Recurrent Neural Network-based (RNN), and Graph Neural Network-based (GNN) models. We find that classical DL techniques, such as MLPs and RNNs are not practical enough for network modeling as they fail to provide accurate estimates when the network scenario differs from the examples seen during training (e.g., link failure). More recently, GNNs have been proposed as a novel neural network architecture specifically designed to learn over graph-structured data. They have been successfully used in other domains, such as quantum chemistry or logistics. However, in our analysis, we find that standard GNNs do not work well for network modeling and that we need a custom GNN architecture to model computer networks.
+
+As a result, we propose RouteNet-Fermi (RouteNet-F), a GNN architecture for network modeling. RouteNet-F shares the same goals as Queuing Theory. It provides performance estimates (delay, jitter, and packet-loss) on given network scenarios (Figure 1) with remarkable accuracy and speed. The proposed model is not limited to Markovian traffic as Queuing Theory; it supports arbitrary models (including auto-correlated processes) which better represent the properties of real-world traffic. Interestingly, it also overcomes one of the main limitations of DL-based models: RouteNet-F generalises and provides accurate estimates in network scenarios not seen in training (e.g., different topologies, traffic metrics, routing configurations). We benchmark RouteNet-F against a state-of-the-art DL-based model (MimicNet) and with a state-of-the-art queuing theory model. We show that our model outperforms both baselines in all scenarios, achieving a 5.64% error when tested in a dataset with packet traces coming from a real-world network, an 11% error when evaluated in a physical testbed, and a 6.24% error when estimating the delay on networks over a large dataset with 1,000 network examples, with topologies ranging from 50 to 300 nodes.
+
+
+
+![Black-box representation of RouteNet-F](Fig_1.png)
+
+As any Deep Learning model, RouteNet-Fermi does not provide strong mathematical performance guarantees. However, the error of the estimates produced by the model is strongly bounded. The minimum estimated delay assumes no queuing across the path while the maximum assumes that all the queues are full. RouteNet-Fermi will not produce delay estimates outside these bounds.
+
+The implementation of the model used in the evaluation in this paper is publicly available at [RouteNet-Fermi](https://github.com/BNN-UPC/Papers/wiki/RouteNet_Fermi).
+
+## Challenges of Data-Driven Network Modeling
+
+This section describes the main challenges that data-driven solutions need to address for network modeling. These challenges drove the core design of RouteNet-Fermi.
+
+**Traffic Models:** Networks carry different types of traffic, so, supporting arbitrary stochastic traffic model is crucial. Experimental observations show that traffic on the Internet has strong auto-correlation and heavy-tails. In this context, it is well-known that main limitation of Queuing Theory is that it fails to provide accurate estimates on realistic Markovian models with continuous state space, or non-Markovian traffic models. The challenge for DL-based modeling is: How can we design a neural network architecture that can accurately model realistic traffic models.
+
+**Training and Generalisation:** One of the main differences between analytical modeling (e.g., QT) and data-driven modeling is that the latter requires training. In DL, training involves obtaining a representative dataset of network measurements. The dataset needs to include a broad spectrum of network operational regimes, ranging from different congestion levels to various routing configurations, among others. In other words, the DL model cam predict only scenarios it has previously seen. Note that this is a common property of all neural network architectures.
+
+Ideally, we would obtain this training dataset from a production network, since they commonly have systems in place to measure performance. However, it would be difficult to obtain a representative dataset. As we mentioned previously, we would need to measure the production network when it is experiencing extreme performance degradation as the result of link failures, incorrect configurations, severe congestion, etc. However, these situations are not common in production networks, which limits the ability to generate the training dataset. A reasonable alternative is creating these datasets in controlled testbeds, where it is possible to use different traffic models, implement a broad set of configurations, and replicate a wide range of network failures. Thus, the DL model can be trained on samples from testbed and then, applied to production networks. Hence, the research challenge is: how to design a DL model that can provide accurate estimates in network not seen during training? This incudes topologies, traffic, and configurations (e.g., queuing scheduling, routing) different from those seen in the training network testbed.
+
+Leveraging a testbed that is smaller than a production network creates another challenge: the generalisation to larger networks. Real-world networks include hundreds or thousands of nodes, and building a network testbed at this scale is typically unfeasible. As a result, the Dl model should be able to learn from datasets with samples of small network testbeds and predict metrics for considerably larger networks, e.g., by a factor of 10-100x. Generalising to larger networks, or graphs in general, is currently an open research challenge in the field of GNNs.
+
+**Quality of Service and Scheduling Policies:** A key requirement of modern networks is supporting Quality of Service (QoS), usually implemented via scheduling policies and mapping of traffic flows to QoS classes. Hence, a DL model should be able to predict the performance of the input traffic flows with their associated QoS class, similarly to how QT models support a wide range of scheduling policies.
+
+## Limitations of Current Network Modeling Techniques
+
+This section explores the performance of different DL models with respect to an accurate packet-level simulator and discusses the main limitations of existing network modeling techniques.
+
+### A. Simulations as Network Modeling Technique
+
+Network simulators reproduce the network behaviour at the granularity of packet events. This way, they can offer excellent accuracy and can be easily extended to include virtually and feature, such as packet scheduling, wireless networks, etc. Some simulators, such as Omnet++ or ns-3, are widely used and maintained.
+
+However, their main limitation is the simulation time, especially for networks with high-speed links (10Gbps and above). Hence, depending on the amount of the traffic found in the target network, it may become unfeasible to simulate the network.
+
+To illustrate this limitation, we simulate different topologies using the Omnet++ simulator to calculate the delay of a set of source-destination flows (CPU Intel Xeon Silver 4210R @2.40GHz). Network topologies are artificially generated using the Power-Law Out-Degree Algorithm from [this paper](https://ieeexplore.ieee.org/abstract/document/892042) and a traffic distribution that follows a Poisson process.
+
+Figure shows the simulation time of such networks depending on the number of events. Here, an event refers to a transition in status of the network (e.g., adding a new packet to queue). We can see that the simulation time increases linearly and that simulating 4 billion events may appear a larger figure, consider that a 10Gbps link transmitting regular Ethernet frames translates to $\approx 820k$ events per seconds or 247 million events in 5 minutes of network activity for a single link. For example, in our experiments, the simulator takes around 8h to compute the performance metrics of a 300-node network.
+
+So, the main limitation of packet-level simulators is the simulation time. On the contrary, packet simulators offer unrivalled accuracy and can simulate virtually any scenario, from different routing configurations to replaying packet traces to simulate unknown traffic models. Because of this, hereafter, we consider the results from the simulator as the ground truth for the evaluations in this paper.
+
+### B. Neural Networks as Network Modeling Techniques
+
+The following sections review the performance of three common Neural Network (NN) architectures in the order of increasing complexity. First, we evaluate the Multilayer Perceptron, one of the simplest NNs. Next, Recurrent Neural Networks which are designed to work with sequences. Finally, we directly input the network into a Graph Neural Network specifically designed to work with graphs. The objective is to create a network model with the NN that can predict performance parameters for input networks with a wide range of characteristics. We are especially interested in the following parameters:
+
+- **Accuracy:** How close is the prediction to simulation values?
+- **Different Routing:** Does the accuracy degrade if we change the routing configuration?
+- **Link Failures:** Quantify if link failures affect the quality of predictions?
+
+We trained and test the three neural networks with the same dataset, obtained from simulations with Omnet++. The input values are the network characteristics (topology, routing configuration, traffic model and intensity, etc), and the output values are the delay for each path. Hence, all the errors are computed with respect to values of the simulator. We use four different datasets:
+
+- **Traffic Models:** In it, we consider traffic models that are non-Poisson, auto-correlated, and with heavy tails. Table IV details the different traffic models.
+- **Same Routing:** Where the testing and training datasets contain networks with the same routing configurations.
+- **Different Routing:** Where the training and testing datasets contain networks with different routing configurations.
+- **Link failures:** Here, we iteratively remove one link of the topology to replicate a link failure, until we transform the network graph into a connected acyclic graph. This scenario is the most complex since a link failure triggers a change both in the routing and the topology.
+
+To compare the different techniques, we compute the prediction error with respect to the accurate performance values produced by the simulator. Particularly we use the following error metrics:
+
+- Mean Absolute Percentage Error (MAPE),
+- Mean Squared Error (MSE),
+- Mean Absolute Error (MAE), and
+- Coefficient of Determination ($R^2$).
+
+### C. Multilayer Perceptron
+
+A Multilayer Perceptron (MLP) is a basic kind of NN from the family of feedforward NNs. In short, input data is propagated unidirectionally from the input neuron layer to the output layer. There may be an arbitrary number of hidden layers between these two layers, and this determines how deep is the NN.
+
+- **Design:** Several works have leveraged an MLP to predict network performance metrics. Based on this work, we have built an MLP to predict the mean delay for each source-destination pair of nodes of a given network. The MLP has 8,280 inputs and two hidden layers with 4096 neurons and uses Rectified Linear Units (ReLU) as activation functions.
+- **Evaluation:** Table I presents the error when predicting the network delay with respect to the results produced by the network simulator, including several traffic models. We can see that the MLP offers good accuracy for Poisson traffic, but the error increases significantly for the rest of the traffic models showing a MAPE between 23% and 84%.
+  
+Likewise, Table II shows the error of predicting the delay for the datasets with the same/different routing and link failures. We can see that the MLP cannot offer an accurate estimate when predicting the delay of a previously unseen routing configuration (1150% of error). This is due to the internal architecture of the MLP. During training, the MLP performs overfitting, meaning that the model only learns about the initial network topology used for training and not for any others. When we input a new topology, it does not have sufficient information to make an accurate prediction.
+
+### D. Recurrent Neural Networks
+
+Recurrent Neural Networks (RNN) are a more advanced type of NN. They have shown excellent performance when processing sequential data. This is mainly because they connect some layers to the previous ones, which gives them the ability to keep the state along sequences.  
+
+- **Design:** Several works propose RNNs as a way to predict network performance. In this experiment, we build a sequential model with an RNN (Figure 4). Particularly, we choose a Gated Recurrent Unit (GRU). We initialise the state of each path with the sequence of nodes in the path and the features of the traffic model (e.g., packets, bandwidth, $\lambda$, $\epsilon$, $\alpha$, or on-off time), and we update the state of each link across the path. As an example, Figure 4 shows the structure of an RNN to model the sample network from Figure 3. We can see that the path of $flow_1$ is composed of $L_1$ and $L_3$. Once the path state has been computed, an MLP with 2 hidden layers computes the final output.
+- **Evaluation:** We train the RNN with the same datasets as the previous subsection. Although the RNN supports better different traffic models than the MLP (Table I), it still struggles to produce accurate predictions when there are routing or topology changes (Table II), especially for different routing configurations (30% error), or when removing links (63%).
+
+The reason behind the lack of capability of RNNs to understand routing changes and link failures is due to its internal architecture. RNNs can accommodate different end-to-end paths in the network (i.e., series of routers and links), thereby, making it easier to perform predictions for paths never seen in the training phase. However, this structure cannot store and update the status of individual links in the topology due to the inter-dependency between links and traffic flows (i.e., routing). In other words, if the status of a link changes, it affects several flows, and vice-versa. This generates circular dependencies that RNNs are not able to model (see more details in Sec. IV).
+
+### Graph Neural Networks
+
+Networks are fundamentally represented as graphs, where networking devices are the graph nodes and the links connecting devices are the graph edges. This interconnection translates to the fact that the **different elements in the network are dependent on each other**. Since most standard DL models (e.g., MLP, RNN) assume independent flow-level data points. This renders them inaccurate for our use case. Hence, a model that is capable of processing directly the network graph is arguably more desirable for network modeling, because **it will be able, not only to obtain information from the individual nodes and edges but also from the underlying data structure** (i.e., the relationships between the different elements).
+
+GNNs are a type of neural network designed to work with graph-structured data. They have two key characteristics that make them a good candidate for a network model. First, GNNs have the ability to store node-level hidden states and update them in each iteration. Second, they process the input data directly as a graph, both during training and inference. This means that the internal structure of the neural network depends on the input graph. Hence, they can dynamically adapt to the underlying dependencies between the different elements of a network. The latter is of special importance, since changes in the network graph (e.g., routing modifications, link failures) are the main limitation of other DL-based models, such as MLPs and RNNs, as we have seen in the previous subsections.
+
+In this section, we build a standard GNN model to predict the mean per-flow delay in networks.
+
+**Design:** We implement a Message-Passing Neural Network (MPNN), a powerful state-of-the-art GNN architecture that can efficiently capture dependencies between the elements of input graphs. We define a graph $G$ described as a set of vertices (or nodes) $E$ and a set of edges (or links) $V$. Each node has a set of features $x_v$, and edges also have some features $e_{vw}$. The execution of an MPNN can be divided into three phases, an initialisation phase, a message-passing phase, and a readout phase. The first one defines a hidden state ($h_v^0$) using the node features ($x_v$). The second one is an iterative process that runs for $T$ time steps and that is defined by two functions: the message function $M_t$ and the update function $U_t$. During this phase, node hidden states ($h_v^t$), represented as fixed-size vectors, attempt to encode some meaningful information, and are iteratively updated by exchanging messages $m_v^{t+1}$ with their neighbours:
+
+$$
+m_v^{t+1} = \sum_{w \in N(v)}{M_t(h_v^t,h_w^t,e_{vw})}
+$$
+$$
+h_v^{t+1} = U_t(h_v^t,m_v^{t+1})
+$$
+
+where $N(v)$ represents the neighbours of $v$ in graph $G$. Finally, the readout phase computes the output vector using a readout function $R$ that takes as input the final hidden states $h_v^T$:  
+
+$$
+\hat{y} = R(\{h_v^T | v \in G\})
+$$
+
+In our case, the input of the MPNN is the network topology graph. It performs $T$$=$$4$ message-passing iterations and the hidden state dimension is 32. The readout function is implemented with a two-layer fully connected NN with ReLUs as activation functions for the hidden layers and a linear activation for the output layer.
+
+**Evaluation:** We evaluate the accuracy of the MPNN model when predicting the mean flow-level delay, as in previous subsections. Table III presents the delay prediction errors in the same scenarios of the previous experiments: routing configurations, both seen and not seen during training, and link failures. Unfortunately, the results are similar to those of the RNN: the routing configurations from the training dataset are easy to predict, with an error as low as 3%, while new routing configurations and link failures increase the error significantly (respectively, 50% and 125% of MAPE), thus showing even larger errors than the RNN model.  
+
+The main reason behind the poor accuracy of the MPNN model is that the architecture of this model is directly built based on the network topology without taking into account the paths traversed by different traffic flows (i.e., the routing configuration), which is a fundamental property to understand inter-dependencies between flows and links. More specifically, when we test the model with the same routing configuration, it learns the relationships between flows and links. However, when we change this configuration, those previously-learned relationships are no longer valid, and the model is not able to capture the relationships between elements in the new scenario.
+
+This intuition is better understood with an extreme packet loss example. Let’s suppose we have the sample network in Figure 3. The first flow ($Flow_1$) is transmitting at a rate of 2Gbps, and the second one ($Flow_2$) is transmitting at a rate of 0.5Gbps. As we can see, $L_1$ has a maximum capacity of 0.5Gbps. Because of this, $Flow_1$ will experience a large packet loss, which causes the traffic of $Flow_1$ at $L_3$ to be at most 0.5Gbps. Hence, instead of having 2Gbps+0.5Gbps of aggregated traffic at $L_3$, it will only have 1Gbps. Now, $Flow_2$, which initially could have experienced a lot of network congestion when going through the 2Gbps link will experience none as the state of the link changed.
+
+Knowing this, we can see how there is a circular dependency between the flows and links found in the network. At the same time, the state of a flow depends on the state of the links they traverse, and the state of the links depends on the state of the flows passing through them.
+
+If we apply a standard GNN over this example, the state of each flow is not updated at each hop. Therefore, the GNN does not have a structure that represents how the delay depends on both the links (topology) and the flows that go through each specific router.
+
+Hence, we conclude that feeding the MPNN directly with the network topology graph is not sufficient to accurately perform network modeling. However, more complex and customised GNN-based architectures can still be powerful for modeling the inter-dependencies between the different network elements and generalising over new network scenarios by exploiting the underlying graph structure.
+]]></content>
+      <categories>
+        <category>论文</category>
+      </categories>
+      <tags>
+        <tag>GNN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>无线网络技术</title>
     <url>/2023/06/22/Wireless-Network-Review/</url>
     <content><![CDATA[
@@ -1627,6 +1640,69 @@ Et c'est une fleur de cactus chez moi.
       </categories>
   </entry>
   <entry>
+    <title>關於我自己</title>
+    <url>/2023/06/06/about-TCN/</url>
+    <content><![CDATA[
+繁體中文 | [简体中文](../about-CN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
+
+![Programming is art.](code.png)
+
+# 你好！
+
+歡迎訪問我嘅個人主頁，我都非常榮幸能夠同你咁有趣嘅靈魂在此相遇。
+
+# 學習經歷
+
+- 2017 - 2020，高中，安徽省亳州市第一中學
+- 2020 - 至今，本科，吉林大學計算機科學與技術學院
+
+# 參與項目
+
+- RISC-V 指令集軟件仿真
+- 基於 YOLOv5 嘅智能撿拾機械人
+- 我自己嘅 Repositories
+  - [Heartbeat](https://github.com/created4u/heartbeat.git)
+  - [Coursea](https://github.com/created4u/Coursea.git)
+
+# 所獲榮譽
+
+（截止至 2023 年 8 月）
+
+- 2020 - 2021，吉林大學三等獎學金
+- 2021 - 2022，吉林大學二等獎學金
+- 2021 - 2022，吉林大學計算機科學與技術學院院優秀學生
+- 2023，[全國大學生物聯網設計競賽](http://iot.sjtu.edu.cn/Default.aspx)，東北賽區一等獎，全國總決賽二等獎
+
+# 個人能力
+
+- 英語水平良好，四六級均以優秀成績通過，正在備考 TOEFL，能夠流暢地閱讀外文文獻。
+- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等編程語言，有良好的編程能力。
+- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技術，能夠獨立搭建網頁。
+- 有一定的開發經驗，能夠獨立開發 iOS/iPadOS/macOS 和 Android 應用程序。
+- 廣泛接觸軟硬件，基礎較為紮實，熟悉嵌入式開發。
+
+# 興趣愛好
+
+- 語言學習。空餘時間會學習各種有趣嘅語言，例如 Français，Русский，Español 等語言。
+- 繪畫（約等於~亂畫）。冇系統咁學過相關知識，就係想畫啥畫啥。
+- 閱讀文學。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 同 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 係我最鍾意嘅作家之一，雖然有時候睇唔係幾明，但係更令我癡迷不已。
+- 設計各種有意思嘅嘢，執著于用平凡嘅材料創造出不平凡嘅嘢，用顏色表達情感。
+- 攝影。用相機記錄的每一個值得回憶嘅瞬間。
+
+## 個人作品 :)
+
+係幾年前我畫嘅第一幅畫。
+
+![The first man I drew.](him.PNG)
+係我屋企仙人掌開嘅花。
+
+![Cactus flower.](cactus.jpeg)
+]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
+  <entry>
     <title>About Me</title>
     <url>/2023/06/06/about/</url>
     <content><![CDATA[
@@ -1691,67 +1767,143 @@ And this is a flower of cactus in my home.
       </categories>
   </entry>
   <entry>
-    <title>關於我自己</title>
-    <url>/2023/06/06/about-TCN/</url>
+    <title>Ad hoc 网络路由协议</title>
+    <url>/2023/06/24/ad-hoc-route-protocol/</url>
     <content><![CDATA[
-繁體中文 | [简体中文](../about-CN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
+# 分类
 
-![Programming is art.](code.png)
+自组路由协议
 
-# 你好！
+- 扁平路由
+  - 先验式（由表驱动），路由与交通模式无关，包括普通的路由和距离向量路由
+    - FSR
+    - FSLS
+    - OLSR
+    - TBRPF
+  - 反应式（按需模式），需要时才保持路由状态
+    - **AODV**
+    - **DSR**
+- 分级路由，在平面网络中引入层次概念
+  - HSR
+  - CGSR
+  - ZRP
+  - LANMAR
+- 地理位置协助路由
+  - GPSR
+  - GeoCast
+  - LAR
+  - DREAM
 
-歡迎訪問我嘅個人主頁，我都非常榮幸能夠同你咁有趣嘅靈魂在此相遇。
+# Flooding
 
-# 學習經歷
+洪泛路由算法（Flood Routing Algorithm）是一种简单而有效的网络路由算法，它用于在没有中央控制的网络中，将数据包从源节点传递到目标节点。该算法的基本原理是在网络中的每个节点接收到数据包后，将数据包向除了发送节点之外的所有相邻节点进行转发，以便数据包能够通过网络传播，直到到达目标节点。
 
-- 2017 - 2020，高中，安徽省亳州市第一中學
-- 2020 - 至今，本科，吉林大學計算機科學與技術學院
+以下是洪泛路由算法的详细介绍：
 
-# 參與項目
+1. 初始化：在网络中，每个节点都维护一个路由表，记录了与其相邻的节点信息。开始时，每个节点只知道它直接相连的邻居节点。
 
-- RISC-V 指令集軟件仿真
-- 基於 YOLOv5 嘅智能撿拾機械人
-- 我自己嘅 Repositories
-  - [Heartbeat](https://github.com/created4u/heartbeat.git)
-  - [Coursea](https://github.com/created4u/Coursea.git)
+2. 发送数据包：当一个节点要发送数据包到目标节点时，它首先检查自己的路由表，找到一个相邻节点作为下一跳，将数据包发送给该节点。
 
-# 所獲榮譽
+3. 数据包接收和处理：当一个节点接收到数据包时，它**首先检查数据包的目标地址**。如果目标地址是自己，那么该节点就完成了数据包的传递。否则，该节点会检查数据包的源地址，并在路由表中查找下一跳节点。
 
-（截止至 2023 年 8 月）
+4. 数据包转发：节点在确定了下一跳节点后，将数据包复制并发送给除了源节点和下一跳节点之外的所有相邻节点。这样，数据包就会在网络中以广播的方式传播。
 
-- 2020 - 2021，吉林大學三等獎學金
-- 2021 - 2022，吉林大學二等獎學金
-- 2021 - 2022，吉林大學計算機科學與技術學院院優秀學生
-- 2023，[全國大學生物聯網設計競賽](http://iot.sjtu.edu.cn/Default.aspx)，東北賽區一等獎，全國總決賽二等獎
+5. 循环检测：为了防止数据包在网络中无限循环，每个节点都需要维护一个已经接收过的数据包列表。当节点接收到一个数据包时，它会检查列表中是否已经存在相同的数据包。如果是，则丢弃该数据包，以避免循环。
 
-# 個人能力
+6. 目标节点的确认：当数据包到达目标节点时，目标节点可以通过特定的方式向源节点发送确认消息，通知源节点数据包已经成功到达。
 
-- 英語水平良好，四六級均以優秀成績通過，正在備考 TOEFL，能夠流暢地閱讀外文文獻。
-- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等編程語言，有良好的編程能力。
-- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技術，能夠獨立搭建網頁。
-- 有一定的開發經驗，能夠獨立開發 iOS/iPadOS/macOS 和 Android 應用程序。
-- 廣泛接觸軟硬件，基礎較為紮實，熟悉嵌入式開發。
+尽管洪泛路由算法具有简单和容错性的优点，但也存在一些问题。其中一个主要问题是网络中的节点数量增加时，数据包的传递路径变得非常复杂，导致网络拥塞和资源浪费。为了解决这个问题，现实世界中的网络通常采用更复杂的路由算法，如距离矢量路由算法（Distance Vector Routing）和链路状态路由算法（Link State Routing），以提高网络效率和性能。
 
-# 興趣愛好
+# DSR
 
-- 語言學習。空餘時間會學習各種有趣嘅語言，例如 Français，Русский，Español 等語言。
-- 繪畫（約等於~亂畫）。冇系統咁學過相關知識，就係想畫啥畫啥。
-- 閱讀文學。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 同 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 係我最鍾意嘅作家之一，雖然有時候睇唔係幾明，但係更令我癡迷不已。
-- 設計各種有意思嘅嘢，執著于用平凡嘅材料創造出不平凡嘅嘢，用顏色表達情感。
-- 攝影。用相機記錄的每一個值得回憶嘅瞬間。
+DSR（Dynamic Source Routing）路由协议是一种无线自组织网络中的路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。DSR 协议的主要特点是源节点动态地确定数据包的路由路径，而不依赖于中央控制或固定的路由表。
 
-## 個人作品 :)
+1. 节点地址
 
-係幾年前我畫嘅第一幅畫。
+   - 每个节点在网络中都有唯一的地址标识。
 
-![The first man I drew.](him.PNG)
-係我屋企仙人掌開嘅花。
+2. 路由发现
 
-![Cactus flower.](cactus.jpeg)
+   - 源节点在发送数据包之前不知道数据包的完整路由路径。
+   - 当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。
+   - 如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。
+
+3. 路由维护
+
+   - 当其他节点收到路由请求消息时，如果发现自己是目标节点或者拥有目标节点的缓存路由记录，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。
+   - 源节点接收到路由回复消息后，它就可以构建出数据包的完整路由路径，并将数据包发送到下一跳节点。
+   - 中间节点收到数据包后，根据数据包中的路由信息将其转发给下一跳节点，直到数据包到达目标节点。
+
+4. 路由维护和更新
+
+   - 在数据包传递过程中，每个节点都会维护已经接收到的路由路径，以便在需要时进行路由回复。
+   - 如果某个节点发现路由路径发生了变化（如节点移动或网络拓扑改变），它将发送路由错误（Route Error）消息通知网络中的其他节点，以便更新路由表和缓存记录。
+
+5. 优点
+
+   - DSR 协议适用于无线自组织网络，特别是移动自组织网络和无线传感器网络，具有很好的适应性和灵活性。
+   - 由于路由路径是在数据包传递时动态确定的，因此可以避免中心化的路由控制和静态的路由表维护。
+   - DSR 协议支持多路径路由，可以提高网络的容错性和可靠性。
+
+6. 缺点
+
+   - DSR 协议需要较大的路由请求和回复消息开销，特别是在网络规模较大时。
+   - 节点移动频繁或网络拓扑变化剧烈时，路由发现和维护过程可能会引起较高的网络开销和延迟。
+   - DSR 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。
+
+总体而言，DSR 路由协议是一种灵活而适应性强的无线自组织网络路由协议，通过动态地确定数据包的路由路径，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。
+
+# AODV
+
+AODV（Ad hoc On-Demand Distance Vector）路由协议是一种无线自组织网络中的距离向量路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。AODV 协议的设计目标是提供一种有效的路由选择机制，以适应节点的移动性和动态网络拓扑。
+
+1. 节点地址
+
+   - 每个节点在网络中都有唯一的地址标识。
+
+2. 路由发现和维护
+
+   - 源节点在发送数据包之前不知道数据包的完整路由路径。
+   - 当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。
+   - 如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。
+
+3. 路由请求和回复
+
+   - 中间节点收到路由请求消息后，会检查自己的路由表并决定是否能够到达目标节点。
+   - 如果中间节点具有到目标节点的有效路由，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。
+   - 如果中间节点无法到达目标节点，它将转发路由请求消息，以便其他节点能够响应。
+
+4. 路由表维护
+
+   - 每个节点都维护一个路由表，记录了到达其他节点的下一跳节点和跳数等信息。
+   - 当节点接收到路由回复消息后，它将更新自己的路由表，并缓存该路由以备将来使用。
+   - 路由表中的路由项会根据节点的移动性和网络拓扑的变化而进行动态更新。
+
+5. 路由错误处理
+
+   - 当节点发现某个路由不再可用（如节点移动或链路中断），它将发送路由错误（Route Error）消息通知网络中的其他节点。
+   - 收到路由错误消息的节点会更新自己的路由表，删除无效的路由路径。
+
+6. 优点
+
+   - AODV 协议是一种基于需求的路由协议，只在需要时才发起路由请求，减少了网络开销和延迟。
+   - AODV 协议支持适应节点的移动性和动态网络拓扑，能够及时更新路由表并适应变化的网络环境。
+   - AODV 协议具有较好的扩展性，适用于中小规模的无线自组织网络。
+
+7. 缺点
+
+   - AODV 协议在高度移动的网络中可能会产生较高的路由维护开销，尤其是在大规模网络中。
+   - AODV 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。
+
+总体而言，AODV 路由协议是一种有效的无线自组织网络路由协议，通过根据需求发起路由请求并动态维护路由表，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。
+
+# LAR
+
 ]]></content>
-      <categories>
-        <category>-[about]</category>
-      </categories>
+      <tags>
+        <tag>Wireless Network</tag>
+        <tag>ad hoc</tag>
+      </tags>
   </entry>
   <entry>
     <title>无线传输技术</title>
@@ -1943,176 +2095,6 @@ ARQ 的优点是能够在数据传输过程中检测和纠正错误，提高了�
       </tags>
   </entry>
   <entry>
-    <title>WLAN</title>
-    <url>/2023/06/24/wireless-network-wlan/</url>
-    <content><![CDATA[
-# 组成
-
-- 站 Station, STA
-  - 终端用户设备
-  - 无线网络接口
-  - 网络软件
-- 无线介质 Wireless Medium, VM
-- 基站/接入点 Base Station, BS / Access Point, AP
-- 分布式系统 Distribution System, DS
-
-# 拓扑结构
-
-- 分布对等式拓扑
-- 基础结构集中式拓扑
-- ESS 网络拓扑
-- 中继或桥接型网络拓扑
-
-# 服务
-
-- STA 服务 SS
-- 分布式系统服务 DSS
-]]></content>
-      <tags>
-        <tag>Wireless Network</tag>
-        <tag>WLAN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ad hoc 网络路由协议</title>
-    <url>/2023/06/24/ad-hoc-route-protocol/</url>
-    <content><![CDATA[
-# 分类
-
-自组路由协议
-
-- 扁平路由
-  - 先验式（由表驱动），路由与交通模式无关，包括普通的路由和距离向量路由
-    - FSR
-    - FSLS
-    - OLSR
-    - TBRPF
-  - 反应式（按需模式），需要时才保持路由状态
-    - **AODV**
-    - **DSR**
-- 分级路由，在平面网络中引入层次概念
-  - HSR
-  - CGSR
-  - ZRP
-  - LANMAR
-- 地理位置协助路由
-  - GPSR
-  - GeoCast
-  - LAR
-  - DREAM
-
-# Flooding
-
-洪泛路由算法（Flood Routing Algorithm）是一种简单而有效的网络路由算法，它用于在没有中央控制的网络中，将数据包从源节点传递到目标节点。该算法的基本原理是在网络中的每个节点接收到数据包后，将数据包向除了发送节点之外的所有相邻节点进行转发，以便数据包能够通过网络传播，直到到达目标节点。
-
-以下是洪泛路由算法的详细介绍：
-
-1. 初始化：在网络中，每个节点都维护一个路由表，记录了与其相邻的节点信息。开始时，每个节点只知道它直接相连的邻居节点。
-
-2. 发送数据包：当一个节点要发送数据包到目标节点时，它首先检查自己的路由表，找到一个相邻节点作为下一跳，将数据包发送给该节点。
-
-3. 数据包接收和处理：当一个节点接收到数据包时，它**首先检查数据包的目标地址**。如果目标地址是自己，那么该节点就完成了数据包的传递。否则，该节点会检查数据包的源地址，并在路由表中查找下一跳节点。
-
-4. 数据包转发：节点在确定了下一跳节点后，将数据包复制并发送给除了源节点和下一跳节点之外的所有相邻节点。这样，数据包就会在网络中以广播的方式传播。
-
-5. 循环检测：为了防止数据包在网络中无限循环，每个节点都需要维护一个已经接收过的数据包列表。当节点接收到一个数据包时，它会检查列表中是否已经存在相同的数据包。如果是，则丢弃该数据包，以避免循环。
-
-6. 目标节点的确认：当数据包到达目标节点时，目标节点可以通过特定的方式向源节点发送确认消息，通知源节点数据包已经成功到达。
-
-尽管洪泛路由算法具有简单和容错性的优点，但也存在一些问题。其中一个主要问题是网络中的节点数量增加时，数据包的传递路径变得非常复杂，导致网络拥塞和资源浪费。为了解决这个问题，现实世界中的网络通常采用更复杂的路由算法，如距离矢量路由算法（Distance Vector Routing）和链路状态路由算法（Link State Routing），以提高网络效率和性能。
-
-# DSR
-
-DSR（Dynamic Source Routing）路由协议是一种无线自组织网络中的路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。DSR 协议的主要特点是源节点动态地确定数据包的路由路径，而不依赖于中央控制或固定的路由表。
-
-1. 节点地址
-
-   - 每个节点在网络中都有唯一的地址标识。
-
-2. 路由发现
-
-   - 源节点在发送数据包之前不知道数据包的完整路由路径。
-   - 当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。
-   - 如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。
-
-3. 路由维护
-
-   - 当其他节点收到路由请求消息时，如果发现自己是目标节点或者拥有目标节点的缓存路由记录，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。
-   - 源节点接收到路由回复消息后，它就可以构建出数据包的完整路由路径，并将数据包发送到下一跳节点。
-   - 中间节点收到数据包后，根据数据包中的路由信息将其转发给下一跳节点，直到数据包到达目标节点。
-
-4. 路由维护和更新
-
-   - 在数据包传递过程中，每个节点都会维护已经接收到的路由路径，以便在需要时进行路由回复。
-   - 如果某个节点发现路由路径发生了变化（如节点移动或网络拓扑改变），它将发送路由错误（Route Error）消息通知网络中的其他节点，以便更新路由表和缓存记录。
-
-5. 优点
-
-   - DSR 协议适用于无线自组织网络，特别是移动自组织网络和无线传感器网络，具有很好的适应性和灵活性。
-   - 由于路由路径是在数据包传递时动态确定的，因此可以避免中心化的路由控制和静态的路由表维护。
-   - DSR 协议支持多路径路由，可以提高网络的容错性和可靠性。
-
-6. 缺点
-
-   - DSR 协议需要较大的路由请求和回复消息开销，特别是在网络规模较大时。
-   - 节点移动频繁或网络拓扑变化剧烈时，路由发现和维护过程可能会引起较高的网络开销和延迟。
-   - DSR 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。
-
-总体而言，DSR 路由协议是一种灵活而适应性强的无线自组织网络路由协议，通过动态地确定数据包的路由路径，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。
-
-# AODV
-
-AODV（Ad hoc On-Demand Distance Vector）路由协议是一种无线自组织网络中的距离向量路由协议，适用于移动自组织网络（MANETs）和无线传感器网络（WSNs）。AODV 协议的设计目标是提供一种有效的路由选择机制，以适应节点的移动性和动态网络拓扑。
-
-1. 节点地址
-
-   - 每个节点在网络中都有唯一的地址标识。
-
-2. 路由发现和维护
-
-   - 源节点在发送数据包之前不知道数据包的完整路由路径。
-   - 当源节点要发送数据包时，它首先检查自己的路由缓存。如果有目标地址的缓存记录，它可以直接使用该路由。
-   - 如果没有缓存记录，源节点将发送一条路由请求（Route Request）消息广播到整个网络中。
-
-3. 路由请求和回复
-
-   - 中间节点收到路由请求消息后，会检查自己的路由表并决定是否能够到达目标节点。
-   - 如果中间节点具有到目标节点的有效路由，它将向源节点发送路由回复（Route Reply）消息，其中包含完整的路由路径信息。
-   - 如果中间节点无法到达目标节点，它将转发路由请求消息，以便其他节点能够响应。
-
-4. 路由表维护
-
-   - 每个节点都维护一个路由表，记录了到达其他节点的下一跳节点和跳数等信息。
-   - 当节点接收到路由回复消息后，它将更新自己的路由表，并缓存该路由以备将来使用。
-   - 路由表中的路由项会根据节点的移动性和网络拓扑的变化而进行动态更新。
-
-5. 路由错误处理
-
-   - 当节点发现某个路由不再可用（如节点移动或链路中断），它将发送路由错误（Route Error）消息通知网络中的其他节点。
-   - 收到路由错误消息的节点会更新自己的路由表，删除无效的路由路径。
-
-6. 优点
-
-   - AODV 协议是一种基于需求的路由协议，只在需要时才发起路由请求，减少了网络开销和延迟。
-   - AODV 协议支持适应节点的移动性和动态网络拓扑，能够及时更新路由表并适应变化的网络环境。
-   - AODV 协议具有较好的扩展性，适用于中小规模的无线自组织网络。
-
-7. 缺点
-
-   - AODV 协议在高度移动的网络中可能会产生较高的路由维护开销，尤其是在大规模网络中。
-   - AODV 协议没有考虑到网络的负载情况和流量控制，可能导致网络拥塞和资源浪费。
-
-总体而言，AODV 路由协议是一种有效的无线自组织网络路由协议，通过根据需求发起路由请求并动态维护路由表，实现了移动自组织网络中的数据传输和路由发现。然而，在实际应用中，需要综合考虑网络规模、节点移动性、开销和延迟等因素，选择合适的路由协议以满足具体的需求。
-
-# LAR
-
-]]></content>
-      <tags>
-        <tag>Wireless Network</tag>
-        <tag>ad hoc</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wireless-network-conclusion</title>
     <url>/2023/06/25/wireless-network-conclusion/</url>
     <content><![CDATA[
@@ -2282,16 +2264,34 @@ $$C=2W\log_2L$$
       </tags>
   </entry>
   <entry>
-    <title>震惊！玛雅神庙又有新发现。</title>
-    <url>/2024/03/22/For-Lark/</url>
+    <title>WLAN</title>
+    <url>/2023/06/24/wireless-network-wlan/</url>
     <content><![CDATA[
-> 不久前，考古学家在南美玛雅神庙中发现了一张刻在石墙上的肖像，该肖像刻画的是一个俊美的男性，下面有一段文字还没有被完全破译。考古学家猜测，这段文字可能是对于该男子的描述。令人惊奇的一点是，肖像中的男子衣着非常现代，考古学家们一致认为，该男子可能是玛雅大祭司预言出的一位具有神秘力量的主宰者或者是一位先知，从未来穿越而来，给他们带来美好的未来。
+# 组成
 
-几个月后，考古学家向媒体公布了该肖像画的进一步研究成果，他们一致认为，该名男子是来自公元2000多年后的贵州安顺地区的一名大学生，其名为Lark，在重庆读书，大学毕业后，一天晚上睡梦中穿越到了玛雅人的时代，给他们带来了先进的科技（小米手机等高科技设备），又教会了他们使用电力等未来技术，他们为他修建神庙，把他奉为先知。先知英俊潇洒，让无数男性和女性都心生爱慕，于是又被奉为俊美之神。
+- 站 Station, STA
+  - 终端用户设备
+  - 无线网络接口
+  - 网络软件
+- 无线介质 Wireless Medium, VM
+- 基站/接入点 Base Station, BS / Access Point, AP
+- 分布式系统 Distribution System, DS
 
-多年后，玛雅人的科技得以飞速发展，甚至可以长生不老和星际穿越，Lark深知地球在很多年后将会变得破旧不堪，难以让人类继续生存，于是率领玛雅人移民到了新的星球，并取名为Lark。]]></content>
+# 拓扑结构
+
+- 分布对等式拓扑
+- 基础结构集中式拓扑
+- ESS 网络拓扑
+- 中继或桥接型网络拓扑
+
+# 服务
+
+- STA 服务 SS
+- 分布式系统服务 DSS
+]]></content>
       <tags>
-        <tag>Lark</tag>
+        <tag>Wireless Network</tag>
+        <tag>WLAN</tag>
       </tags>
   </entry>
   <entry>
