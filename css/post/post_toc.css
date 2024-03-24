@@ -1,0 +1,40 @@
+.right_side_content {
+  position: -webkit-sticky;
+  position: sticky;
+  top: $margin-primary;
+}
+.post_toc {
+  margin-top: $margin-primary;
+  font-size: $font-size-footer;
+  line-height: $line-height-footer;
+}
+.post_toc a {
+  padding-bottom: $line-third;
+  background-image: linear-gradient($color-background, $color-background);
+  background-size: 100% $line-third;
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s linear;
+}
+.post_toc a:hover {
+  background-image: linear-gradient($color-text-secondary, $color-text-secondary);
+  background-size: 100% $line-secondary;
+}
+.back_to_top {
+  padding-top: 100%;
+}
+.back_text {
+  float: right;
+  align-content: left;
+  border: $line-third solid $color-text-secondary;
+  margin-right: $margin-s-2;
+  margin-bottom: $margin-s-2;
+  padding: $margin-s-2 $margin-m-0 $margin-s-2 $margin-m-0;
+  border-radius: $margin-m-2;
+  background: $color-background;
+  font-size: $font-size-footer;
+}
+.back_text:hover {
+  background-color: $color-text-secondary;
+  color: $color-background;
+}

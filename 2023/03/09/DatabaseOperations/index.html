@@ -178,7 +178,7 @@ mjx-container[display="true"] + br {
     <div class="wrapper">
 
       <div class="header">
-  <div class="flex-container">
+  <div class="header-container">
     <div class="header-inner">
       <div class="site-brand-container">
         <a href="/">
@@ -258,7 +258,9 @@ mjx-container[display="true"] + br {
               
     </div>
 </div>
-    <div class="post-content">
+    <div class="content_toc">
+      <div class="central_area">
+        <div class="post-content">
     <h1 id="SQL-Basic"><a href="#SQL-Basic" class="headerlink" title="SQL Basic"></a>SQL Basic</h1><p>此教程结合 <a target="_blank" rel="noopener" href="https://www.runoob.com/sql/sql-tutorial.html">菜鸟教程</a> 以及 Database System Concepts(7th Edition) 数据库系统概念附带的 <a target="_blank" rel="noopener" href="https://www.db-book.com/university-lab-dir/sqljs.html">Online SQL Interpreter</a>，在网站上自己实践效果更好。</p>
 <blockquote>
 <ol>
@@ -306,7 +308,40 @@ mjx-container[display="true"] + br {
 <script>
     window.onload = detectors();
 </script>
-    <div class="post-footer">
+      </div>
+      <div class="right_area">
+        <script>
+// 当网页向下滑动 20px 出现"返回顶部" 按钮
+window.onscroll = function() {scrollFunction()};
+ 
+function scrollFunction() {console.log(121);
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("back_to_top_text").style.display = "block";
+    } else {
+        document.getElementById("back_to_top_text").style.display = "none";
+    }
+}
+ 
+// 点击按钮，返回顶部
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+<div class="right_side_content">
+  <div class="post_toc">
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-Basic"><span class="toc-text">SQL Basic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#select"><span class="toc-text">select</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#format"><span class="toc-text">format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-g"><span class="toc-text">e.g.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select-distinct"><span class="toc-text">select distinct</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#format-1"><span class="toc-text">format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-g-1"><span class="toc-text">e.g.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#where"><span class="toc-text">where</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#format-2"><span class="toc-text">format</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#operator"><span class="toc-text">operator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#e-g-2"><span class="toc-text">e.g.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#and-or"><span class="toc-text">and&#x2F;or</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#format-3"><span class="toc-text">format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-g-3"><span class="toc-text">e.g.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#order-by"><span class="toc-text">order by</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#format-4"><span class="toc-text">format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-g-4"><span class="toc-text">e.g.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#insert-into"><span class="toc-text">insert into</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#format-5"><span class="toc-text">format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-g-5"><span class="toc-text">e.g.</span></a></li></ol></li></ol></li></ol>
+  </div>
+  <div class="back_to_top">
+    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+      返回顶部
+    </button>
+  </div>
+</div>
+      </div>
+    </div>
+      <div class="post-footer">
     <div class="h-line-primary"></div>
     <nav class="post-nav">
         <div class="prev-item">
@@ -348,8 +383,11 @@ mjx-container[display="true"] + br {
     <div class="flex-container">
         <div class="footer-text">
             
+                About 99% of the time, the right time is right now.
+                <br>
             
-                © Zile Song | 
+            
+                © Theo Song | 
             
             
                 Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
@@ -368,7 +406,7 @@ mjx-container[display="true"] + br {
         <div class="search-header">
             <div class="search-input-container">
               <input autocomplete="off" autocapitalize="off" maxlength="80"
-                     placeholder="Search Anything" spellcheck="false"
+                     placeholder="Search Anything..." spellcheck="false"
                      type="search" class="search-input">
             </div>
             <div class="search-close-btn">
@@ -386,7 +424,7 @@ mjx-container[display="true"] + br {
         top_n_per_article: "1",
         unescape         : "false",
         trigger: "auto",
-        preload: "flase"
+        preload: "true"
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>

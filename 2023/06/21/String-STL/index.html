@@ -178,7 +178,7 @@ mjx-container[display="true"] + br {
     <div class="wrapper">
 
       <div class="header">
-  <div class="flex-container">
+  <div class="header-container">
     <div class="header-inner">
       <div class="site-brand-container">
         <a href="/">
@@ -258,7 +258,9 @@ mjx-container[display="true"] + br {
               
     </div>
 </div>
-    <div class="post-content">
+    <div class="content_toc">
+      <div class="central_area">
+        <div class="post-content">
     <h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="function">string <span class="title">s1</span><span class="params">(<span class="string">"Milo_Song_2120"</span>)</span></span>;</span><br><span class="line">    <span class="type">char</span> ch[] = <span class="string">"Hello_Cpp"</span>;</span><br><span class="line">    <span class="function">string <span class="title">s2</span><span class="params">(s1)</span></span>;                       <span class="comment">// 复制字符串</span></span><br><span class="line">    <span class="function">string <span class="title">s3</span><span class="params">(s1, <span class="number">2</span>, <span class="number">5</span>)</span></span>;                 <span class="comment">// 从 s1[2] 开始，复制 5 个字符</span></span><br><span class="line">    <span class="function">string <span class="title">s4</span><span class="params">(ch, <span class="number">4</span>)</span></span>;                    <span class="comment">// 复制 ch 的前 4 个字符</span></span><br><span class="line">    <span class="function">string <span class="title">s5</span><span class="params">(<span class="number">9</span>, <span class="string">'6'</span>)</span></span>;                   <span class="comment">// 9 个字符 '6'</span></span><br><span class="line">    <span class="function">string <span class="title">s6</span><span class="params">(s1.begin(), s1.end())</span></span>;     <span class="comment">// 复制整个字符串</span></span><br><span class="line">    <span class="function">string <span class="title">s7</span><span class="params">(s1.begin(), s1.end() - <span class="number">1</span>)</span></span>; <span class="comment">// 复制除最后一个字符以外的所有字符</span></span><br><span class="line">    cout &lt;&lt; <span class="string">"s1 = "</span> &lt;&lt; s1 &lt;&lt; <span class="string">";"</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">"s2 = "</span> &lt;&lt; s2 &lt;&lt; <span class="string">";"</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">"s3 = "</span> &lt;&lt; s3 &lt;&lt; <span class="string">";"</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">"s4 = "</span> &lt;&lt; s4 &lt;&lt; <span class="string">";"</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">"s5 = "</span> &lt;&lt; s5 &lt;&lt; <span class="string">";"</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">"s6 = "</span> &lt;&lt; s6 &lt;&lt; <span class="string">";"</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">"s7 = "</span> &lt;&lt; s7 &lt;&lt; <span class="string">";"</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
 <p>输出结果为</p>
@@ -313,7 +315,40 @@ mjx-container[display="true"] + br {
 <script>
     window.onload = detectors();
 </script>
-    <div class="post-footer">
+      </div>
+      <div class="right_area">
+        <script>
+// 当网页向下滑动 20px 出现"返回顶部" 按钮
+window.onscroll = function() {scrollFunction()};
+ 
+function scrollFunction() {console.log(121);
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("back_to_top_text").style.display = "block";
+    } else {
+        document.getElementById("back_to_top_text").style.display = "none";
+    }
+}
+ 
+// 点击按钮，返回顶部
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+<div class="right_side_content">
+  <div class="post_toc">
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#string"><span class="toc-text">string</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-text">常用操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%92%8C%E5%AE%B9%E9%87%8F"><span class="toc-text">string 的大小和容量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-%E8%AF%BB%E5%8F%96"><span class="toc-text">string 读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-%E6%AF%94%E8%BE%83"><span class="toc-text">string 比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-%E4%BF%AE%E6%94%B9%E5%92%8C%E6%9B%BF%E6%8D%A2"><span class="toc-text">string 修改和替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-%E8%BE%93%E5%85%A5"><span class="toc-text">string 输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-%E6%9F%A5%E6%89%BE"><span class="toc-text">string 查找</span></a></li></ol></li></ol>
+  </div>
+  <div class="back_to_top">
+    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+      返回顶部
+    </button>
+  </div>
+</div>
+      </div>
+    </div>
+      <div class="post-footer">
     <div class="h-line-primary"></div>
     <nav class="post-nav">
         <div class="prev-item">
@@ -355,8 +390,11 @@ mjx-container[display="true"] + br {
     <div class="flex-container">
         <div class="footer-text">
             
+                About 99% of the time, the right time is right now.
+                <br>
             
-                © Zile Song | 
+            
+                © Theo Song | 
             
             
                 Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
@@ -375,7 +413,7 @@ mjx-container[display="true"] + br {
         <div class="search-header">
             <div class="search-input-container">
               <input autocomplete="off" autocapitalize="off" maxlength="80"
-                     placeholder="Search Anything" spellcheck="false"
+                     placeholder="Search Anything..." spellcheck="false"
                      type="search" class="search-input">
             </div>
             <div class="search-close-btn">
@@ -393,7 +431,7 @@ mjx-container[display="true"] + br {
         top_n_per_article: "1",
         unescape         : "false",
         trigger: "auto",
-        preload: "flase"
+        preload: "true"
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>

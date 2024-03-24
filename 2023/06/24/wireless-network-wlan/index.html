@@ -178,7 +178,7 @@ mjx-container[display="true"] + br {
     <div class="wrapper">
 
       <div class="header">
-  <div class="flex-container">
+  <div class="header-container">
     <div class="header-inner">
       <div class="site-brand-container">
         <a href="/">
@@ -264,7 +264,9 @@ mjx-container[display="true"] + br {
               
     </div>
 </div>
-    <div class="post-content">
+    <div class="content_toc">
+      <div class="central_area">
+        <div class="post-content">
     <h1 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h1><ul>
 <li>站 Station, STA<ul>
 <li>终端用户设备</li>
@@ -292,7 +294,40 @@ mjx-container[display="true"] + br {
 <script>
     window.onload = detectors();
 </script>
-    <div class="post-footer">
+      </div>
+      <div class="right_area">
+        <script>
+// 当网页向下滑动 20px 出现"返回顶部" 按钮
+window.onscroll = function() {scrollFunction()};
+ 
+function scrollFunction() {console.log(121);
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("back_to_top_text").style.display = "block";
+    } else {
+        document.getElementById("back_to_top_text").style.display = "none";
+    }
+}
+ 
+// 点击按钮，返回顶部
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+<div class="right_side_content">
+  <div class="post_toc">
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E6%88%90"><span class="toc-text">组成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="toc-text">拓扑结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1"><span class="toc-text">服务</span></a></li></ol>
+  </div>
+  <div class="back_to_top">
+    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+      返回顶部
+    </button>
+  </div>
+</div>
+      </div>
+    </div>
+      <div class="post-footer">
     <div class="h-line-primary"></div>
     <nav class="post-nav">
         <div class="prev-item">
@@ -334,8 +369,11 @@ mjx-container[display="true"] + br {
     <div class="flex-container">
         <div class="footer-text">
             
+                About 99% of the time, the right time is right now.
+                <br>
             
-                © Zile Song | 
+            
+                © Theo Song | 
             
             
                 Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
@@ -354,7 +392,7 @@ mjx-container[display="true"] + br {
         <div class="search-header">
             <div class="search-input-container">
               <input autocomplete="off" autocapitalize="off" maxlength="80"
-                     placeholder="Search Anything" spellcheck="false"
+                     placeholder="Search Anything..." spellcheck="false"
                      type="search" class="search-input">
             </div>
             <div class="search-close-btn">
@@ -372,7 +410,7 @@ mjx-container[display="true"] + br {
         top_n_per_article: "1",
         unescape         : "false",
         trigger: "auto",
-        preload: "flase"
+        preload: "true"
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>

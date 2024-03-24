@@ -1,6 +1,7 @@
 .flex-container {
-  width: 720px;
-  margin: 0 auto;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 html {
   font-size: 18px;
@@ -10,7 +11,7 @@ html {
     font-size: 18px;
   }
   .flex-container {
-    width: 720px;
+    width: 80%;
   }
 }
 @media (max-width: 1200px) {
@@ -18,7 +19,7 @@ html {
     font-size: 18px;
   }
   .flex-container {
-    width: 640px;
+    width: 80%;
   }
 }
 @media (max-width: 688px) {
@@ -1136,6 +1137,61 @@ ul li.task-list-item>input[type=checkbox]:before {
   background-position-x: 0;
   background-position-y: center;
   --webkit-touch-callout: none;
+}
+.right_side_content {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 3.5rem;
+}
+.post_toc {
+  margin-top: 3.5rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+.post_toc a {
+  padding-bottom: 2px;
+  background-image: linear-gradient(#fbf2e3, #fbf2e3);
+  background-size: 100% 2px;
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s linear;
+}
+.post_toc a:hover {
+  background-image: linear-gradient(#be3d5b, #be3d5b);
+  background-size: 100% 3px;
+}
+.back_to_top {
+  padding-top: 100%;
+}
+.back_text {
+  float: right;
+  align-content: left;
+  border: 2px solid #be3d5b;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 1rem;
+  background: #fbf2e3;
+  font-size: 0.75rem;
+}
+.back_text:hover {
+  background-color: #be3d5b;
+  color: #fbf2e3;
+}
+.content_toc {
+  display: flex;
+}
+.header-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.central_area {
+  width: 70%;
+}
+.right_area {
+  width: 30%;
+  margin-left: 2%;
 }
 .icon {
   display: block;

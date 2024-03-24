@@ -178,7 +178,7 @@ mjx-container[display="true"] + br {
     <div class="wrapper">
 
       <div class="header">
-  <div class="flex-container">
+  <div class="header-container">
     <div class="header-inner">
       <div class="site-brand-container">
         <a href="/">
@@ -258,7 +258,9 @@ mjx-container[display="true"] + br {
               
     </div>
 </div>
-    <div class="post-content">
+    <div class="content_toc">
+      <div class="central_area">
+        <div class="post-content">
     <p><strong>Authors</strong></p>
 <p>Miquel Ferriol-Galmés, Jordi Paillisse, José Suárez-Varela, Krzysztof Rusek, Shihan Xiao, Xiang Shi, Xiangle Cheng, Pere Barlet-Ros, Albert Cabellos-Aparicio</p>
 <hr>
@@ -340,7 +342,40 @@ mjx-container[display="true"] + br {
 <script>
     window.onload = detectors();
 </script>
-    <div class="post-footer">
+      </div>
+      <div class="right_area">
+        <script>
+// 当网页向下滑动 20px 出现"返回顶部" 按钮
+window.onscroll = function() {scrollFunction()};
+ 
+function scrollFunction() {console.log(121);
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("back_to_top_text").style.display = "block";
+    } else {
+        document.getElementById("back_to_top_text").style.display = "none";
+    }
+}
+ 
+// 点击按钮，返回顶部
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+<div class="right_side_content">
+  <div class="post_toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenges-of-Data-Driven-Network-Modeling"><span class="toc-text">Challenges of Data-Driven Network Modeling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitations-of-Current-Network-Modeling-Techniques"><span class="toc-text">Limitations of Current Network Modeling Techniques</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Simulations-as-Network-Modeling-Technique"><span class="toc-text">A. Simulations as Network Modeling Technique</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-Neural-Networks-as-Network-Modeling-Techniques"><span class="toc-text">B. Neural Networks as Network Modeling Techniques</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-Multilayer-Perceptron"><span class="toc-text">C. Multilayer Perceptron</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D-Recurrent-Neural-Networks"><span class="toc-text">D. Recurrent Neural Networks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Graph-Neural-Networks"><span class="toc-text">Graph Neural Networks</span></a></li></ol></li></ol>
+  </div>
+  <div class="back_to_top">
+    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+      返回顶部
+    </button>
+  </div>
+</div>
+      </div>
+    </div>
+      <div class="post-footer">
     <div class="h-line-primary"></div>
     <nav class="post-nav">
         <div class="prev-item">
@@ -382,8 +417,11 @@ mjx-container[display="true"] + br {
     <div class="flex-container">
         <div class="footer-text">
             
+                About 99% of the time, the right time is right now.
+                <br>
             
-                © Zile Song | 
+            
+                © Theo Song | 
             
             
                 Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
@@ -402,7 +440,7 @@ mjx-container[display="true"] + br {
         <div class="search-header">
             <div class="search-input-container">
               <input autocomplete="off" autocapitalize="off" maxlength="80"
-                     placeholder="Search Anything" spellcheck="false"
+                     placeholder="Search Anything..." spellcheck="false"
                      type="search" class="search-input">
             </div>
             <div class="search-close-btn">
@@ -420,7 +458,7 @@ mjx-container[display="true"] + br {
         top_n_per_article: "1",
         unescape         : "false",
         trigger: "auto",
-        preload: "flase"
+        preload: "true"
     }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js"></script>

@@ -1,0 +1,15 @@
+.content_toc {
+  display: flex;
+}
+.header-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.central_area {
+  width: 70%;
+}
+.right_area {
+  width: 30%;
+  margin-left: 2%;
+}
