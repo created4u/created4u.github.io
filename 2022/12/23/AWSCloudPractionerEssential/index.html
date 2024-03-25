@@ -364,6 +364,23 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function scrollToTop() {
+  var topHeight =
+    document.documentElement.scrollTop ||
+    window.pageYOffset ||
+    document.body.scrollTop;
+  var speed = topHeight / 10 > 100 ? topHeight / 10 : 100;
+  scrollBy(0, -speed);
+  // 模拟鼠标向上滚动事件
+  scrolldelay = setTimeout('scrollToTop()', 50);
+  // 清除滚动事件，避免无法向下移动
+  if (topHeight === 0) {
+    clearTimeout(scrolldelay);
+    scrolldelay = null;
+  }
+}
+
 </script>
 
 <div class="right_side_content">
@@ -371,7 +388,7 @@ function topFunction() {
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%91%E8%AE%A1%E7%AE%97"><span class="toc-text">云计算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F"><span class="toc-text">部署模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-text">优势</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EC2"><span class="toc-text">EC2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E7%B1%BB%E5%9E%8B"><span class="toc-text">实例类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">可扩展性</span></a></li></ol></li></ol>
   </div>
   <div class="back_to_top">
-    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+    <button id="back_to_top_text" class="back_text" onclick="scrollToTop()">
       返回顶部
     </button>
   </div>

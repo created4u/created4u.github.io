@@ -433,6 +433,23 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function scrollToTop() {
+  var topHeight =
+    document.documentElement.scrollTop ||
+    window.pageYOffset ||
+    document.body.scrollTop;
+  var speed = topHeight / 10 > 100 ? topHeight / 10 : 100;
+  scrollBy(0, -speed);
+  // 模拟鼠标向上滚动事件
+  scrolldelay = setTimeout('scrollToTop()', 50);
+  // 清除滚动事件，避免无法向下移动
+  if (topHeight === 0) {
+    clearTimeout(scrolldelay);
+    scrolldelay = null;
+  }
+}
+
 </script>
 
 <div class="right_side_content">
@@ -440,7 +457,7 @@ function topFunction() {
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-text">分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Flooding"><span class="toc-text">Flooding</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DSR"><span class="toc-text">DSR</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AODV"><span class="toc-text">AODV</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LAR"><span class="toc-text">LAR</span></a></li></ol>
   </div>
   <div class="back_to_top">
-    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+    <button id="back_to_top_text" class="back_text" onclick="scrollToTop()">
       返回顶部
     </button>
   </div>

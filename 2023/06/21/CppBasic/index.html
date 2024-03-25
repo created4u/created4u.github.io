@@ -294,6 +294,23 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function scrollToTop() {
+  var topHeight =
+    document.documentElement.scrollTop ||
+    window.pageYOffset ||
+    document.body.scrollTop;
+  var speed = topHeight / 10 > 100 ? topHeight / 10 : 100;
+  scrollBy(0, -speed);
+  // 模拟鼠标向上滚动事件
+  scrolldelay = setTimeout('scrollToTop()', 50);
+  // 清除滚动事件，避免无法向下移动
+  if (topHeight === 0) {
+    clearTimeout(scrolldelay);
+    scrolldelay = null;
+  }
+}
+
 </script>
 
 <div class="right_side_content">
@@ -301,7 +318,7 @@ function topFunction() {
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%92%8C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">类和面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-text">静态成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8B%E5%85%83"><span class="toc-text">友元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B4%BE%E7%94%9F"><span class="toc-text">派生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E4%B8%8E%E6%9E%90%E6%9E%84"><span class="toc-text">构造与析构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text">多态</span></a></li></ol></li></ol>
   </div>
   <div class="back_to_top">
-    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+    <button id="back_to_top_text" class="back_text" onclick="scrollToTop()">
       返回顶部
     </button>
   </div>

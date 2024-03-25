@@ -420,6 +420,23 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function scrollToTop() {
+  var topHeight =
+    document.documentElement.scrollTop ||
+    window.pageYOffset ||
+    document.body.scrollTop;
+  var speed = topHeight / 10 > 100 ? topHeight / 10 : 100;
+  scrollBy(0, -speed);
+  // 模拟鼠标向上滚动事件
+  scrolldelay = setTimeout('scrollToTop()', 50);
+  // 清除滚动事件，避免无法向下移动
+  if (topHeight === 0) {
+    clearTimeout(scrolldelay);
+    scrolldelay = null;
+  }
+}
+
 </script>
 
 <div class="right_side_content">
@@ -427,7 +444,7 @@ function topFunction() {
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="toc-text">无线传输媒体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%A2%91%E6%AE%B5"><span class="toc-text">常用频段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%B0%E5%87%8F"><span class="toc-text">衰减</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF"><span class="toc-text">天线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A9%E7%BA%BF%E5%A2%9E%E7%9B%8A"><span class="toc-text">天线增益</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E6%92%AD%E6%96%B9%E5%BC%8F"><span class="toc-text">传播方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E6%8D%9F%E8%80%97"><span class="toc-text">传输损耗</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E8%A1%B0%E9%80%80"><span class="toc-text">移动环境中的衰退</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E6%99%AE%E5%8B%92%E6%95%88%E5%BA%94"><span class="toc-text">多普勒效应</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%A9%E9%A2%91"><span class="toc-text">扩频</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E9%A2%91%E5%BA%8F%E5%88%97"><span class="toc-text">扩频序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E9%A2%91%E6%96%B9%E5%BC%8F"><span class="toc-text">扩频方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6"><span class="toc-text">差错控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%AE%E9%94%99%E6%A3%80%E6%B5%8B%E7%A0%81"><span class="toc-text">差错检测码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%AE%E9%94%99%E7%BA%A0%E9%94%99%E7%A0%81"><span class="toc-text">差错纠错码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARQ"><span class="toc-text">ARQ</span></a></li></ol></li></ol>
   </div>
   <div class="back_to_top">
-    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+    <button id="back_to_top_text" class="back_text" onclick="scrollToTop()">
       返回顶部
     </button>
   </div>

@@ -1123,201 +1123,6 @@ Hence, we conclude that feeding the MPNN directly with the network topology grap
       </tags>
   </entry>
   <entry>
-    <title>无线网络技术</title>
-    <url>/2023/06/22/Wireless-Network-Review/</url>
-    <content><![CDATA[
-# 英文缩写
-
-- ITU, International Telecommunication Union
-- ISO, International Standards Organization
-- IEEE, Institute of Electrical and Electronics Engineers
-- IAB, Internet Architecture Board
-- IETF, Internet Engineering Task Force
-- IRTF, Internet Research Task Force
-- FHSS, Frequency Hopping Spread Spectrum
-- THSS, Time Hopping Spread Spectrum
-- DSSS, Direct Sequence Spread Spectrum
-- ARQ, Automatic Repeat Request
-
-# 无线传输技术
-
-## 传输媒体
-
-数据传输系统中发送器和接收器之间的物理路径。可以分为导向的（如双绞线，同轴电缆，光纤）和非导向的（例如大气）。
-
-### 3 个重要的电磁波频段
-
-- 1GHz - 100GHz，微波，可用于点对点传输以及卫星通信
-- 30MHz - 1GHz，无线电广播
-- $3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用
-
-
-# 无线局域网
-]]></content>
-      <tags>
-        <tag>Wireless Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无线网络课程复习</title>
-    <url>/2023/06/21/WirelessNetwork/</url>
-    <content><![CDATA[
-# DV 和 DSDV
-
-## DV
-
-## DSDV
-
-Ref. https://blog.csdn.net/qq_21324665/article/details/79159080
-
-## 按需路由协议
-
-> 为什么没有开销？
-> Route discovery
->
-
-### DSR
-
-8 分左右。
-
-Ref. https://blog.csdn.net/weixin_42982240/article/details/125033059
-
-### AODV
-
-Wi-Fi，无线网状网，zi]]></content>
-      <tags>
-        <tag>无线网络技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于我自己</title>
-    <url>/2023/06/06/about-CN/</url>
-    <content><![CDATA[
-简体中文 | [繁體中文](../about-TCN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
-
-![Programming is art.](code.png)
-
-# 你好！
-
-欢迎访问我的个人主页，我也非常荣幸能够同你这样有趣的灵魂在此相遇。
-
-# 学习经历
-
-- 2017 - 2020，高中，安徽省亳州市第一中学
-- 2020 - 至今，本科，吉林大学计算机科学与技术学院
-
-# 参与项目
-
-- RISC-V 指令集软件仿真
-- 基于 YOLOv5 的智能捡拾机器人
-- 我自己的 Repositories
-  - [Heartbeat](https://github.com/created4u/heartbeat.git)
-  - [Coursea](https://github.com/created4u/Coursea.git)
-
-# 所获荣誉
-
-（截止至 2023 年 8 月）
-
-- 2020 - 2021，吉林大学三等奖学金
-- 2021 - 2022，吉林大学二等奖学金
-- 2021 - 2022，吉林大学计算机科学与技术学院院优秀学生
-- 2023，[全国大学生物联网设计竞赛](http://iot.sjtu.edu.cn/Default.aspx)，东北赛区一等奖，全国总决赛二等奖
-
-# 个人能力
-
-- 英语水平良好，四六级均以优秀成绩通过，正在备考 TOEFL，能够流畅地阅读外文文献。
-- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等编程语言，有良好的编程能力。
-- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技术，能够独立搭建网页。
-- 有一定的开发经验，能够独立开发 iOS/iPadOS/macOS 和 Android 应用程序。
-- 广泛接触软硬件，基础较为扎实，熟悉嵌入式开发。
-
-# 兴趣爱好
-
-- 语言学习。空余时间会学习各种有趣的语言，例如 Français，Русский，Español 等语言。
-- 绘画（约等于～乱画）。没有系统地学过相关知识，就是想画啥画啥。
-- 阅读文学。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 和 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 是我最喜欢的作家之一，虽然有时候看不太懂，但是更让我痴迷不已。
-- 设计各种有意思的东西，执着于用平凡的材料创造出不平凡的事物，用颜色表达情感。
-- 摄影。用相机记录下每一个值得回忆的瞬间。
-
-## 我的小作品 :)
-
-这是几年前我画的第一幅画。
-
-![The first man I drew.](him.PNG)
-
-这是我家仙人掌开的花。
-
-![Cactus flower.](cactus.jpeg)
-]]></content>
-      <categories>
-        <category>-[about]</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Présentation de soi.</title>
-    <url>/2023/06/06/about-FR/</url>
-    <content><![CDATA[
-Français | [English](../about/index.html) | [繁體中文](../about-TCN/index.html) | [简体中文](../about-CN/index.html)
-
-![Programming is art.](code.png)
-
-# Bonjour!
-
-Bienvenue sur ma page d'accueil personnelle, et je suis heureux de rencontrer une âme aussi intéressante que vous.
-
-# Expérience
-
-- 2017 - 2020, Premier Lycée de Bozhou, Province d'Anhui
-- 2020 - 2024, Collège d'informatique et de technologie, Université de Jilin
-
-# Projets
-
-- Émulateur basé sur RISC-V
-- Robot de prélèvement intelligent utilisant YOLOv5
-- Certains Github Repositories
-  - [Heartbeat](https://github.com/created4u/heartbeat.git)
-  - [Coursea](https://github.com/created4u/Coursea.git)
-
-# Récompenses et Honneurs
-
-(Mise à jour le 29, Août, 2023)
-
-- 2020 - 2021, Bourse de deuxième classe, Université de Jilin
-- 2021 - 2022, Bourse de troisième classe, Université de Jilin
-- 2021 - 2022, Excellent étudiant universitaire, Université de Jilin
-- 2023, [Concours national de conception IoT](http://iot.sjtu.edu.cn/Default.aspx), Premier Prix de la Région Nord-Est, Deuxième Prix de la Finale Nationale
-
-# Compétence
-
-- Bon niveau d'anglais, avoir réussi les CET-4 et CET-6 avec d'excellentes notes et savoir lire couramment la littérature étrangère.
-- Familier avec C, C++, Java, Python, Kotlin, Swift, Go et d'autres langages de programmation, avec une bonne capacité de programmation.
-- Familier avec HTML, CSS, JavaScript, Node.js, Vue, Bootstrap et d'autres technologies, capable de créer de manière indépendante des pages Web.
-- Capable de développer de manière indépendante des applications iOS/iPadOS/macOS et Android.
-- Etude approfondie des logiciels et du matériel, familiarisé avec le développement embarqué.
-
-# Loisirs
-
-- Apprendre des langues. Quand je suis libre, apprendre différentes langues est une merveilleuse façon de gagner du temps, Français, Русский, Español... ce sont mes préférées.
-- Peinture. Juste pour le fun :P.
-- En lisant. [Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) et [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) sont parmi mes auteurs préférés. Bien que parfois je ne comprenne pas entièrement leur travail brillant, cela me rend encore plus captivé.
-- Concevez toutes sortes de choses intéressantes, insistez pour créer des choses extraordinaires avec des matériaux ordinaires et exprimez des émotions avec des couleurs.
-- La photographie. Enregistrement de chaque instant de la vie normale avec caméra.
-
-## Ma Création :)
-
-Voici la première œuvre que j'ai peinte il y a plusieurs années.
-
-![The first man I drew.](him.PNG)
-
-Et c'est une fleur de cactus chez moi.
-
-![Cactus flower.](cactus.jpeg)
-]]></content>
-      <categories>
-        <category>-[about]</category>
-      </categories>
-  </entry>
-  <entry>
     <title>STL 之字符串</title>
     <url>/2023/06/21/String-STL/</url>
     <content><![CDATA[
@@ -1637,6 +1442,201 @@ int main()
       <tags>
         <tag>STL</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>无线网络技术</title>
+    <url>/2023/06/22/Wireless-Network-Review/</url>
+    <content><![CDATA[
+# 英文缩写
+
+- ITU, International Telecommunication Union
+- ISO, International Standards Organization
+- IEEE, Institute of Electrical and Electronics Engineers
+- IAB, Internet Architecture Board
+- IETF, Internet Engineering Task Force
+- IRTF, Internet Research Task Force
+- FHSS, Frequency Hopping Spread Spectrum
+- THSS, Time Hopping Spread Spectrum
+- DSSS, Direct Sequence Spread Spectrum
+- ARQ, Automatic Repeat Request
+
+# 无线传输技术
+
+## 传输媒体
+
+数据传输系统中发送器和接收器之间的物理路径。可以分为导向的（如双绞线，同轴电缆，光纤）和非导向的（例如大气）。
+
+### 3 个重要的电磁波频段
+
+- 1GHz - 100GHz，微波，可用于点对点传输以及卫星通信
+- 30MHz - 1GHz，无线电广播
+- $3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用
+
+
+# 无线局域网
+]]></content>
+      <tags>
+        <tag>Wireless Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>无线网络课程复习</title>
+    <url>/2023/06/21/WirelessNetwork/</url>
+    <content><![CDATA[
+# DV 和 DSDV
+
+## DV
+
+## DSDV
+
+Ref. https://blog.csdn.net/qq_21324665/article/details/79159080
+
+## 按需路由协议
+
+> 为什么没有开销？
+> Route discovery
+>
+
+### DSR
+
+8 分左右。
+
+Ref. https://blog.csdn.net/weixin_42982240/article/details/125033059
+
+### AODV
+
+Wi-Fi，无线网状网，zi]]></content>
+      <tags>
+        <tag>无线网络技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于我自己</title>
+    <url>/2023/06/06/about-CN/</url>
+    <content><![CDATA[
+简体中文 | [繁體中文](../about-TCN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
+
+![Programming is art.](code.png)
+
+# 你好！
+
+欢迎访问我的个人主页，我也非常荣幸能够同你这样有趣的灵魂在此相遇。
+
+# 学习经历
+
+- 2017 - 2020，高中，安徽省亳州市第一中学
+- 2020 - 至今，本科，吉林大学计算机科学与技术学院
+
+# 参与项目
+
+- RISC-V 指令集软件仿真
+- 基于 YOLOv5 的智能捡拾机器人
+- 我自己的 Repositories
+  - [Heartbeat](https://github.com/created4u/heartbeat.git)
+  - [Coursea](https://github.com/created4u/Coursea.git)
+
+# 所获荣誉
+
+（截止至 2023 年 8 月）
+
+- 2020 - 2021，吉林大学三等奖学金
+- 2021 - 2022，吉林大学二等奖学金
+- 2021 - 2022，吉林大学计算机科学与技术学院院优秀学生
+- 2023，[全国大学生物联网设计竞赛](http://iot.sjtu.edu.cn/Default.aspx)，东北赛区一等奖，全国总决赛二等奖
+
+# 个人能力
+
+- 英语水平良好，四六级均以优秀成绩通过，正在备考 TOEFL，能够流畅地阅读外文文献。
+- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等编程语言，有良好的编程能力。
+- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技术，能够独立搭建网页。
+- 有一定的开发经验，能够独立开发 iOS/iPadOS/macOS 和 Android 应用程序。
+- 广泛接触软硬件，基础较为扎实，熟悉嵌入式开发。
+
+# 兴趣爱好
+
+- 语言学习。空余时间会学习各种有趣的语言，例如 Français，Русский，Español 等语言。
+- 绘画（约等于～乱画）。没有系统地学过相关知识，就是想画啥画啥。
+- 阅读文学。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 和 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 是我最喜欢的作家之一，虽然有时候看不太懂，但是更让我痴迷不已。
+- 设计各种有意思的东西，执着于用平凡的材料创造出不平凡的事物，用颜色表达情感。
+- 摄影。用相机记录下每一个值得回忆的瞬间。
+
+## 我的小作品 :)
+
+这是几年前我画的第一幅画。
+
+![The first man I drew.](him.PNG)
+
+这是我家仙人掌开的花。
+
+![Cactus flower.](cactus.jpeg)
+]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Présentation de soi.</title>
+    <url>/2023/06/06/about-FR/</url>
+    <content><![CDATA[
+Français | [English](../about/index.html) | [繁體中文](../about-TCN/index.html) | [简体中文](../about-CN/index.html)
+
+![Programming is art.](code.png)
+
+# Bonjour!
+
+Bienvenue sur ma page d'accueil personnelle, et je suis heureux de rencontrer une âme aussi intéressante que vous.
+
+# Expérience
+
+- 2017 - 2020, Premier Lycée de Bozhou, Province d'Anhui
+- 2020 - 2024, Collège d'informatique et de technologie, Université de Jilin
+
+# Projets
+
+- Émulateur basé sur RISC-V
+- Robot de prélèvement intelligent utilisant YOLOv5
+- Certains Github Repositories
+  - [Heartbeat](https://github.com/created4u/heartbeat.git)
+  - [Coursea](https://github.com/created4u/Coursea.git)
+
+# Récompenses et Honneurs
+
+(Mise à jour le 29, Août, 2023)
+
+- 2020 - 2021, Bourse de deuxième classe, Université de Jilin
+- 2021 - 2022, Bourse de troisième classe, Université de Jilin
+- 2021 - 2022, Excellent étudiant universitaire, Université de Jilin
+- 2023, [Concours national de conception IoT](http://iot.sjtu.edu.cn/Default.aspx), Premier Prix de la Région Nord-Est, Deuxième Prix de la Finale Nationale
+
+# Compétence
+
+- Bon niveau d'anglais, avoir réussi les CET-4 et CET-6 avec d'excellentes notes et savoir lire couramment la littérature étrangère.
+- Familier avec C, C++, Java, Python, Kotlin, Swift, Go et d'autres langages de programmation, avec une bonne capacité de programmation.
+- Familier avec HTML, CSS, JavaScript, Node.js, Vue, Bootstrap et d'autres technologies, capable de créer de manière indépendante des pages Web.
+- Capable de développer de manière indépendante des applications iOS/iPadOS/macOS et Android.
+- Etude approfondie des logiciels et du matériel, familiarisé avec le développement embarqué.
+
+# Loisirs
+
+- Apprendre des langues. Quand je suis libre, apprendre différentes langues est une merveilleuse façon de gagner du temps, Français, Русский, Español... ce sont mes préférées.
+- Peinture. Juste pour le fun :P.
+- En lisant. [Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) et [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) sont parmi mes auteurs préférés. Bien que parfois je ne comprenne pas entièrement leur travail brillant, cela me rend encore plus captivé.
+- Concevez toutes sortes de choses intéressantes, insistez pour créer des choses extraordinaires avec des matériaux ordinaires et exprimez des émotions avec des couleurs.
+- La photographie. Enregistrement de chaque instant de la vie normale avec caméra.
+
+## Ma Création :)
+
+Voici la première œuvre que j'ai peinte il y a plusieurs années.
+
+![The first man I drew.](him.PNG)
+
+Et c'est une fleur de cactus chez moi.
+
+![Cactus flower.](cactus.jpeg)
+]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
   </entry>
   <entry>
     <title>關於我自己</title>
@@ -2094,37 +2094,6 @@ ARQ 的优点是能够在数据传输过程中检测和纠正错误，提高了�
       </tags>
   </entry>
   <entry>
-    <title>WLAN</title>
-    <url>/2023/06/24/wireless-network-wlan/</url>
-    <content><![CDATA[
-# 组成
-
-- 站 Station, STA
-  - 终端用户设备
-  - 无线网络接口
-  - 网络软件
-- 无线介质 Wireless Medium, VM
-- 基站/接入点 Base Station, BS / Access Point, AP
-- 分布式系统 Distribution System, DS
-
-# 拓扑结构
-
-- 分布对等式拓扑
-- 基础结构集中式拓扑
-- ESS 网络拓扑
-- 中继或桥接型网络拓扑
-
-# 服务
-
-- STA 服务 SS
-- 分布式系统服务 DSS
-]]></content>
-      <tags>
-        <tag>Wireless Network</tag>
-        <tag>WLAN</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wireless-network-conclusion</title>
     <url>/2023/06/25/wireless-network-conclusion/</url>
     <content><![CDATA[
@@ -2291,6 +2260,37 @@ $$C=2W\log_2L$$
 ]]></content>
       <tags>
         <tag>Wireless Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WLAN</title>
+    <url>/2023/06/24/wireless-network-wlan/</url>
+    <content><![CDATA[
+# 组成
+
+- 站 Station, STA
+  - 终端用户设备
+  - 无线网络接口
+  - 网络软件
+- 无线介质 Wireless Medium, VM
+- 基站/接入点 Base Station, BS / Access Point, AP
+- 分布式系统 Distribution System, DS
+
+# 拓扑结构
+
+- 分布对等式拓扑
+- 基础结构集中式拓扑
+- ESS 网络拓扑
+- 中继或桥接型网络拓扑
+
+# 服务
+
+- STA 服务 SS
+- 分布式系统服务 DSS
+]]></content>
+      <tags>
+        <tag>Wireless Network</tag>
+        <tag>WLAN</tag>
       </tags>
   </entry>
   <entry>

@@ -304,6 +304,23 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function scrollToTop() {
+  var topHeight =
+    document.documentElement.scrollTop ||
+    window.pageYOffset ||
+    document.body.scrollTop;
+  var speed = topHeight / 10 > 100 ? topHeight / 10 : 100;
+  scrollBy(0, -speed);
+  // 模拟鼠标向上滚动事件
+  scrolldelay = setTimeout('scrollToTop()', 50);
+  // 清除滚动事件，避免无法向下移动
+  if (topHeight === 0) {
+    clearTimeout(scrolldelay);
+    scrolldelay = null;
+  }
+}
+
 </script>
 
 <div class="right_side_content">
@@ -311,7 +328,7 @@ function topFunction() {
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8B%B1%E6%96%87%E7%BC%A9%E5%86%99"><span class="toc-text">英文缩写</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E4%BC%A0%E8%BE%93%E6%8A%80%E6%9C%AF"><span class="toc-text">无线传输技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="toc-text">传输媒体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E7%94%B5%E7%A3%81%E6%B3%A2%E9%A2%91%E6%AE%B5"><span class="toc-text">3 个重要的电磁波频段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-text">无线局域网</span></a></li></ol>
   </div>
   <div class="back_to_top">
-    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+    <button id="back_to_top_text" class="back_text" onclick="scrollToTop()">
       返回顶部
     </button>
   </div>

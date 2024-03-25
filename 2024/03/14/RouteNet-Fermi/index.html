@@ -361,6 +361,23 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function scrollToTop() {
+  var topHeight =
+    document.documentElement.scrollTop ||
+    window.pageYOffset ||
+    document.body.scrollTop;
+  var speed = topHeight / 10 > 100 ? topHeight / 10 : 100;
+  scrollBy(0, -speed);
+  // 模拟鼠标向上滚动事件
+  scrolldelay = setTimeout('scrollToTop()', 50);
+  // 清除滚动事件，避免无法向下移动
+  if (topHeight === 0) {
+    clearTimeout(scrolldelay);
+    scrolldelay = null;
+  }
+}
+
 </script>
 
 <div class="right_side_content">
@@ -368,7 +385,7 @@ function topFunction() {
   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abstract"><span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Challenges-of-Data-Driven-Network-Modeling"><span class="toc-text">Challenges of Data-Driven Network Modeling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Limitations-of-Current-Network-Modeling-Techniques"><span class="toc-text">Limitations of Current Network Modeling Techniques</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Simulations-as-Network-Modeling-Technique"><span class="toc-text">A. Simulations as Network Modeling Technique</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-Neural-Networks-as-Network-Modeling-Techniques"><span class="toc-text">B. Neural Networks as Network Modeling Techniques</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-Multilayer-Perceptron"><span class="toc-text">C. Multilayer Perceptron</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D-Recurrent-Neural-Networks"><span class="toc-text">D. Recurrent Neural Networks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Graph-Neural-Networks"><span class="toc-text">Graph Neural Networks</span></a></li></ol></li></ol>
   </div>
   <div class="back_to_top">
-    <button id="back_to_top_text" class="back_text" onclick="topFunction()">
+    <button id="back_to_top_text" class="back_text" onclick="scrollToTop()">
       返回顶部
     </button>
   </div>
