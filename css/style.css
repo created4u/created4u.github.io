@@ -1159,11 +1159,11 @@ ul li.task-list-item>input[type=checkbox]:before {
   background-size: 100% 2px;
   background-position: 0% 100%;
   background-repeat: no-repeat;
-  transition: background-size 0.5s linear;
+  transition: background-size 0.3s linear;
 }
 .post_toc a:hover {
   background-image: linear-gradient(#be3d5b, #be3d5b);
-  background-size: 100% 3px;
+  background-size: 100% 6px;
 }
 .back_to_top {
   padding-top: 100%;
