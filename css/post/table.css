@@ -14,6 +14,9 @@ th {
   padding: $margin-s-2;
 }
 th {
+  font-variation-settings: 'wght' $font-weight-bold;
+}
+td {
   font-variation-settings: 'wght' $font-weight-medium;
 }
 table,

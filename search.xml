@@ -1,98 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AWS Notes</title>
-    <url>/2022/12/23/AWSCloudPractionerEssential/</url>
-    <content><![CDATA[# 云计算
-
-## 定义
-
-云计算就是通过互联网**按需提供** IT 资源并采用**按需付费**定价模式。
-
-## 部署模式
-
-- 云端部署
-	- 在云中运行应用程序的所有组件
-	- 将现有应用程序迁移到云
-	- 在云中设计和构建新的应用程序
-- 本地部署/私有云部署
-	- 利用虚拟化工具和资源管理工具部署资源
-	- 利用应用程序和虚拟化技术提高资源利用率
-- 混合部署
-	- 将基于云的资源与本地基础设施连接
-	- 将基于云的资源与传统 IT 应用程序集成
-
-## 优势
-
-1. 将前期费用变成可变支出
-
-	前期费用是指您在使用数据中心、物理服务器和其他资源之前需要为其投入的费用。可变支出意味着您只需为消耗的计算资源付费，而不需要在知道自己会如何使用数据中心和服务器之前进行大量投资。
-
-2. 无需在数据中心运行和维护方面投入资金
-3. 无需猜测容量
-4. 实现规模经济效益
-5. 提高速度和敏捷性
-6. 几分钟内实现全球化部署
-
-# EC2
-
-## 工作原理
-
-1. 启动
-
-	为实例选择具有基本配置的模板，包括操作系统，应用程序服务器或应用程序。还要选择实例类型，即实例的具体硬件配置。
-
-2. 连接
-3. 使用
-
-## 实例类型
-
-1. 通用型
-
-	实现计算，内存和网络资源的均衡。
-
-	- 应用程序服务器
-	- 游戏服务器
-	- 企业应用程序的后端服务器
-	- 中小型数据库
-
-2. 计算优化型
-
-	适合需要使用高性能处理器的计算密集型应用程序。
-
-	- 高性能 Web 服务器
-	- 计算密集型应用程序服务器
-	- 专用游戏服务器
-	- 成组处理多个事务的批处理工作负载
-
-3. 内存优化型
-
-	提高用于处理内存中的大型数据集的工作负载的性能。
-
-	- 高性能数据库
-
-4. 加速计算型
-
-	使用硬件加速器或协同处理器来执行一些功能。
-
-	- 浮点数计算
-	- 图形处理
-	- 数据模式匹配
-
-5. 存储优化型
-
-	适用于需要对本地存储上的大型数据集进行高速连续读写访问的工作负载。
-
-	- 分布式文件系统
-	- 数据仓库应用程序
-	- 高频在线事务处理系统
-
-## 可扩展性
-
-可扩展性是指仅从需要的资源开始，并且设计架构以便自动扩展和缩减，从而响应不断变化的需求。
-]]></content>
-  </entry>
-  <entry>
     <title>STL 之容器</title>
     <url>/2023/06/22/Container-STL/</url>
     <content><![CDATA[
@@ -756,217 +664,6 @@ void Print(const SqList<T> &L) {
       </tags>
   </entry>
   <entry>
-    <title>Database System Concept</title>
-    <url>/2023/03/09/DatabaseOperations/</url>
-    <content><![CDATA[
-# SQL Basic
-
-此教程结合 [菜鸟教程](https://www.runoob.com/sql/sql-tutorial.html) 以及 Database System Concepts(7th Edition) 数据库系统概念附带的 [Online SQL Interpreter](https://www.db-book.com/university-lab-dir/sqljs.html)，在网站上自己实践效果更好。
-
-> 1. SQL 大小写不敏感，以下所有命令都可以采用大写。
-> 2. 有些数据库不加分号 `;` 也可以，比如 IBM DB2。
-
-## select
-
-### format
-
-```sql
-select * from TABLE_NAME;
-select COLUMUN_NAME from TABLE_NAME;
-```
-
-### e.g.
-
-```sql
-select * from classroom;
-select building from classroom;
-```
-
-## select distinct
-
-### format
-
-```sql
-select distinct COLUMN_NAME from TABLE_NAME;
-```
-
-### e.g.
-
-```sql
-select distinct dept_name from course;
-```
-
-## where
-
-### format
-
-```sql
-select COLUMN_NAME from TABLE_NAME
-where COLUMN_NAME operator VALUE
-```
-
-## operator
-
-- `=`
-- `<>` 或 `!=`
-- `>`
-- `<`
-- `>=`
-- `<=`
-- `between`
-- `like`
-- `in`
-
-### e.g.
-
-```sql
-select building from classroom where building='Packard';
-```
-
-## and/or
-
-### format
-
-```sql
-select COLUMN_NAME from TABLE_NAME
-where CONDITION_ONE and/or CONDITION_TWO;
-```
-
-### e.g.
-
-```sql
-select * from course where credits='3' and dept_name="Music";
-```
-
-## order by
-
-### format
-
-```sql
-select COLUMN_NAME from TABLE_NAME order by COLUMN_NAME (desc);
-```
-
-### e.g.
-
-```sql
-select * from classroom order by building;
-select * from classroom order by building desc;
-```
-
-## insert into
-
-### format
-
-```sql
-insert into TABLE_NAME values(VALUE_1,VALUE_2,VALUE_3,...);
-insert into TABLE_NAME (COLUMN_1,COLUMN_2,COLUMN_3,...) values(VALUE_1,VALUE_2,VALUE_3,...);
-```
-
-### e.g.
-
-```sql
-insert into classroom values("Classroom","666",88);
-```
-]]></content>
-      <tags>
-        <tag>Database</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库复习</title>
-    <url>/2023/02/19/DatabaseSystemConceptsChapter0/</url>
-    <content><![CDATA[# Introduction
-
-## Terms
-
-1. data-management system(DBMS), is a collection of interrelated data and a set of programs to access those data.
-2. database, a collection of data that contains information relevant to an enterprise.
-3. online transaction processing, where a large number of users use the database, with each user retrieving relatively small amounts of data, and performing small updates.
-4. data analytics, the processing of data to draw conclusions, and infer rules or decision procedures, which are then used to drive business decisions.
-5. data inconsistency, the various copies of the same data may no longer agree.
-6. instance of database, the collection of information stored in the database at a particular moment.
-7. database schema, the overall design of the database.
-
-## Some Views
-
-### 1. Disadvantages of FPS
-
-- Data redundancy and inconsistency
-	- same information may be duplicated in several files
-	- the various copies of the same data may no longer agree
-- Difficulty in accessing data
-	- conventional file-processing environment do not allow needed data to be retrieved in a convinent and efficient manner
-- Data isolation
-	- data are scattered in various files, and files may be in different formats
-- Integrity problems
-	- difficult to ensure consistency constraints when constraints invovle several data items from different files
-- Atomicity problems
-	- hard to ensure atomicity in a conventional file-processing system
-- Concurrent-access anomalies
-- Security problems
-
-### 2. Data Models
-
-- **Relational Models**
-	- a collection of tables to represent both data and the relationships among those data
-	- each table has multiple columns, each column has a *unique* name
-- **Entity-Relationship Model**
-	- a collection of *entities*, and relationships among entities
-	- an entity, is a "thing" or "object" in the real world that is *distinguishable* from other objects
-- **Semi-Structured Data Model**
-	- permits the specification of data where individual data items of the same type may have *different sets of attributes*
-	- widely used in JSON and Extensible Markup Language(XML)
-- **Object-Based Data Model**
-
-### 3. Levels of Data Abstraction
-
-- **Physical Level**
-	- the lowest level
-	- *how* data stored
-	- describles complex low-level data structures in detail
-- **Logical Level**
-	- the middle level
-	- *what* data are stored and *what* relationships exist among those data
-	- describles the entire database in terms of a small numbers of relatively simple structures
-- **View Level**
-	- the highest level
-	- describles only part of the entire database
-
-### 4. Instance & Schema
-
-Database systems have several schemas, partitioned according to the levels of the abstraction:
-
-- Physical Schema
-- Logical Schema
-- Subschema
-
-### 5. Database Languages
-
-#### DDL, Data-Definition Language
-
-DDL is used to specify a database schema and addtional properties of the data.
-
-#### DML, Data-Manipulation Language
-
-]]></content>
-      <tags>
-        <tag>Database</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>震惊！玛雅神庙又有新发现。</title>
-    <url>/2024/03/22/For-Lark/</url>
-    <content><![CDATA[
-> 不久前，考古学家在南美玛雅神庙中发现了一张刻在石墙上的肖像，该肖像刻画的是一个俊美的男性，下面有一段文字还没有被完全破译。考古学家猜测，这段文字可能是对于该男子的描述。令人惊奇的一点是，肖像中的男子衣着非常现代，考古学家们一致认为，该男子可能是玛雅大祭司预言出的一位具有神秘力量的主宰者或者是一位先知，从未来穿越而来，给他们带来美好的未来。
-
-几个月后，考古学家向媒体公布了该肖像画的进一步研究成果，他们一致认为，该名男子是来自公元2000多年后的贵州安顺地区的一名大学生，其名为Lark，在重庆读书，大学毕业后，一天晚上睡梦中穿越到了玛雅人的时代，给他们带来了先进的科技（小米手机等高科技设备），又教会了他们使用电力等未来技术，他们为他修建神庙，把他奉为先知。先知英俊潇洒，让无数男性和女性都心生爱慕，于是又被奉为俊美之神。
-
-多年后，玛雅人的科技得以飞速发展，甚至可以长生不老和星际穿越，Lark深知地球在很多年后将会变得破旧不堪，难以让人类继续生存，于是率领玛雅人移民到了新的星球，并取名为Lark。]]></content>
-      <tags>
-        <tag>Lark</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RouteNet-Fermi, Network Modeling with Graph Neural Networks</title>
     <url>/2024/03/14/RouteNet-Fermi/</url>
     <content><![CDATA[**Authors**
@@ -1444,73 +1141,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>无线网络技术</title>
-    <url>/2023/06/22/Wireless-Network-Review/</url>
-    <content><![CDATA[
-# 英文缩写
-
-- ITU, International Telecommunication Union
-- ISO, International Standards Organization
-- IEEE, Institute of Electrical and Electronics Engineers
-- IAB, Internet Architecture Board
-- IETF, Internet Engineering Task Force
-- IRTF, Internet Research Task Force
-- FHSS, Frequency Hopping Spread Spectrum
-- THSS, Time Hopping Spread Spectrum
-- DSSS, Direct Sequence Spread Spectrum
-- ARQ, Automatic Repeat Request
-
-# 无线传输技术
-
-## 传输媒体
-
-数据传输系统中发送器和接收器之间的物理路径。可以分为导向的（如双绞线，同轴电缆，光纤）和非导向的（例如大气）。
-
-### 3 个重要的电磁波频段
-
-- 1GHz - 100GHz，微波，可用于点对点传输以及卫星通信
-- 30MHz - 1GHz，无线电广播
-- $3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用
-
-
-# 无线局域网
-]]></content>
-      <tags>
-        <tag>Wireless Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无线网络课程复习</title>
-    <url>/2023/06/21/WirelessNetwork/</url>
-    <content><![CDATA[
-# DV 和 DSDV
-
-## DV
-
-## DSDV
-
-Ref. https://blog.csdn.net/qq_21324665/article/details/79159080
-
-## 按需路由协议
-
-> 为什么没有开销？
-> Route discovery
->
-
-### DSR
-
-8 分左右。
-
-Ref. https://blog.csdn.net/weixin_42982240/article/details/125033059
-
-### AODV
-
-Wi-Fi，无线网状网，zi]]></content>
-      <tags>
-        <tag>无线网络技术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于我自己</title>
     <url>/2023/06/06/about-CN/</url>
     <content><![CDATA[
@@ -1900,8 +1530,220 @@ AODV（Ad hoc On-Demand Distance Vector）路由协议是一种无线自组织�
 
 ]]></content>
       <tags>
-        <tag>Wireless Network</tag>
         <tag>ad hoc</tag>
+        <tag>Wireless Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>粵語發音</title>
+    <url>/2024/03/25/cantonese-1/</url>
+    <content><![CDATA[## 聲母
+
+| 聲母  | 發音  | 發音方式     | 聲母  | 發音  | 發音方式       |
+| --- | --- | -------- | --- | --- | ---------- |
+| b   | 爸   | 雙唇塞音不送氣  | s   | 沙   | 舌尖擦音       |
+| p   | 趴   | 雙唇塞音送氣   | y   | 也   | 舌葉半元音      |
+| m   | 媽   | 雙唇鼻音     | g   | 加   | 舌根塞音不送氣    |
+| f   | 花   | 唇齒擦音     | k   | 卡   | 舌根塞音送氣     |
+| d   | 打   | 舌尖塞音不送氣  | ng  | 丫   | 舌根鼻音       |
+| t   | 他   | 舌尖塞音送氣   | h   | 蝦   | 喉擦音        |
+| n   | 拿   | 舌尖鼻音     | gu  | 瓜   | 唇-舌根 塞音不送氣 |
+| l   | 拉   | 舌尖流音     | ku  | 跨   | 唇-舌根 塞音送氣  |
+| z   | 渣   | 舌尖摩擦音不送氣 | w   | 娃   | 舌根半元音      |
+| c   | 叉   | 舌尖摩擦音送氣  |     |     |            |
+
+## 韻母
+
+| 韻母    | 發音  | 韻母                             | 發音  | 韻母    | 發音  | 韻母    | 發音  | 韻母                  | 發音  | 韻母                         | 發音  |
+| ----- | --- | ------------------------------ | --- | ----- | --- | ----- | --- | ------------------- | --- | -------------------------- | --- |
+| a     | 呀   | ei                             | 矮   | i     | 衣   | o     | 啊   | u                   | 烏   | $\hat{\mathsf e}$          | 靴   |
+| ai    | 唉   | eo                             | 歐   | iu    | 腰   | oi    | 哀   | ui                  | 回   | $\mathsf{\hat eu}$         | 居   |
+| ao    | 坳   | em                             | 庵   | im    | 淹   | ou    | 澳   | un                  | 碗   | $\mathsf{\hat en}$         | 津   |
+| am    | 監   | en                             | 根   | in    | 煙   | on    | 安   | ung                 | 甕   | $\mathsf{\hat eng}$        | 香   |
+| an    | 間   | eng                            | 鶯   | ing   | 英   | ong   | 剛   | ud/ut               | 活   | $\mathsf{\hat ed/\hat et}$ | 出   |
+| ang   | 耕   | eb                             | 葉   | ib    | 葉   | od/ot | 渴   | ug/uk               | 屋   | $\mathsf{\hat eg/\hat ek}$ | 腳   |
+| ab    | 鴨   | ed/et                          | 失   | id/it | 熱   | og/ok | 惡   | $\ddot{\mathsf u}$  | 於   |                            |     |
+| at/ad | 壓   | eg/ek                          | 塞   | ig/ik | 益   |       |     | $\mathsf{\ddot un}$ | 鴛   |                            |     |
+| ag/ak | 隔   | $\acute{\mathsf e}$            | 些   |       |     |       |     | $\mathsf{\ddot ud}$ | 月   |                            |     |
+|       |     | $\mathsf{\acute ei}$           | 卑   |       |     |       |     |                     |     |                            |     |
+|       |     | $\mathsf{\acute en}$           | van |       |     |       |     |                     |     |                            |     |
+|       |     | $\mathsf{\acute eng}$          | 廳   |       |     |       |     |                     |     | m                          | 唔   |
+|       |     | $\mathsf{\acute eg/\acute ek}$ | 隻   |       |     |       |     |                     |     | ng                         | 吳   |
+
+
+]]></content>
+      <tags>
+        <tag>粤语</tag>
+        <tag>语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>wireless-network-conclusion</title>
+    <url>/2023/06/25/wireless-network-conclusion/</url>
+    <content><![CDATA[
+# 英文缩写
+
+- WAN, Wide Area Network
+- LAN, Local Area Network
+- WWAN, Wireless Wide Area Network
+- WPAN, Wireless Personal Area Network
+- WSN, Wireless Sensor Network
+- WMN, Wireless Mesh Network
+- IEEE, the Institute of Electrical and Electronics Engineers, 电气电子工程师学会
+- ITU, International Telecommunication Union, 国际电信联盟
+- ISO, International Standards Organization
+- IETF, Internet Engineering Task Force, Internet 工程任务组
+- IAB, Internet Architecture Board, Internet 体系结构委员会
+- IRTF, Internet Research Task Force, Internet 研究任务组
+- ANSI, American National Standards Institute, 美国国家标准协会
+- 3GPP, The 3rd Generation Partnership Project
+- IPDR, The Internet Protocol Detail Record
+- CDMA, Code Division Multiple Access, 码分多路复用
+- ETSI, European Telecommunications Standards Institute
+- Wi-Fi, Wireless Fidelity
+- BSS, Basic Service Set
+- IBSS, Independent Basic Service Set
+- AP, Access Point
+- ESS, Extended Service Set
+- IESS, Independent Extended Service Set
+- DHCP, Dynamic Host Configuration Protocol
+- WAPI, Wireless LAN Authentication and Privacy Infrastructure, 无线局域网鉴别和保密基础结构
+- WEP, Wire Equivalent Privacy, 有线等效加密
+
+# 名词
+
+- 无线穿戴网，基于短距离无线通信技术与可穿戴式计算机技术，穿戴在人体上具有智能收集人体和周围环境信息的一种新型个域网
+- 无线体域网 BAN，是由依附于身体的各种传感器构成的网络
+- OSI RM
+  - 物理层
+  - 数据链路层
+  - 网络层
+  - 传输层
+  - 会话层
+  - 表示层
+  - 应用层
+- 微波，频率在 300MHz - 300GHz 之间的电磁波
+- 天线，实现无线传输最基本的设备，可以看做为一条电子导线或导线系统，该导线系统或用于将电磁能辐射到太空，或用于将太空中的电磁能收集起来
+- 天线增益，天线定向性的度量，与有理论的全向天线在各个方向所产生的输出相比，天线增益定义为在一特定方向上的功率输出
+- 衰减，信号的强度随着跨越的传输媒介的距离而降低
+- 自由空间损耗，信号会随着距离发散，具有固定面积的天线离发射天线越远，接收的信号功率越低
+
+# 部分知识点
+
+## 无线网络的分类（应用）
+
+- 无线传感器网络
+- 无线 Mesh 网络
+- 无线穿戴网络
+- 无线体域网络
+
+## 无线网络的协议模型特点
+
+- 基于分层体系结构
+- 不关注路由问题，没有网络层的协议，采用传统的 IP
+- 存在共享访问介质的问题，因此 MAC 协议是无线网络协议的重点
+
+## ISM 频段
+
+- 902MHz~928MHz
+- 2.4GHz~2.4835GHz
+- 5.735GHz~5.860GHz
+
+## 直线传输系统中的损伤
+
+- 衰减和衰减失真
+- 自由空间损耗
+- 噪声
+- 大气吸收
+- 多径
+- 折射
+
+## 不同 IFS 的作用
+
+- SIFS，用于所有立即响应的动作
+- PIFS，在发布轮询时，被中央控制器用于 PCF 模式
+- DIFS，非同步侦的接入竞争
+
+## WLAN 的拓扑结构
+
+- 分布对等式拓扑
+- 基础结构集中式拓扑
+- ESS 网络拓扑
+- 中继或桥接型网络拓扑
+
+## WLAN 的服务
+
+- STA 服务（SS）
+  - 认证
+  - 解除认证
+  - 保密
+  - MAC 服务数据单元传送
+- 分布式系统服务（DSS）
+  - 联结
+  - 重新联结
+  - 解除联结
+  - 分布
+  - 集成
+
+## 无线 Mesh 网络与蜂窝网络的主要区别
+
+- 可靠性提高，自愈性强
+- 传输速率大大提高
+- 投资成本降低
+- 网络配置和维护简便快捷
+
+## 无线 Mesh 网络与 WLAN 的主要区别
+
+- 从拓扑结构上看，WLAN 是典型的点对多点（P2MP，Point to Multiple Points）网络，而且采取单跳方式，因而数据不可转发。WMN 可以通过 WR 对数据进行智能转发（需要对 WLAN 传统的 AP 功能进行扩展和改进）。
+- 从协议上看，WMN 与移动 Ad Hoc 网络基本类似。WLAN 的 MAC 协议完成的是本地业务的接入，而 WMN 则有两种可能，一种是本地业务的接入，另一种是其他节点业务的转发。对于路由协议，WLAN 是静态的因特网路由协议和移动 IP；但 WMN 则主要是动态的按需发现的路由协议，只具有较短暂的生命周期。
+
+## 无线 Mesh 网络与 Ad Hoc 的主要区别
+
+- WMN 由无线路由器构成的无线骨干网组成。该无线骨干网提供了大范围的信号覆盖与节点连接。移动 Ad Hoc 网络的节点都兼有独立路由和主机功能，节点地位平等，接通性是依赖端节点的平等合作实现的，健壮性比 WMN 差。
+- WMN 节点移动性低于移动 Ad Hoc 网络中的节点，所以 WMN 注重的是“无线”，而移动 Ad Hoc 网络更强调的是“移动”。
+- 从网络结构来看，WMN 多为静态或弱移动的拓扑，而移动 Ad Hoc 网络多为随意移动(包括高速移动)的网络拓扑。
+- WMN 与移动 Ad Hoc 网络的业务模式不同，前者节点的主要业务是来往于因特网的业务，后者节点的主要业务是任意一对节点之间的业务流。
+- 从应用来看，WMN 主要是因特网或宽带多媒体通信业务的接入，而移动 Ad Hoc 网络主要用于军事或其他专业通信。
+
+## WMN 的优缺点
+
+- 优点
+  - 可靠性大大增强
+  - 具有冲突保护机制
+  - 简化链路设计
+  - 网络的覆盖范围增大
+  - 组网灵活、维护方便
+  - 投资成本低、风险小
+- 缺点
+  - 对于不同射频信道的 WMN 的研究还处于试验研制阶段，性能改善总体来说还不太满
+  - 在 WMN 路由准则和选择算法等方面，目前提出的特别适用于 WMN 的路由协议寥寥无几
+  - 在 WMN 连接性和多路支持方面，每个节点链路连接度也是一个至关重要的问题，并非使用射频信道数越多，网络性能越好，射频信道数增加会带来设备开销和成本上升，同时可能会带来更多的干扰问题
+  - 在 WMN 带宽利用和资源分配算法方面，目前还没有提出非常有效的可用算法和协议，相关问题还有待研究
+
+# 计算
+
+## 信道容量
+
+在信号平均功率有限的⽩噪声（指通信系统内部本身产⽣的噪声）信道中，信道的极限数据传输率（即信道容量）为
+
+$$C=W\log_2(1+\frac{S}{N})\;bps$$
+
+- $S$ 表示信号功率
+- $N$ 表示噪声功率
+- $W$ 为信道带宽
+- $C$ 为信道容量
+
+## Nyquist 准则
+
+离散⽆噪声的数字信道信道容量为
+
+$$C=2W\log_2L$$
+
+- $W$ 为信道的带宽（Hz）
+- $L$ 为代码采⽤的进制数
+]]></content>
+      <tags>
+        <tag>Wireless Network</tag>
       </tags>
   </entry>
   <entry>
@@ -2089,175 +1931,6 @@ $$G=\frac{4\pi A_e}{\lambda^2}=\frac{4\pi f^2A_e}{c^2}$$
 ARQ 的优点是能够在数据传输过程中检测和纠正错误，提高了数据的可靠性。然而，ARQ 的缺点是增加了网络的延迟和带宽开销，因为需要重复发送数据包和等待确认信号。
 
 在 ARQ 中，还存在多种变体，如停止等待 ARQ 和连续 ARQ。停止等待 ARQ 是一种简单的 ARQ 方法，发送方在发送数据包后，等待接收到确认信号后才发送下一个数据包。连续 ARQ 是一种更高效的 ARQ 方法，允许发送方连续发送多个数据包，而无需等待每个数据包的确认信号。]]></content>
-      <tags>
-        <tag>Wireless Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>wireless-network-conclusion</title>
-    <url>/2023/06/25/wireless-network-conclusion/</url>
-    <content><![CDATA[
-# 英文缩写
-
-- WAN, Wide Area Network
-- LAN, Local Area Network
-- WWAN, Wireless Wide Area Network
-- WPAN, Wireless Personal Area Network
-- WSN, Wireless Sensor Network
-- WMN, Wireless Mesh Network
-- IEEE, the Institute of Electrical and Electronics Engineers, 电气电子工程师学会
-- ITU, International Telecommunication Union, 国际电信联盟
-- ISO, International Standards Organization
-- IETF, Internet Engineering Task Force, Internet 工程任务组
-- IAB, Internet Architecture Board, Internet 体系结构委员会
-- IRTF, Internet Research Task Force, Internet 研究任务组
-- ANSI, American National Standards Institute, 美国国家标准协会
-- 3GPP, The 3rd Generation Partnership Project
-- IPDR, The Internet Protocol Detail Record
-- CDMA, Code Division Multiple Access, 码分多路复用
-- ETSI, European Telecommunications Standards Institute
-- Wi-Fi, Wireless Fidelity
-- BSS, Basic Service Set
-- IBSS, Independent Basic Service Set
-- AP, Access Point
-- ESS, Extended Service Set
-- IESS, Independent Extended Service Set
-- DHCP, Dynamic Host Configuration Protocol
-- WAPI, Wireless LAN Authentication and Privacy Infrastructure, 无线局域网鉴别和保密基础结构
-- WEP, Wire Equivalent Privacy, 有线等效加密
-
-# 名词
-
-- 无线穿戴网，基于短距离无线通信技术与可穿戴式计算机技术，穿戴在人体上具有智能收集人体和周围环境信息的一种新型个域网
-- 无线体域网 BAN，是由依附于身体的各种传感器构成的网络
-- OSI RM
-  - 物理层
-  - 数据链路层
-  - 网络层
-  - 传输层
-  - 会话层
-  - 表示层
-  - 应用层
-- 微波，频率在 300MHz - 300GHz 之间的电磁波
-- 天线，实现无线传输最基本的设备，可以看做为一条电子导线或导线系统，该导线系统或用于将电磁能辐射到太空，或用于将太空中的电磁能收集起来
-- 天线增益，天线定向性的度量，与有理论的全向天线在各个方向所产生的输出相比，天线增益定义为在一特定方向上的功率输出
-- 衰减，信号的强度随着跨越的传输媒介的距离而降低
-- 自由空间损耗，信号会随着距离发散，具有固定面积的天线离发射天线越远，接收的信号功率越低
-
-# 部分知识点
-
-## 无线网络的分类（应用）
-
-- 无线传感器网络
-- 无线 Mesh 网络
-- 无线穿戴网络
-- 无线体域网络
-
-## 无线网络的协议模型特点
-
-- 基于分层体系结构
-- 不关注路由问题，没有网络层的协议，采用传统的 IP
-- 存在共享访问介质的问题，因此 MAC 协议是无线网络协议的重点
-
-## ISM 频段
-
-- 902MHz~928MHz
-- 2.4GHz~2.4835GHz
-- 5.735GHz~5.860GHz
-
-## 直线传输系统中的损伤
-
-- 衰减和衰减失真
-- 自由空间损耗
-- 噪声
-- 大气吸收
-- 多径
-- 折射
-
-## 不同 IFS 的作用
-
-- SIFS，用于所有立即响应的动作
-- PIFS，在发布轮询时，被中央控制器用于 PCF 模式
-- DIFS，非同步侦的接入竞争
-
-## WLAN 的拓扑结构
-
-- 分布对等式拓扑
-- 基础结构集中式拓扑
-- ESS 网络拓扑
-- 中继或桥接型网络拓扑
-
-## WLAN 的服务
-
-- STA 服务（SS）
-  - 认证
-  - 解除认证
-  - 保密
-  - MAC 服务数据单元传送
-- 分布式系统服务（DSS）
-  - 联结
-  - 重新联结
-  - 解除联结
-  - 分布
-  - 集成
-
-## 无线 Mesh 网络与蜂窝网络的主要区别
-
-- 可靠性提高，自愈性强
-- 传输速率大大提高
-- 投资成本降低
-- 网络配置和维护简便快捷
-
-## 无线 Mesh 网络与 WLAN 的主要区别
-
-- 从拓扑结构上看，WLAN 是典型的点对多点（P2MP，Point to Multiple Points）网络，而且采取单跳方式，因而数据不可转发。WMN 可以通过 WR 对数据进行智能转发（需要对 WLAN 传统的 AP 功能进行扩展和改进）。
-- 从协议上看，WMN 与移动 Ad Hoc 网络基本类似。WLAN 的 MAC 协议完成的是本地业务的接入，而 WMN 则有两种可能，一种是本地业务的接入，另一种是其他节点业务的转发。对于路由协议，WLAN 是静态的因特网路由协议和移动 IP；但 WMN 则主要是动态的按需发现的路由协议，只具有较短暂的生命周期。
-
-## 无线 Mesh 网络与 Ad Hoc 的主要区别
-
-- WMN 由无线路由器构成的无线骨干网组成。该无线骨干网提供了大范围的信号覆盖与节点连接。移动 Ad Hoc 网络的节点都兼有独立路由和主机功能，节点地位平等，接通性是依赖端节点的平等合作实现的，健壮性比 WMN 差。
-- WMN 节点移动性低于移动 Ad Hoc 网络中的节点，所以 WMN 注重的是“无线”，而移动 Ad Hoc 网络更强调的是“移动”。
-- 从网络结构来看，WMN 多为静态或弱移动的拓扑，而移动 Ad Hoc 网络多为随意移动(包括高速移动)的网络拓扑。
-- WMN 与移动 Ad Hoc 网络的业务模式不同，前者节点的主要业务是来往于因特网的业务，后者节点的主要业务是任意一对节点之间的业务流。
-- 从应用来看，WMN 主要是因特网或宽带多媒体通信业务的接入，而移动 Ad Hoc 网络主要用于军事或其他专业通信。
-
-## WMN 的优缺点
-
-- 优点
-  - 可靠性大大增强
-  - 具有冲突保护机制
-  - 简化链路设计
-  - 网络的覆盖范围增大
-  - 组网灵活、维护方便
-  - 投资成本低、风险小
-- 缺点
-  - 对于不同射频信道的 WMN 的研究还处于试验研制阶段，性能改善总体来说还不太满
-  - 在 WMN 路由准则和选择算法等方面，目前提出的特别适用于 WMN 的路由协议寥寥无几
-  - 在 WMN 连接性和多路支持方面，每个节点链路连接度也是一个至关重要的问题，并非使用射频信道数越多，网络性能越好，射频信道数增加会带来设备开销和成本上升，同时可能会带来更多的干扰问题
-  - 在 WMN 带宽利用和资源分配算法方面，目前还没有提出非常有效的可用算法和协议，相关问题还有待研究
-
-# 计算
-
-## 信道容量
-
-在信号平均功率有限的⽩噪声（指通信系统内部本身产⽣的噪声）信道中，信道的极限数据传输率（即信道容量）为
-
-$$C=W\log_2(1+\frac{S}{N})\;bps$$
-
-- $S$ 表示信号功率
-- $N$ 表示噪声功率
-- $W$ 为信道带宽
-- $C$ 为信道容量
-
-## Nyquist 准则
-
-离散⽆噪声的数字信道信道容量为
-
-$$C=2W\log_2L$$
-
-- $W$ 为信道的带宽（Hz）
-- $L$ 为代码采⽤的进制数
-]]></content>
       <tags>
         <tag>Wireless Network</tag>
       </tags>
