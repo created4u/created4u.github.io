@@ -1,5 +1,10 @@
 .header {
   border: $line-secondary solid $color-text-primary;
+  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
+  font-size: $font-size-header;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-header;
+  color: $color-text-primary;
 }
 .header-inner {
   display: flex;

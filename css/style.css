@@ -277,9 +277,9 @@ input {
   border: none;
 }
 body {
-  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
-  font-size: 1rem;
-  font-weight: 400;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 350;
   line-height: 1.5rem;
   color: #1e131d;
   background-color: #fbf2e3;
@@ -300,10 +300,27 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
+@font-face {
+  font-family: 'cmu_regular';
+  src: url("../fonts/cmu/cmunrm.ttf");
+}
+@font-face {
+  font-family: 'cmu_italic';
+  src: url("../fonts/cmu/cmunti.ttf");
+}
+@font-face {
+  font-family: 'cmu_upright';
+  src: url("../fonts/cmu/cmunui.ttf");
+}
+@font-face {
+  font-family: 'chinese';
+  src: url("../fonts/Mingchao.ttf");
+}
 .header {
   border: 3px solid #1e131d;
+  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -399,8 +416,9 @@ input[type="search"]::-webkit-search-results-decoration {
 .footer {
   margin-top: 3.5rem;
   border: 3px #1e131d solid;
+  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 0.75rem;
-  font-weight: 400;
+  font-weight: 350;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -423,8 +441,9 @@ input[type="search"]::-webkit-search-results-decoration {
 .year-title {
   margin-top: 3.5rem;
   margin-bottom: 0.75rem;
+  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 650;
   line-height: 2.25rem;
   color: #be3d5b;
 }
@@ -436,19 +455,20 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .post-list-item .post-title {
   flex-grow: 1;
-  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
-  font-size: 1rem;
-  font-weight: 400;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 350;
   line-height: 1.5rem;
   color: #1e131d;
-  font-variation-settings: 'wght' 500;
+  font-variation-settings: 'wght' 450;
 }
 .post-list-item .post-date {
   margin-left: 1.5rem;
   min-width: 8rem;
   text-align: right;
+  font-family: 'cmu_upright';
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 350;
   line-height: 1.25rem;
   color: #1e131d;
   line-height: 1.5rem;
@@ -486,14 +506,16 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .post-gallery-item .post-info .post-title {
   margin-bottom: 0.75rem;
-  font-size: 1.875rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 2rem;
+  font-weight: 650;
   line-height: 2.25rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 .post-gallery-item .post-info .post-date {
+  font-family: 'cmu_upright';
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 350;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -529,8 +551,9 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .pagination {
   margin-top: 0.75rem;
+  font-family: 'cmu_upright';
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.25rem;
   color: #1e131d;
   display: flex;
@@ -569,12 +592,13 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-left: 1.5rem;
 }
 .profile {
+  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   margin-top: 3.5rem;
   display: flex;
   flex-direction: row-reverse;
 }
 .profile .profile-content {
-  width: 50%;
+  width: 60%;
   margin: 0 1.5rem 0 0;
 }
 .profile .profile-content .profile-title {
@@ -586,28 +610,28 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-bottom: 2rem;
 }
 .profile .profile-content .profile-title {
-  font-size: 1.875rem;
-  font-weight: 700;
   line-height: 2.25rem;
-  color: #1e131d;
+  color: #be3d5b;
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: 44px;
 }
 .profile .profile-content .profile-body {
-  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
-  font-size: 1rem;
-  font-weight: 400;
   line-height: 1.5rem;
   color: #1e131d;
+  font-weight: 500;
+  font-size: 18px;
 }
 .profile .profile-content .profile-link {
   margin-top: 0;
   margin-bottom: 0.75rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.25rem;
   color: #1e131d;
 }
 .profile .profile-image {
-  width: 50%;
+  width: 40%;
 }
 @media (max-width: 480px) {
   .profile {
@@ -654,7 +678,7 @@ input[type="search"]::-webkit-search-results-decoration {
   padding: 0.75rem 0.75rem;
 }
 .search-result-container .search-result-message {
-  font-family: 'Roboto Mono', menlo, monospace;
+  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 0.875rem;
   line-height: 1rem;
   color: #be3d5b;
@@ -662,10 +686,11 @@ input[type="search"]::-webkit-search-results-decoration {
   color: #be3d5b;
 }
 .search-result-container .search-result-title {
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 650;
   line-height: 1.25rem;
-  color: #1e131d;
+  color: #be3d5b;
   color: #1e131d;
 }
 .search-result-container a {
@@ -685,9 +710,9 @@ input[type="search"]::-webkit-search-results-decoration {
   padding-top: 1rem;
 }
 .search-result-container .search-result {
-  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
-  font-size: 1rem;
-  font-weight: 400;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 350;
   line-height: 1.5rem;
   color: #1e131d;
   color: #1e131d;
@@ -710,10 +735,11 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .search-header .search-input-container .search-input {
   width: 100%;
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 1.25rem;
+  font-weight: 650;
   line-height: 1.5rem;
-  color: #1e131d;
+  color: #be3d5b;
   color: #1e131d;
   background-color: #fbf2e3;
 }
@@ -745,64 +771,72 @@ h6 {
   margin-bottom: 0.75rem;
 }
 h1 {
-  font-size: 1.875rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 2rem;
+  font-weight: 650;
   line-height: 2.25rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 1.75rem;
+  font-weight: 650;
   line-height: 2rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 h3 {
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 1.25rem;
+  font-weight: 650;
   line-height: 1.5rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 h4 {
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 650;
   line-height: 1.25rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 h5 {
+  font-family: 'cmu_upright', 'chinese';
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 550;
   line-height: 1.25rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 h6 {
+  font-family: 'cmu_upright', 'chinese';
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.25rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 p {
-  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
-  font-size: 1rem;
-  font-weight: 400;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 350;
   line-height: 1.5rem;
   color: #1e131d;
 }
 strong {
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 650;
   line-height: 1.5rem;
   color: #1e131d;
 }
 em {
-  font-size: 1rem;
-  font-weight: 400;
-  font-style: italic;
+  font-family: 'cmu_italic', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 350;
   line-height: 1.5rem;
   color: #1e131d;
 }
 del {
-  font-size: 1rem;
-  font-weight: 400;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 350;
   line-height: 1.5rem;
   text-decoration: line-through;
   color: #1e131d;
@@ -839,9 +873,9 @@ blockquote blockquote {
   margin-bottom: 0;
 }
 .post-content li {
-  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
-  font-size: 1rem;
-  font-weight: 400;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 350;
   line-height: 1.5rem;
   color: #1e131d;
   margin-top: 0.5rem;
@@ -875,8 +909,9 @@ blockquote blockquote {
 }
 dl dt {
   padding: 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: 'cmu_regular', 'chinese';
+  font-size: 1.125rem;
+  font-weight: 650;
   line-height: 1.5rem;
   color: #1e131d;
 }
@@ -896,14 +931,16 @@ dl dd {
 }
 .post-head .post-info .post-title {
   margin-bottom: 0.75rem;
-  font-size: 1.875rem;
-  font-weight: 700;
+  font-family: 'cmu_upright', 'chinese';
+  font-size: 2rem;
+  font-weight: 650;
   line-height: 2.25rem;
-  color: #1e131d;
+  color: #be3d5b;
 }
 .post-head .post-info .post-date {
+  font-family: 'cmu_upright';
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 350;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -929,8 +966,9 @@ dl dd {
   margin-top: 0.75rem;
   display: flex;
   flex-wrap: wrap;
+  font-family: 'cmu_upright';
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -1020,10 +1058,10 @@ th {
   padding: 0.25rem;
 }
 th {
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: 'wght' 650;
 }
 td {
-  font-variation-settings: 'wght' 500;
+  font-variation-settings: 'wght' 450;
 }
 table,
 tboby,
@@ -1252,8 +1290,9 @@ hr {
   color: #1e131d;
 }
 .post-tag {
+  font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1rem;
   border: 2px solid #be3d5b;
   margin-right: 0.25rem;

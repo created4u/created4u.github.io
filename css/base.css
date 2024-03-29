@@ -41,3 +41,19 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
+@font-face {
+  font-family: 'cmu_regular';
+  src: url("../fonts/cmu/cmunrm.ttf");
+}
+@font-face {
+  font-family: 'cmu_italic';
+  src: url("../fonts/cmu/cmunti.ttf");
+}
+@font-face {
+  font-family: 'cmu_upright';
+  src: url("../fonts/cmu/cmunui.ttf");
+}
+@font-face {
+  font-family: 'chinese';
+  src: url("../fonts/Mingchao.ttf");
+}
