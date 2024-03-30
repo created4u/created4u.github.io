@@ -2,6 +2,7 @@ div {
   display: block;
   padding: 0;
   margin: 0;
+  font-smooth: always;
 }
 ul {
   list-style: none;
@@ -34,6 +35,15 @@ input[type=search]::-ms-reveal {
   width: 0;
   height: 0;
 }
+::-webkit-scrollbar {
+  display: none;
+}
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: $color-text-secondary $color-background;
+}
 /* clears the 'X' from Chrome */
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -42,16 +52,20 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 @font-face {
-  font-family: 'cmu_regular';
+  font-family: 'cmu-regular';
   src: url("../fonts/cmu/cmunrm.ttf");
 }
 @font-face {
-  font-family: 'cmu_italic';
-  src: url("../fonts/cmu/cmunti.ttf");
+  font-family: 'cmu-italic';
+  src: url("../fonts/cmu/cmunui.ttf");
 }
 @font-face {
-  font-family: 'cmu_upright';
-  src: url("../fonts/cmu/cmunui.ttf");
+  font-family: 'cmu-headings';
+  src: url("../fonts/cmu/cmunorm.ttf");
+}
+@font-face {
+  font-family: 'cmu-mono';
+  src: url("../fonts/cmu/cmuntt.ttf");
 }
 @font-face {
   font-family: 'chinese';

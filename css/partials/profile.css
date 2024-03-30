@@ -17,17 +17,18 @@
   margin-bottom: $margin-l-1;
 }
 .profile .profile-content .profile-title {
-  line-height: $line-height-heading-h1;
+  font-family: 'cmu-mono';
+  line-height: $line-height-profile-title;
   color: $color-text-secondary;
-  margin-bottom: 20px;
-  font-weight: 800;
-  font-size: 44px;
+  margin-bottom: $margin-l-0;
+  font-weight: $font-weight-profile-title;
+  font-size: $font-size-profile-title;
 }
 .profile .profile-content .profile-body {
   line-height: $line-height-body;
   color: $color-text-primary;
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: $font-weight-profile-body;
+  font-size: $font-size-profile-body;
 }
 .profile .profile-content .profile-link {
   margin-top: 0;

@@ -258,6 +258,7 @@ div {
   display: block;
   padding: 0;
   margin: 0;
+  font-smooth: always;
 }
 ul {
   list-style: none;
@@ -277,9 +278,9 @@ input {
   border: none;
 }
 body {
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.5rem;
   color: #1e131d;
   background-color: #fbf2e3;
@@ -294,6 +295,13 @@ input[type=search]::-ms-reveal {
   width: 0;
   height: 0;
 }
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  scrollbar-width: none;
+  scrollbar-color: #be3d5b #fbf2e3;
+}
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
@@ -301,16 +309,20 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 @font-face {
-  font-family: 'cmu_regular';
+  font-family: 'cmu-regular';
   src: url("../fonts/cmu/cmunrm.ttf");
 }
 @font-face {
-  font-family: 'cmu_italic';
-  src: url("../fonts/cmu/cmunti.ttf");
+  font-family: 'cmu-italic';
+  src: url("../fonts/cmu/cmunui.ttf");
 }
 @font-face {
-  font-family: 'cmu_upright';
-  src: url("../fonts/cmu/cmunui.ttf");
+  font-family: 'cmu-headings';
+  src: url("../fonts/cmu/cmunorm.ttf");
+}
+@font-face {
+  font-family: 'cmu-mono';
+  src: url("../fonts/cmu/cmuntt.ttf");
 }
 @font-face {
   font-family: 'chinese';
@@ -320,7 +332,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border: 3px solid #1e131d;
   font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 0.875rem;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -418,7 +430,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border: 3px #1e131d solid;
   font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 0.75rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -455,20 +467,20 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .post-list-item .post-title {
   flex-grow: 1;
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.5rem;
   color: #1e131d;
-  font-variation-settings: 'wght' 450;
+  font-variation-settings: 'wght' 500;
 }
 .post-list-item .post-date {
   margin-left: 1.5rem;
   min-width: 8rem;
   text-align: right;
-  font-family: 'cmu_upright';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 0.875rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.25rem;
   color: #1e131d;
   line-height: 1.5rem;
@@ -506,16 +518,16 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .post-gallery-item .post-info .post-title {
   margin-bottom: 0.75rem;
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 2rem;
   font-weight: 650;
   line-height: 2.25rem;
   color: #be3d5b;
 }
 .post-gallery-item .post-info .post-date {
-  font-family: 'cmu_upright';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 0.875rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -551,9 +563,9 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .pagination {
   margin-top: 0.75rem;
-  font-family: 'cmu_upright';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 0.875rem;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.25rem;
   color: #1e131d;
   display: flex;
@@ -610,23 +622,24 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-bottom: 2rem;
 }
 .profile .profile-content .profile-title {
-  line-height: 2.25rem;
+  font-family: 'cmu-mono';
+  line-height: 3.125rem;
   color: #be3d5b;
-  margin-bottom: 20px;
-  font-weight: 800;
-  font-size: 44px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 3.125rem;
 }
 .profile .profile-content .profile-body {
   line-height: 1.5rem;
   color: #1e131d;
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 1rem;
 }
 .profile .profile-content .profile-link {
   margin-top: 0;
   margin-bottom: 0.75rem;
   font-size: 0.875rem;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -686,7 +699,7 @@ input[type="search"]::-webkit-search-results-decoration {
   color: #be3d5b;
 }
 .search-result-container .search-result-title {
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 1.125rem;
   font-weight: 650;
   line-height: 1.25rem;
@@ -710,9 +723,9 @@ input[type="search"]::-webkit-search-results-decoration {
   padding-top: 1rem;
 }
 .search-result-container .search-result {
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.5rem;
   color: #1e131d;
   color: #1e131d;
@@ -735,7 +748,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .search-header .search-input-container .search-input {
   width: 100%;
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 1.25rem;
   font-weight: 650;
   line-height: 1.5rem;
@@ -771,72 +784,72 @@ h6 {
   margin-bottom: 0.75rem;
 }
 h1 {
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 2rem;
   font-weight: 650;
   line-height: 2.25rem;
   color: #be3d5b;
 }
 h2 {
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 1.75rem;
   font-weight: 650;
   line-height: 2rem;
   color: #be3d5b;
 }
 h3 {
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 1.25rem;
   font-weight: 650;
   line-height: 1.5rem;
   color: #be3d5b;
 }
 h4 {
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 1.125rem;
   font-weight: 650;
   line-height: 1.25rem;
   color: #be3d5b;
 }
 h5 {
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 1rem;
   font-weight: 550;
   line-height: 1.25rem;
   color: #be3d5b;
 }
 h6 {
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 1rem;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.25rem;
   color: #be3d5b;
 }
 p {
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.5rem;
   color: #1e131d;
 }
 strong {
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
   font-weight: 650;
   line-height: 1.5rem;
   color: #1e131d;
 }
 em {
-  font-family: 'cmu_italic', 'chinese';
-  font-size: 1.125rem;
-  font-weight: 350;
+  font-family: 'cmu-italic', 'chinese';
+  font-size: 0.75rem;
+  font-weight: 400;
   line-height: 1.5rem;
   color: #1e131d;
 }
 del {
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.5rem;
   text-decoration: line-through;
   color: #1e131d;
@@ -873,9 +886,9 @@ blockquote blockquote {
   margin-bottom: 0;
 }
 .post-content li {
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.5rem;
   color: #1e131d;
   margin-top: 0.5rem;
@@ -909,7 +922,7 @@ blockquote blockquote {
 }
 dl dt {
   padding: 0.5rem 0;
-  font-family: 'cmu_regular', 'chinese';
+  font-family: 'cmu-regular', 'chinese';
   font-size: 1.125rem;
   font-weight: 650;
   line-height: 1.5rem;
@@ -931,16 +944,16 @@ dl dd {
 }
 .post-head .post-info .post-title {
   margin-bottom: 0.75rem;
-  font-family: 'cmu_upright', 'chinese';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 2rem;
   font-weight: 650;
   line-height: 2.25rem;
   color: #be3d5b;
 }
 .post-head .post-info .post-date {
-  font-family: 'cmu_upright';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 0.875rem;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -966,9 +979,9 @@ dl dd {
   margin-top: 0.75rem;
   display: flex;
   flex-wrap: wrap;
-  font-family: 'cmu_upright';
+  font-family: 'cmu-headings', 'chinese';
   font-size: 0.875rem;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.25rem;
   color: #1e131d;
 }
@@ -1003,13 +1016,13 @@ dl dd {
   color: #1e131d !important;
 }
 code {
-  font-family: 'Roboto Mono', menlo, monospace;
+  font-family: 'cmu-mono', 'chinese';
   font-size: 0.875rem;
   line-height: 1rem;
   color: #be3d5b;
 }
 .code pre span {
-  font-family: 'Roboto Mono', menlo, monospace;
+  font-family: 'cmu-mono', 'chinese';
   font-size: 0.875rem;
   line-height: 1rem;
   color: #1e131d;
@@ -1021,13 +1034,13 @@ code {
   width: 3rem;
 }
 td.gutter {
-  width: 1rem;
+  width: 1.5rem;
   position: -webkit-sticky;
   position: sticky;
   left: 0;
 }
 td.gutter span {
-  font-family: 'Roboto Mono', menlo, monospace;
+  font-family: 'cmu-mono', 'chinese';
   font-size: 0.875rem;
   line-height: 1rem;
   color: #be3d5b;
@@ -1061,7 +1074,7 @@ th {
   font-variation-settings: 'wght' 650;
 }
 td {
-  font-variation-settings: 'wght' 450;
+  font-variation-settings: 'wght' 500;
 }
 table,
 tboby,
@@ -1190,6 +1203,8 @@ ul li.task-list-item>input[type=checkbox]:before {
   top: 3.5rem;
 }
 .post_toc {
+  height: 600px;
+  overflow-y: auto;
   margin-top: 3.5rem;
   font-size: 0.75rem;
   line-height: 1.25rem;
@@ -1207,7 +1222,7 @@ ul li.task-list-item>input[type=checkbox]:before {
   background-size: 100% 6px;
 }
 .back_to_top {
-  padding-top: 100%;
+  padding-top: 3.5rem;
 }
 .back_text {
   float: right;
@@ -1265,7 +1280,7 @@ ul li.task-list-item>input[type=checkbox]:before {
 }
 .h-line-primary {
   background-color: #1e131d;
-  height: 2px;
+  height: 3px;
 }
 .h-line-secondary {
   background-color: #1e131d;
@@ -1292,7 +1307,7 @@ hr {
 .post-tag {
   font-family: 'Inter', 'Noto Sans SC', helvetica, arial;
   font-size: 0.75rem;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1rem;
   border: 2px solid #be3d5b;
   margin-right: 0.25rem;

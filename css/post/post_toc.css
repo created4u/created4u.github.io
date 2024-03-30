@@ -4,6 +4,8 @@
   top: $margin-primary;
 }
 .post_toc {
+  height: 600px;
+  overflow-y: auto;
   margin-top: $margin-primary;
   font-size: $font-size-footer;
   line-height: $line-height-footer;
@@ -21,7 +23,7 @@
   background-size: 100% $line-primary;
 }
 .back_to_top {
-  padding-top: 100%;
+  padding-top: $margin-primary;
 }
 .back_text {
   float: right;
