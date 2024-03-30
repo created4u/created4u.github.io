@@ -8,6 +8,7 @@
 }
 .post-head .post-info .post-title {
   margin-bottom: $margin-m-1;
+  color: $color-text-primary;
 }
 .post-head .post-img {
   margin-top: $margin-l-1;

@@ -61,11 +61,15 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 @font-face {
   font-family: 'cmu-headings';
-  src: url("../fonts/cmu/cmunorm.ttf");
+  src: url("../fonts/cmu/cmuntt.ttf");
+}
+@font-face {
+  font-family: 'cmu-bold';
+  src: url("../fonts/cmu/cmunui.ttf");
 }
 @font-face {
   font-family: 'cmu-mono';
-  src: url("../fonts/cmu/cmuntt.ttf");
+  src: url("../fonts/cmu/cmunbtl.ttf");
 }
 @font-face {
   font-family: 'chinese';
