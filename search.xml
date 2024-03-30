@@ -1,670 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C++ 基础回顾</title>
-    <url>/2023/06/21/CppBasic/</url>
-    <content><![CDATA[
-# 类和面向对象
-
-## 静态成员
-
-如果一个成员变量被声明为 `static`，则该类的所有对象均可以访问该变量。如果一个成员函数被声明为 `static`，则它可以在类的任何实例被定义之前调用。
-
-**静态成员变量必须在类中声明，在类外部定义。**
-
-## 友元
-
-## 派生
-
-### 构造与析构
-
-派生类对象构造时，先调用基类的构造函数，再调用自身的构造函数。
-派生类对象析构时，先调用自身的析构函数，再调用基类的析构函数。
-
-```cpp
-#include <iostream>
-
-struct A {
-    A() {
-        std::cout << "Hello A" << std::endl;
-    }
-    ~A() {
-        std::cout << "Bye A" << std::endl;
-    }
-};
-
-struct B: public A{
-    B() {
-        std::cout << "Hello B" << std::endl;
-    }
-    ~B() {
-        std::cout << "Bye B" << std::endl;
-    }
-};
-
-int main() {
-    A a;
-    B b;
-    return 0;
-}
-```
-
-输出结果为
-
-```
-Hello A
-Hello A
-Hello B
-Bye B
-Bye A
-Bye A
-```
-
-## 多态
-]]></content>
-      <tags>
-        <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL 之容器</title>
-    <url>/2023/06/22/Container-STL/</url>
-    <content><![CDATA[
-# vector
-
-## 初始化
-
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main()
-{
-    vector<int> vec;
-    for (int i = 0; i < 10; i++)
-        vec.push_back(i);     // 添加元素初始化
-    vector<int>::iterator it; // 迭代器
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " "; // 输出
-    cout << endl;
-    vec.pop_back(); // 弹出最后一个元素
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " "; // 输出
-    return 0;
-}
-
-// 0 1 2 3 4 5 6 7 8 9
-// 0 1 2 3 4 5 6 7 8
-```
-
-## 大小、容量和遍历
-
-```cpp
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main()
-{
-    vector<int> vec;
-    for (int i = 0; i < 10; i++)
-        vec.push_back(i); // 添加元素初始化
-    if (vec.empty())
-    {
-        cout << "Vec is empty.\n";
-    }
-    else
-    {
-        cout << "Vec is not empty.\n";
-    }
-
-    vector<int>::iterator it; // 迭代器
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " "; // 遍历方式 1
-    cout << endl;
-
-    int sizeOfVec = vec.size();
-    for (int i = 0; i < sizeOfVec; i++)
-        cout << vec.at(i) << " ";
-    cout << endl; // 遍历方式 2
-
-
-
-    cout << "The size of vec: " << vec.size() << ";" << endl;
-    cout << "The capacity of vec: " << vec.capacity() << ";" << endl;
-    vec.resize(30);
-    cout << "The size of vec: " << vec.size() << ";" << endl;
-    cout << "The capacity of vec: " << vec.capacity() << ";" << endl;
-    return 0;
-}
-
-// Vec is not empty.
-// 0 1 2 3 4 5 6 7 8 9
-// 0 1 2 3 4 5 6 7 8 9
-// The size of vec: 10;
-// The capacity of vec: 16;
-// The size of vec: 30;
-// The capacity of vec: 32;
-```
-
-## 使用算法和自定义函数
-
-```cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-struct Student
-{
-    int id;
-    int score;
-
-    Student(int id, int score) : id(id), score(score) {}
-};
-
-void initialize(vector<Student> &vec, int num)
-{
-    while (num > 0)
-    {
-        Student temp(0, 0);
-        temp.id = num;
-        int i = rand() % 100;
-        temp.score = (i >= 80) ? i : i % 40 + 60;
-        vec.push_back(temp);
-        num--;
-    }
-}
-
-void print(Student &student)
-{
-    cout << "ID: " << student.id << ", Score: " << student.score << ";\n";
-}
-
-bool greater90(Student &student)
-{
-    if (student.score >= 90)
-        return true;
-    else
-        return false;
-}
-
-int main()
-{
-    vector<Student> vec;
-    initialize(vec, 10);
-    for_each(vec.begin(), vec.end(), print); // 必须包含头文件 <algorithm>
-    cout << "And there are " << count_if(vec.begin(), vec.end(), greater90) << " students' score over 90.\n";
-    return 0;
-}
-
-// ID: 10, Score: 67;
-// ID: 9, Score: 69;
-// ID: 8, Score: 93;
-// ID: 7, Score: 78;
-// ID: 6, Score: 90;
-// ID: 5, Score: 92;
-// ID: 4, Score: 64;
-// ID: 3, Score: 98;
-// ID: 2, Score: 83;
-// ID: 1, Score: 69;
-// And there are 4 students' score over 90.
-```
-
-## 基本操作
-
-```cpp
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-bool greater6(const int &num)
-{
-    return num > 6;
-}
-
-int main()
-{
-
-    // 定义
-    vector<int> vec;
-
-    // 初始化
-    for (int i = 1; i < 10; i++)
-        vec.push_back(rand() % 100);
-
-    // 访问
-    vector<int>::iterator it;
-    cout << "This is vec: ";
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    cout << vec.at(1) << endl;    // 访问元素
-    cout << vec[3] << endl;       // 访问元素
-    vec.at(vec.size() - 1) = 100; // 访问元素并更改
-    cout << vec.front() << endl;  // 访问第一个元素
-    cout << vec.back() << endl;   // 访问最后一个元素
-    cout << *vec.begin() << " " << *vec.end() << " " << *vec.rbegin() << " " << *vec.rend() << endl;
-    // 注意 find 的返回值
-    cout << "100 is at the position of " << find(vec.begin(), vec.end(), 100) - vec.begin() << ".\n";
-    cout << "No. " << find_if(vec.begin(), vec.end(), greater6) - vec.begin() << " element in vec is greater than 6.\n";
-
-    // 排序
-    cout << "Sort vec: ";
-    std::sort(vec.begin(), vec.end());
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-
-    // 插入
-    vec.push_back(29);           // 插入到最后
-    vec.insert(vec.begin(), 99); // 插入到最前面
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    vec.insert(vec.begin(), 2, 888); // 插入 2 个 888 到最前面，注意不是 888 个 2
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-
-    // 删除
-    vec.pop_back(); // 弹出最后一个元素
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    vec.erase(vec.begin()); // 删除第一个元素
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    vec.erase(vec.begin() + 3); // 删除第 4 个元素
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    vec.clear(); // 清空
-    cout << "Clear: ";
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-
-    // 交换
-    vector<int> vec_swap;
-    vec_swap.push_back(1);
-    vec.swap(vec_swap);
-    cout << "After swap: ";
-    for (it = vec.begin(); it != vec.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-
-    return 0;
-}
-
-// This is vec: 7 49 73 58 30 72 44 78 23
-// 49
-// 58
-// 7
-// 100
-// 7 0 100 0
-// 100 is at the position of 8.
-// No. 0 element in vec is greater than 6.
-// Sort vec: 7 30 44 49 58 72 73 78 100
-// 99 7 30 44 49 58 72 73 78 100 29
-// 888 888 99 7 30 44 49 58 72 73 78 100 29
-// 888 888 99 7 30 44 49 58 72 73 78 100
-// 888 99 7 30 44 49 58 72 73 78 100
-// 888 99 7 44 49 58 72 73 78 100
-// Clear:
-// After swap: 1
-```
-
-# list
-
-## 定义
-
-```cpp
-#include <iostream>
-#include <list>
-#include <algorithm>
-
-using namespace std;
-
-int main()
-{
-
-    // 定义
-    list<int> li;
-    list<int> li1(4);                        // 定义并确定大小
-    list<int> li2(6, 7);                     // 定义并初始化 6 个 7
-    list<int> li3(li2);                      // 从别的 list 复制
-    list<int> li4(li2.begin(), --li2.end()); // 从别的 list 复制若干元素
-    list<int>::iterator it;
-    cout << "li: ";
-    for (it = li.begin(); it != li.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    cout << "li1: ";
-    for (it = li1.begin(); it != li1.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    cout << "li2: ";
-    for (it = li2.begin(); it != li2.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    cout << "li3: ";
-    for (it = li3.begin(); it != li3.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    cout << "li4: ";
-    for (it = li4.begin(); it != li4.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    return 0;
-}
-
-// li:
-// li1: 0 0 0 0
-// li2: 7 7 7 7 7 7
-// li3: 7 7 7 7 7 7
-// li4: 7 7 7 7 7
-```
-
-## 基本操作
-
-```cpp
-#include <iostream>
-#include <list>
-#include <algorithm>
-
-using namespace std;
-
-int main()
-{
-
-    list<int> li(6, 9);
-
-    list<int>::iterator it;
-    cout << "Original: ";
-    for (it = li.begin(); it != li.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-
-    // 添加和删除
-    li.push_front(1);
-    li.push_back(666);
-    cout << "Add: ";
-    for (it = li.begin(); it != li.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    li.pop_back();
-    li.pop_front();
-    cout << "Remove: ";
-    for (it = li.begin(); it != li.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-
-    // 大小和容量
-    cout << "The size of li: " << li.size() << endl;
-    cout << "The max size of li: " << li.max_size() << endl;
-    li.resize(100);
-    cout << "The size of li (after resize): " << li.size() << endl;
-
-    // front and back
-    li.resize(6);
-    li.push_front(1);
-    li.push_back(1000);
-    cout << "front(): " << li.front() << endl;
-    cout << "back(): " << li.back() << endl;
-
-    // 修改
-    li.reverse(); // 反序
-    cout << "Reverse: ";
-    for (it = li.begin(); it != li.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-    li.assign(4, 888); // 重新赋值
-    cout << "Assign (li): ";
-    for (it = li.begin(); it != li.end(); it++)
-        cout << *it << " ";
-    cout << endl;
-
-    list<double> li2;
-    list<double>::iterator it2;
-    li2.assign(li.begin(), li.end()); // 用别的 lsit 重新赋值
-    cout << "Assign (li2): ";
-    cout.precision(2);
-    for (it2 = li2.begin(); it2 != li2.end(); it2++)
-        cout << std::fixed << *it2 << " ";
-    cout << endl;
-
-    return 0;
-}
-
-// Original: 9 9 9 9 9 9
-// Add: 1 9 9 9 9 9 9 666
-// Remove: 9 9 9 9 9 9
-// The size of li: 6
-// The max size of li: 768614336404564650
-// The size of li (after resize): 100
-// front(): 1
-// back(): 1000
-// Reverse: 1000 9 9 9 9 9 9 1
-// Assign (li): 888 888 888 888
-// Assign (li2): 888.00 888.00 888.00 888.00
-```
-
-```cpp
-#include <iostream>
-#include <list>
-#include <algorithm>
-
-using namespace std;
-
-void printOne(const int &num)
-{
-    cout << num << " ";
-}
-
-void printAll(string name, list<int> &li)
-{
-    cout << name << ": ";
-    for_each(li.begin(), li.end(), printOne);
-    cout << endl;
-}
-
-int main()
-{
-
-    list<int> li;
-    list<int> li2;
-
-    for (int i = 0; i < 10; i++)
-    {
-        li.push_back(rand() % 100);
-        li2.push_back(rand() % 100);
-    }
-    printAll("Original(li)", li);
-    printAll("Original(li2)", li2);
-
-    // insert()
-    li.insert(li.begin(), 999);
-    li.insert(li.end(), 3, 777);
-    printAll("Insert(li)", li);
-    list<int>::iterator it = li2.begin();
-    it++;
-    li2.insert(it, 3, 444);
-    printAll("Insert(li2)", li2);
-    li.insert(li.begin(), li2.begin(), li2.end());
-    printAll("Insert(li)", li);
-
-    // erase()
-    li.erase(li.begin());
-    printAll("Erase(li)", li);
-    li.erase(li.begin(), li.end());
-    printAll("Erase(li)", li);
-
-    // clear()
-    li2.clear();
-    printAll("Clear(li2)", li2);
-
-    return 0;
-}
-
-// Original(li): 7 73 30 44 23 40 92 87 27 40
-// Original(li2): 49 58 72 78 9 65 42 3 29 12
-// Insert(li): 999 7 73 30 44 23 40 92 87 27 40 777 777 777
-// Insert(li2): 49 444 444 444 58 72 78 9 65 42 3 29 12
-// Insert(li): 49 444 444 444 58 72 78 9 65 42 3 29 12 999 7 73 30 44 23 40 92 87 27 40 777 777 777
-// Erase(li): 444 444 444 58 72 78 9 65 42 3 29 12 999 7 73 30 44 23 40 92 87 27 40 777 777 777
-// Erase(li):
-// Clear(li2):
-```
-
-```cpp
-#include <iostream>
-#include <list>
-#include <algorithm>
-
-using namespace std;
-
-void print(int &li) {
-    cout << li << " ";
-}
-
-int main() {
-    list<int> li1, li2;
-    for (int i = 10; i > 0; i--) {
-        li1.push_back(rand() % 100);
-        li2.push_back(rand() % 100);
-    }
-    //list<int>::iterator it;
-    cout << "li1: " << endl;
-    for_each(li1.begin(), li1.end(), print);
-    cout << endl;
-    cout << "li2: " << endl;
-    for_each(li2.begin(), li2.end(), print);
-    cout << endl;
-    cout << "li1, sort(), default: " << endl;
-    li1.sort();
-    for_each(li1.begin(), li1.end(), print);
-    cout << endl;
-    cout << "li2, sort(), decrease: " << endl;
-    li2.sort(greater<int>());//降序排列
-    for_each(li2.begin(), li2.end(), print);
-    cout << endl;
-    cout << "merge li1 and li2: " << endl;
-    li1.merge(li2);
-    for_each(li1.begin(), li1.end(), print);
-    cout << endl;
-    cout << "after merge, li2: " << endl;
-    for_each(li2.begin(), li2.end(), print);
-    cout << "li2, add elements: " << endl;
-    li2.push_back(999);
-    li2.push_front(100);
-    for_each(li2.begin(), li2.end(), print);
-    cout << endl;
-    cout << "li2, remove(): " << endl;
-    li2.remove(999);
-    for_each(li2.begin(), li2.end(), print);
-    //li2.remove_if()
-    return 0;
-}
-```
-
-# deque
-
-# set
-
-# multiset
-
-# map
-
-# multimap
-]]></content>
-      <tags>
-        <tag>Cpp</tag>
-        <tag>STL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基本数据结构 template</title>
-    <url>/2023/06/22/Data-Structure/</url>
-    <content><![CDATA[
-# 线性表
-
-## 顺序存储
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-#define MAX_SIZE 66
-
-template<class T>
-struct SqList {
-    T data[MAX_SIZE];
-    int length;
-};
-
-// 插入
-template<class T>
-bool ListInsert(SqList<T> &L, int i, T e) {
-    // i 取值为 1 <= i <= length + 1
-    if (i < 1 || i > L.length + 1) {
-        return false;
-    }
-    if (i >= MAX_SIZE)
-        return false;
-    for (int j = L.length; j >= i; j--)
-        L.data[j] = L.data[j - 1];
-    L.data[i - 1] = e;
-    L.length++;
-    return true;
-}
-
-// 删除
-template<class T>
-bool ListDelete(SqList<T> &L, int i, T &e) {
-    if (i < 1 || i > L.length)
-        return false;
-    e = L.data[i - 1];
-    for (int j = i; j < L.length; j++)
-        L.data[j - 1] = L.data[j];
-    L.length--;
-    return true;
-}
-
-// 查找
-template<class T>
-int LocateElem(const SqList<T> &L, T &e) {
-    for (int i = 0; i < L.length; i++)
-        if (L.data[i] == e)
-            return i + 1;
-    return 0;
-}
-
-// 遍历
-template<class T>
-void Print(const SqList<T> &L) {
-    cout << "This is SqList: ";
-    for (int i = 0; i < L.length; i++)
-        cout << L.data[i] << " ";
-    cout << endl;
-}
-```
-
-## 链式存储
-
-]]></content>
-      <tags>
-        <tag>Cpp</tag>
-        <tag>Data-Structure</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RouteNet-Fermi, Network Modeling with Graph Neural Networks</title>
     <url>/2024/03/14/RouteNet-Fermi/</url>
     <content><![CDATA[**Authors**
@@ -823,328 +159,6 @@ Hence, we conclude that feeding the MPNN directly with the network topology grap
       <tags>
         <tag>GNN</tag>
         <tag>Network-Modeling</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STL 之字符串</title>
-    <url>/2023/06/21/String-STL/</url>
-    <content><![CDATA[
-# string
-
-## 常用操作
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s1("Milo_Song_2120");
-    char ch[] = "Hello_Cpp";
-    string s2(s1);                       // 复制字符串
-    string s3(s1, 2, 5);                 // 从 s1[2] 开始，复制 5 个字符
-    string s4(ch, 4);                    // 复制 ch 的前 4 个字符
-    string s5(9, '6');                   // 9 个字符 '6'
-    string s6(s1.begin(), s1.end());     // 复制整个字符串
-    string s7(s1.begin(), s1.end() - 1); // 复制除最后一个字符以外的所有字符
-    cout << "s1 = " << s1 << ";" << endl;
-    cout << "s2 = " << s2 << ";" << endl;
-    cout << "s3 = " << s3 << ";" << endl;
-    cout << "s4 = " << s4 << ";" << endl;
-    cout << "s5 = " << s5 << ";" << endl;
-    cout << "s6 = " << s6 << ";" << endl;
-    cout << "s7 = " << s7 << ";" << endl;
-    return 0;
-}
-```
-
-输出结果为
-
-```
-s1 = Milo_Song_2120;
-s2 = Milo_Song_2120;
-s3 = lo_So;
-s4 = Hell;
-s5 = 666666666;
-s6 = Milo_Song_2120;
-s7 = Milo_Song_212;
-```
-
-## string 的大小和容量
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s("hello");
-    cout << "Size of s: " << s.size() << endl;
-    cout << "Length of s: " << s.length() << endl;
-    cout << "Max size of s: " << s.max_size() << endl;
-    cout << "Capacity of s: " << s.capacity() << endl;
-    s.reserve(66);
-    cout << "Capacity of s: " << s.capacity() << endl;
-    return 0;
-}
-```
-
-输出结果为
-
-```
-Size of s: 5
-Length of s: 5
-Max size of s: 9223372036854775791
-Capacity of s: 22
-Capacity of s: 79
-```
-
-⚠️ `s.reserve()` 和 `s.capacity()` 这两个函数没搞太懂。
-
-## string 读取
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s("Hello_Song");
-    cout << s.at(4) << endl;
-    cout << s.at(s.length() - 1) << endl;
-    cout << s[s.length()] << endl;
-    cout << s[s.length() - 1] << endl;
-    return 0;
-}
-```
-
-输出结果为
-
-```
-o
-g
- 
-g
-```
-
-## string 比较
-
-`compare()` 函数
-
-- `string1.compare(pos, n, string2)`
-- 比较结果相同，返回 0 值
-- 比较结果不同
-  - `string1` 的字典序先于 `string2`，返回负值
-  - 否则，返回正值
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s1("abcdef");
-    string s2("hijkl");
-    string s3("abcdef");
-    string s4("abcd");
-    cout << s1.compare(s2) << endl;
-    cout << s1.compare(s3) << endl;
-    cout << s1.compare(s4) << endl;
-    cout << s1.compare(0, 4, s4);   //s1 -> abcd 与 s4 比较
-    return 0;
-}
-```
-
-输出结果为
-
-```
--7
-0
-1
-0
-```
-
-当然也可以直接使用比较运算符来比较。
-
-## string 修改和替换
-
-`assign()` 和 `swap()` 函数可以正常使用，但是 `erase()` 函数出现问题。
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s1("ABCDEFG");
-    string s2, s3, s4, s5;
-    s2.assign(s1);
-    cout << s2 << endl;
-    s3.assign(s1, 1, 3);
-    cout << s3 << endl;
-    s4.assign(6, 'X');
-    cout << s4 << endl;
-    s5.swap(s1);
-    cout << s5 << endl;
-    return 0;
-}
-
-// ABCDEFG
-// BCD
-// XXXXXX
-// ABCDEFG
-```
-
-`insert()` 函数的使用如下。
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s1("ABCDEFG");
-    string s2("_Bonjour_");
-    s1.insert(1, s2); // 在 s1 的位置 1 插入 s2
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.insert(2, s2, 3); // 在 s1 的位置 2 插入 s2 位置 3 之后的所有字符
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.insert(2, s2, 3, 3);
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.insert(0, 5, '6');
-    cout << s1 << endl;
-    return 0;
-}
-
-// A_Bonjour_BCDEFG
-// ABnjour_CDEFG
-// ABnjoCDEFG
-// 66666ABCDEFG
-```
-
-`append()` 函数的使用如下。
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s1("ABCDEFG");
-    string s2("123456");
-    s1.append(s2);
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.append(s2, 3);
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.append(s2, 3, 2);
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.append(6, '6');
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.append(s2.begin(), s2.end());
-    cout << s1 << endl;
-    return 0;
-}
-
-// ABCDEFG_Bonjour_
-// ABCDEFGnjour_
-// ABCDEFGnj
-// ABCDEFG666666
-// ABCDEFG_Bonjour_
-```
-
-`replace()` 函数的使用如下。
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s1("ABCDEFG");
-    string s2("1234567");
-    s1.replace(2, 3, s2); // 使用 s2 替代自 s1 位置 2 开始的 3 个字符
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.replace(2, 3, s2, 1, 4); // 使用 s2 的子串 '234' 替代自 s1 位置 2 开始的 3 个字符
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.replace(2, 3, 6, '6');
-    cout << s1 << endl;
-    s1 = "ABCDEFG";
-    s1.replace(s1.begin(), s1.end(), s2);
-    cout << s1 << endl;
-    return 0;
-}
-
-// AB1234567FG
-// AB2345FG
-// AB666666FG
-// 1234567
-```
-
-## string 输入
-
-`getline()` 函数可以输入整行。
-
-```cpp
-string s1;
-getline(cin, s1);
-// 下面这个与上面的相同作用
-getline(cin, s1, '\n');
-// 下面这个以空格作为结束标志，例如输入 'ssss sss'，实际只能得到 'ssss'
-getline(cin, s1, ' ');
-```
-
-## string 查找
-
-```cpp
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    string s1("Hello, nice to meet you.");
-    string alphabet("abcdefghijklmnopqrstuvwxyz");
-    cout << s1.find('o') << endl;
-    cout << s1.find('o', 9) << endl; // 从位置 9 开始 find
-    cout << s1.find("nice") << endl;
-    cout << s1.find("nihao", 0, 2) << endl; // 在 s1（从位置 0 开始）中查找 "nihao" 的前两个字符
-    cout << s1.find_first_of(alphabet) << endl;
-    cout << s1.find_last_of(alphabet) << endl;
-    cout << s1.find_first_not_of(alphabet) << endl;
-    cout << s1.find_last_not_of(alphabet) << endl;
-    return 0;
-}
-
-// 4
-// 13
-// 7
-// 7
-// 1
-// 22
-// 0
-// 23
-```
-]]></content>
-      <tags>
-        <tag>Cpp</tag>
-        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
@@ -2006,6 +1020,992 @@ $$C=2W\log_2L$$
       <tags>
         <tag>粤语</tag>
         <tag>语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 基础回顾</title>
+    <url>/2023/06/21/cpp-basic/</url>
+    <content><![CDATA[
+# 类和面向对象
+
+## 静态成员
+
+如果一个成员变量被声明为 `static`，则该类的所有对象均可以访问该变量。如果一个成员函数被声明为 `static`，则它可以在类的任何实例被定义之前调用。
+
+**静态成员变量必须在类中声明，在类外部定义。**
+
+## 友元
+
+## 派生
+
+### 构造与析构
+
+派生类对象构造时，先调用基类的构造函数，再调用自身的构造函数。
+派生类对象析构时，先调用自身的析构函数，再调用基类的析构函数。
+
+```cpp
+#include <iostream>
+
+struct A {
+    A() {
+        std::cout << "Hello A" << std::endl;
+    }
+    ~A() {
+        std::cout << "Bye A" << std::endl;
+    }
+};
+
+struct B: public A{
+    B() {
+        std::cout << "Hello B" << std::endl;
+    }
+    ~B() {
+        std::cout << "Bye B" << std::endl;
+    }
+};
+
+int main() {
+    A a;
+    B b;
+    return 0;
+}
+```
+
+输出结果为
+
+```
+Hello A
+Hello A
+Hello B
+Bye B
+Bye A
+Bye A
+```
+
+## 多态
+]]></content>
+      <tags>
+        <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基本数据结构 template</title>
+    <url>/2023/06/22/data-structure/</url>
+    <content><![CDATA[
+# 线性表
+
+## 顺序存储
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+#define MAX_SIZE 66
+
+template<class T>
+struct SqList {
+    T data[MAX_SIZE];
+    int length;
+};
+
+// 插入
+template<class T>
+bool ListInsert(SqList<T> &L, int i, T e) {
+    // i 取值为 1 <= i <= length + 1
+    if (i < 1 || i > L.length + 1) {
+        return false;
+    }
+    if (i >= MAX_SIZE)
+        return false;
+    for (int j = L.length; j >= i; j--)
+        L.data[j] = L.data[j - 1];
+    L.data[i - 1] = e;
+    L.length++;
+    return true;
+}
+
+// 删除
+template<class T>
+bool ListDelete(SqList<T> &L, int i, T &e) {
+    if (i < 1 || i > L.length)
+        return false;
+    e = L.data[i - 1];
+    for (int j = i; j < L.length; j++)
+        L.data[j - 1] = L.data[j];
+    L.length--;
+    return true;
+}
+
+// 查找
+template<class T>
+int LocateElem(const SqList<T> &L, T &e) {
+    for (int i = 0; i < L.length; i++)
+        if (L.data[i] == e)
+            return i + 1;
+    return 0;
+}
+
+// 遍历
+template<class T>
+void Print(const SqList<T> &L) {
+    cout << "This is SqList: ";
+    for (int i = 0; i < L.length; i++)
+        cout << L.data[i] << " ";
+    cout << endl;
+}
+```
+
+## 链式存储
+
+]]></content>
+      <tags>
+        <tag>Cpp</tag>
+        <tag>Data-Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL 之容器</title>
+    <url>/2023/06/22/container-STL/</url>
+    <content><![CDATA[
+# vector
+
+## 初始化
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector<int> vec;
+    for (int i = 0; i < 10; i++)
+        vec.push_back(i);     // 添加元素初始化
+    vector<int>::iterator it; // 迭代器
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " "; // 输出
+    cout << endl;
+    vec.pop_back(); // 弹出最后一个元素
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " "; // 输出
+    return 0;
+}
+
+// 0 1 2 3 4 5 6 7 8 9
+// 0 1 2 3 4 5 6 7 8
+```
+
+## 大小、容量和遍历
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector<int> vec;
+    for (int i = 0; i < 10; i++)
+        vec.push_back(i); // 添加元素初始化
+    if (vec.empty())
+    {
+        cout << "Vec is empty.\n";
+    }
+    else
+    {
+        cout << "Vec is not empty.\n";
+    }
+
+    vector<int>::iterator it; // 迭代器
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " "; // 遍历方式 1
+    cout << endl;
+
+    int sizeOfVec = vec.size();
+    for (int i = 0; i < sizeOfVec; i++)
+        cout << vec.at(i) << " ";
+    cout << endl; // 遍历方式 2
+
+
+
+    cout << "The size of vec: " << vec.size() << ";" << endl;
+    cout << "The capacity of vec: " << vec.capacity() << ";" << endl;
+    vec.resize(30);
+    cout << "The size of vec: " << vec.size() << ";" << endl;
+    cout << "The capacity of vec: " << vec.capacity() << ";" << endl;
+    return 0;
+}
+
+// Vec is not empty.
+// 0 1 2 3 4 5 6 7 8 9
+// 0 1 2 3 4 5 6 7 8 9
+// The size of vec: 10;
+// The capacity of vec: 16;
+// The size of vec: 30;
+// The capacity of vec: 32;
+```
+
+## 使用算法和自定义函数
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Student
+{
+    int id;
+    int score;
+
+    Student(int id, int score) : id(id), score(score) {}
+};
+
+void initialize(vector<Student> &vec, int num)
+{
+    while (num > 0)
+    {
+        Student temp(0, 0);
+        temp.id = num;
+        int i = rand() % 100;
+        temp.score = (i >= 80) ? i : i % 40 + 60;
+        vec.push_back(temp);
+        num--;
+    }
+}
+
+void print(Student &student)
+{
+    cout << "ID: " << student.id << ", Score: " << student.score << ";\n";
+}
+
+bool greater90(Student &student)
+{
+    if (student.score >= 90)
+        return true;
+    else
+        return false;
+}
+
+int main()
+{
+    vector<Student> vec;
+    initialize(vec, 10);
+    for_each(vec.begin(), vec.end(), print); // 必须包含头文件 <algorithm>
+    cout << "And there are " << count_if(vec.begin(), vec.end(), greater90) << " students' score over 90.\n";
+    return 0;
+}
+
+// ID: 10, Score: 67;
+// ID: 9, Score: 69;
+// ID: 8, Score: 93;
+// ID: 7, Score: 78;
+// ID: 6, Score: 90;
+// ID: 5, Score: 92;
+// ID: 4, Score: 64;
+// ID: 3, Score: 98;
+// ID: 2, Score: 83;
+// ID: 1, Score: 69;
+// And there are 4 students' score over 90.
+```
+
+## 基本操作
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool greater6(const int &num)
+{
+    return num > 6;
+}
+
+int main()
+{
+
+    // 定义
+    vector<int> vec;
+
+    // 初始化
+    for (int i = 1; i < 10; i++)
+        vec.push_back(rand() % 100);
+
+    // 访问
+    vector<int>::iterator it;
+    cout << "This is vec: ";
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    cout << vec.at(1) << endl;    // 访问元素
+    cout << vec[3] << endl;       // 访问元素
+    vec.at(vec.size() - 1) = 100; // 访问元素并更改
+    cout << vec.front() << endl;  // 访问第一个元素
+    cout << vec.back() << endl;   // 访问最后一个元素
+    cout << *vec.begin() << " " << *vec.end() << " " << *vec.rbegin() << " " << *vec.rend() << endl;
+    // 注意 find 的返回值
+    cout << "100 is at the position of " << find(vec.begin(), vec.end(), 100) - vec.begin() << ".\n";
+    cout << "No. " << find_if(vec.begin(), vec.end(), greater6) - vec.begin() << " element in vec is greater than 6.\n";
+
+    // 排序
+    cout << "Sort vec: ";
+    std::sort(vec.begin(), vec.end());
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+
+    // 插入
+    vec.push_back(29);           // 插入到最后
+    vec.insert(vec.begin(), 99); // 插入到最前面
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    vec.insert(vec.begin(), 2, 888); // 插入 2 个 888 到最前面，注意不是 888 个 2
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+
+    // 删除
+    vec.pop_back(); // 弹出最后一个元素
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    vec.erase(vec.begin()); // 删除第一个元素
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    vec.erase(vec.begin() + 3); // 删除第 4 个元素
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    vec.clear(); // 清空
+    cout << "Clear: ";
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+
+    // 交换
+    vector<int> vec_swap;
+    vec_swap.push_back(1);
+    vec.swap(vec_swap);
+    cout << "After swap: ";
+    for (it = vec.begin(); it != vec.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+
+    return 0;
+}
+
+// This is vec: 7 49 73 58 30 72 44 78 23
+// 49
+// 58
+// 7
+// 100
+// 7 0 100 0
+// 100 is at the position of 8.
+// No. 0 element in vec is greater than 6.
+// Sort vec: 7 30 44 49 58 72 73 78 100
+// 99 7 30 44 49 58 72 73 78 100 29
+// 888 888 99 7 30 44 49 58 72 73 78 100 29
+// 888 888 99 7 30 44 49 58 72 73 78 100
+// 888 99 7 30 44 49 58 72 73 78 100
+// 888 99 7 44 49 58 72 73 78 100
+// Clear:
+// After swap: 1
+```
+
+# list
+
+## 定义
+
+```cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+
+    // 定义
+    list<int> li;
+    list<int> li1(4);                        // 定义并确定大小
+    list<int> li2(6, 7);                     // 定义并初始化 6 个 7
+    list<int> li3(li2);                      // 从别的 list 复制
+    list<int> li4(li2.begin(), --li2.end()); // 从别的 list 复制若干元素
+    list<int>::iterator it;
+    cout << "li: ";
+    for (it = li.begin(); it != li.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    cout << "li1: ";
+    for (it = li1.begin(); it != li1.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    cout << "li2: ";
+    for (it = li2.begin(); it != li2.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    cout << "li3: ";
+    for (it = li3.begin(); it != li3.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    cout << "li4: ";
+    for (it = li4.begin(); it != li4.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    return 0;
+}
+
+// li:
+// li1: 0 0 0 0
+// li2: 7 7 7 7 7 7
+// li3: 7 7 7 7 7 7
+// li4: 7 7 7 7 7
+```
+
+## 基本操作
+
+```cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+
+    list<int> li(6, 9);
+
+    list<int>::iterator it;
+    cout << "Original: ";
+    for (it = li.begin(); it != li.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+
+    // 添加和删除
+    li.push_front(1);
+    li.push_back(666);
+    cout << "Add: ";
+    for (it = li.begin(); it != li.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    li.pop_back();
+    li.pop_front();
+    cout << "Remove: ";
+    for (it = li.begin(); it != li.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+
+    // 大小和容量
+    cout << "The size of li: " << li.size() << endl;
+    cout << "The max size of li: " << li.max_size() << endl;
+    li.resize(100);
+    cout << "The size of li (after resize): " << li.size() << endl;
+
+    // front and back
+    li.resize(6);
+    li.push_front(1);
+    li.push_back(1000);
+    cout << "front(): " << li.front() << endl;
+    cout << "back(): " << li.back() << endl;
+
+    // 修改
+    li.reverse(); // 反序
+    cout << "Reverse: ";
+    for (it = li.begin(); it != li.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+    li.assign(4, 888); // 重新赋值
+    cout << "Assign (li): ";
+    for (it = li.begin(); it != li.end(); it++)
+        cout << *it << " ";
+    cout << endl;
+
+    list<double> li2;
+    list<double>::iterator it2;
+    li2.assign(li.begin(), li.end()); // 用别的 lsit 重新赋值
+    cout << "Assign (li2): ";
+    cout.precision(2);
+    for (it2 = li2.begin(); it2 != li2.end(); it2++)
+        cout << std::fixed << *it2 << " ";
+    cout << endl;
+
+    return 0;
+}
+
+// Original: 9 9 9 9 9 9
+// Add: 1 9 9 9 9 9 9 666
+// Remove: 9 9 9 9 9 9
+// The size of li: 6
+// The max size of li: 768614336404564650
+// The size of li (after resize): 100
+// front(): 1
+// back(): 1000
+// Reverse: 1000 9 9 9 9 9 9 1
+// Assign (li): 888 888 888 888
+// Assign (li2): 888.00 888.00 888.00 888.00
+```
+
+```cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+
+using namespace std;
+
+void printOne(const int &num)
+{
+    cout << num << " ";
+}
+
+void printAll(string name, list<int> &li)
+{
+    cout << name << ": ";
+    for_each(li.begin(), li.end(), printOne);
+    cout << endl;
+}
+
+int main()
+{
+
+    list<int> li;
+    list<int> li2;
+
+    for (int i = 0; i < 10; i++)
+    {
+        li.push_back(rand() % 100);
+        li2.push_back(rand() % 100);
+    }
+    printAll("Original(li)", li);
+    printAll("Original(li2)", li2);
+
+    // insert()
+    li.insert(li.begin(), 999);
+    li.insert(li.end(), 3, 777);
+    printAll("Insert(li)", li);
+    list<int>::iterator it = li2.begin();
+    it++;
+    li2.insert(it, 3, 444);
+    printAll("Insert(li2)", li2);
+    li.insert(li.begin(), li2.begin(), li2.end());
+    printAll("Insert(li)", li);
+
+    // erase()
+    li.erase(li.begin());
+    printAll("Erase(li)", li);
+    li.erase(li.begin(), li.end());
+    printAll("Erase(li)", li);
+
+    // clear()
+    li2.clear();
+    printAll("Clear(li2)", li2);
+
+    return 0;
+}
+
+// Original(li): 7 73 30 44 23 40 92 87 27 40
+// Original(li2): 49 58 72 78 9 65 42 3 29 12
+// Insert(li): 999 7 73 30 44 23 40 92 87 27 40 777 777 777
+// Insert(li2): 49 444 444 444 58 72 78 9 65 42 3 29 12
+// Insert(li): 49 444 444 444 58 72 78 9 65 42 3 29 12 999 7 73 30 44 23 40 92 87 27 40 777 777 777
+// Erase(li): 444 444 444 58 72 78 9 65 42 3 29 12 999 7 73 30 44 23 40 92 87 27 40 777 777 777
+// Erase(li):
+// Clear(li2):
+```
+
+```cpp
+#include <iostream>
+#include <list>
+#include <algorithm>
+
+using namespace std;
+
+void print(int &li) {
+    cout << li << " ";
+}
+
+int main() {
+    list<int> li1, li2;
+    for (int i = 10; i > 0; i--) {
+        li1.push_back(rand() % 100);
+        li2.push_back(rand() % 100);
+    }
+    //list<int>::iterator it;
+    cout << "li1: " << endl;
+    for_each(li1.begin(), li1.end(), print);
+    cout << endl;
+    cout << "li2: " << endl;
+    for_each(li2.begin(), li2.end(), print);
+    cout << endl;
+    cout << "li1, sort(), default: " << endl;
+    li1.sort();
+    for_each(li1.begin(), li1.end(), print);
+    cout << endl;
+    cout << "li2, sort(), decrease: " << endl;
+    li2.sort(greater<int>());//降序排列
+    for_each(li2.begin(), li2.end(), print);
+    cout << endl;
+    cout << "merge li1 and li2: " << endl;
+    li1.merge(li2);
+    for_each(li1.begin(), li1.end(), print);
+    cout << endl;
+    cout << "after merge, li2: " << endl;
+    for_each(li2.begin(), li2.end(), print);
+    cout << "li2, add elements: " << endl;
+    li2.push_back(999);
+    li2.push_front(100);
+    for_each(li2.begin(), li2.end(), print);
+    cout << endl;
+    cout << "li2, remove(): " << endl;
+    li2.remove(999);
+    for_each(li2.begin(), li2.end(), print);
+    //li2.remove_if()
+    return 0;
+}
+```
+
+# deque
+
+# set
+
+# multiset
+
+# map
+
+# multimap
+]]></content>
+      <tags>
+        <tag>Cpp</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL 之字符串</title>
+    <url>/2023/06/21/string-STL/</url>
+    <content><![CDATA[
+# string
+
+## 常用操作
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s1("Milo_Song_2120");
+    char ch[] = "Hello_Cpp";
+    string s2(s1);                       // 复制字符串
+    string s3(s1, 2, 5);                 // 从 s1[2] 开始，复制 5 个字符
+    string s4(ch, 4);                    // 复制 ch 的前 4 个字符
+    string s5(9, '6');                   // 9 个字符 '6'
+    string s6(s1.begin(), s1.end());     // 复制整个字符串
+    string s7(s1.begin(), s1.end() - 1); // 复制除最后一个字符以外的所有字符
+    cout << "s1 = " << s1 << ";" << endl;
+    cout << "s2 = " << s2 << ";" << endl;
+    cout << "s3 = " << s3 << ";" << endl;
+    cout << "s4 = " << s4 << ";" << endl;
+    cout << "s5 = " << s5 << ";" << endl;
+    cout << "s6 = " << s6 << ";" << endl;
+    cout << "s7 = " << s7 << ";" << endl;
+    return 0;
+}
+```
+
+输出结果为
+
+```
+s1 = Milo_Song_2120;
+s2 = Milo_Song_2120;
+s3 = lo_So;
+s4 = Hell;
+s5 = 666666666;
+s6 = Milo_Song_2120;
+s7 = Milo_Song_212;
+```
+
+## string 的大小和容量
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s("hello");
+    cout << "Size of s: " << s.size() << endl;
+    cout << "Length of s: " << s.length() << endl;
+    cout << "Max size of s: " << s.max_size() << endl;
+    cout << "Capacity of s: " << s.capacity() << endl;
+    s.reserve(66);
+    cout << "Capacity of s: " << s.capacity() << endl;
+    return 0;
+}
+```
+
+输出结果为
+
+```
+Size of s: 5
+Length of s: 5
+Max size of s: 9223372036854775791
+Capacity of s: 22
+Capacity of s: 79
+```
+
+⚠️ `s.reserve()` 和 `s.capacity()` 这两个函数没搞太懂。
+
+## string 读取
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s("Hello_Song");
+    cout << s.at(4) << endl;
+    cout << s.at(s.length() - 1) << endl;
+    cout << s[s.length()] << endl;
+    cout << s[s.length() - 1] << endl;
+    return 0;
+}
+```
+
+输出结果为
+
+```
+o
+g
+ 
+g
+```
+
+## string 比较
+
+`compare()` 函数
+
+- `string1.compare(pos, n, string2)`
+- 比较结果相同，返回 0 值
+- 比较结果不同
+  - `string1` 的字典序先于 `string2`，返回负值
+  - 否则，返回正值
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s1("abcdef");
+    string s2("hijkl");
+    string s3("abcdef");
+    string s4("abcd");
+    cout << s1.compare(s2) << endl;
+    cout << s1.compare(s3) << endl;
+    cout << s1.compare(s4) << endl;
+    cout << s1.compare(0, 4, s4);   //s1 -> abcd 与 s4 比较
+    return 0;
+}
+```
+
+输出结果为
+
+```
+-7
+0
+1
+0
+```
+
+当然也可以直接使用比较运算符来比较。
+
+## string 修改和替换
+
+`assign()` 和 `swap()` 函数可以正常使用，但是 `erase()` 函数出现问题。
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s1("ABCDEFG");
+    string s2, s3, s4, s5;
+    s2.assign(s1);
+    cout << s2 << endl;
+    s3.assign(s1, 1, 3);
+    cout << s3 << endl;
+    s4.assign(6, 'X');
+    cout << s4 << endl;
+    s5.swap(s1);
+    cout << s5 << endl;
+    return 0;
+}
+
+// ABCDEFG
+// BCD
+// XXXXXX
+// ABCDEFG
+```
+
+`insert()` 函数的使用如下。
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s1("ABCDEFG");
+    string s2("_Bonjour_");
+    s1.insert(1, s2); // 在 s1 的位置 1 插入 s2
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.insert(2, s2, 3); // 在 s1 的位置 2 插入 s2 位置 3 之后的所有字符
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.insert(2, s2, 3, 3);
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.insert(0, 5, '6');
+    cout << s1 << endl;
+    return 0;
+}
+
+// A_Bonjour_BCDEFG
+// ABnjour_CDEFG
+// ABnjoCDEFG
+// 66666ABCDEFG
+```
+
+`append()` 函数的使用如下。
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s1("ABCDEFG");
+    string s2("123456");
+    s1.append(s2);
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.append(s2, 3);
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.append(s2, 3, 2);
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.append(6, '6');
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.append(s2.begin(), s2.end());
+    cout << s1 << endl;
+    return 0;
+}
+
+// ABCDEFG_Bonjour_
+// ABCDEFGnjour_
+// ABCDEFGnj
+// ABCDEFG666666
+// ABCDEFG_Bonjour_
+```
+
+`replace()` 函数的使用如下。
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s1("ABCDEFG");
+    string s2("1234567");
+    s1.replace(2, 3, s2); // 使用 s2 替代自 s1 位置 2 开始的 3 个字符
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.replace(2, 3, s2, 1, 4); // 使用 s2 的子串 '234' 替代自 s1 位置 2 开始的 3 个字符
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.replace(2, 3, 6, '6');
+    cout << s1 << endl;
+    s1 = "ABCDEFG";
+    s1.replace(s1.begin(), s1.end(), s2);
+    cout << s1 << endl;
+    return 0;
+}
+
+// AB1234567FG
+// AB2345FG
+// AB666666FG
+// 1234567
+```
+
+## string 输入
+
+`getline()` 函数可以输入整行。
+
+```cpp
+string s1;
+getline(cin, s1);
+// 下面这个与上面的相同作用
+getline(cin, s1, '\n');
+// 下面这个以空格作为结束标志，例如输入 'ssss sss'，实际只能得到 'ssss'
+getline(cin, s1, ' ');
+```
+
+## string 查找
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s1("Hello, nice to meet you.");
+    string alphabet("abcdefghijklmnopqrstuvwxyz");
+    cout << s1.find('o') << endl;
+    cout << s1.find('o', 9) << endl; // 从位置 9 开始 find
+    cout << s1.find("nice") << endl;
+    cout << s1.find("nihao", 0, 2) << endl; // 在 s1（从位置 0 开始）中查找 "nihao" 的前两个字符
+    cout << s1.find_first_of(alphabet) << endl;
+    cout << s1.find_last_of(alphabet) << endl;
+    cout << s1.find_first_not_of(alphabet) << endl;
+    cout << s1.find_last_not_of(alphabet) << endl;
+    return 0;
+}
+
+// 4
+// 13
+// 7
+// 7
+// 1
+// 22
+// 0
+// 23
+```
+]]></content>
+      <tags>
+        <tag>Cpp</tag>
+        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
