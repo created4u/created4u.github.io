@@ -125,7 +125,7 @@ Leveraging a testbed that is smaller than a production network creates another c
 
 This section explores the performance of different DL models with respect to an accurate packet-level simulator and discusses the main limitations of existing network modeling techniques.
 
-### A. Simulations as Network Modeling Technique
+### Simulations as Network Modeling Technique
 
 Network simulators reproduce the network behaviour at the granularity of packet events. This way, they can offer excellent accuracy and can be easily extended to include virtually and feature, such as packet scheduling, wireless networks, etc. Some simulators, such as Omnet++ or ns-3, are widely used and maintained.
 
@@ -140,7 +140,7 @@ To illustrate this limitation, we simulate different topologies using the Omnet+
 
 So, the main limitation of packet-level simulators is the simulation time. On the contrary, packet simulators offer unrivalled accuracy and can simulate virtually any scenario, from different routing configurations to replaying packet traces to simulate unknown traffic models. Because of this, hereafter, we consider the results from the simulator as the ground truth for the evaluations in this paper.
 
-### B. Neural Networks as Network Modeling Techniques
+### Neural Networks as Network Modeling Techniques
 
 The following sections review the performance of three common Neural Network (NN) architectures in the order of increasing complexity. First, we evaluate the Multilayer Perceptron, one of the simplest NNs. Next, Recurrent Neural Networks which are designed to work with sequences. Finally, we directly input the network into a Graph Neural Network specifically designed to work with graphs. The objective is to create a network model with the NN that can predict performance parameters for input networks with a wide range of characteristics. We are especially interested in the following parameters:
 
@@ -162,33 +162,41 @@ To compare the different techniques, we compute the prediction error with respec
 - Mean Absolute Error (MAE), and
 - Coefficient of Determination ($R^2$).
 
-### C. Multilayer Perceptron
+### Multilayer Perceptron
 
 A Multilayer Perceptron (MLP) is a basic kind of NN from the family of feedforward NNs. In short, input data is propagated unidirectionally from the input neuron layer to the output layer. There may be an arbitrary number of hidden layers between these two layers, and this determines how deep is the NN.
 
 - **Design:** Several works have leveraged an MLP to predict network performance metrics. Based on this work, we have built an MLP to predict the mean delay for each source-destination pair of nodes of a given network. The MLP has 8,280 inputs and two hidden layers with 4096 neurons and uses Rectified Linear Units (ReLU) as activation functions.
-- **Evaluation:** Table I presents the error when predicting the network delay with respect to the results produced by the network simulator, including several traffic models. We can see that the MLP offers good accuracy for Poisson traffic, but the error increases significantly for the rest of the traffic models showing a MAPE between 23% and 84%.
+- **Evaluation:** **Table I** presents the error when predicting the network delay with respect to the results produced by the network simulator, including several traffic models. We can see that the MLP offers good accuracy for Poisson traffic, but the error increases significantly for the rest of the traffic models showing a MAPE between 23% and 84%.
 
 ![](Table_I.png)
 *Table. I Delay prediction using an MLP and an RNN for different traffic models. The error is computed w.r.t simulation results.*
 
-![](Table_II.png)
+![Delay prediction using an MLP and an RNN for the same and different routing configurations w.r.t those seen during training, and considering various link failures. The error is relative to simulation results.](Table_II.png)
+*Table. II Delay prediction using an MLP and an RNN for the same and different routing configurations w.r.t those seen during training, and considering various link failures. The error is relative to simulation results.*
+![[Fig_3.png]]
+Likewise, **Table II** shows the error of predicting the delay for the datasets with the same/different routing and link failures. We can see that the MLP cannot offer an accurate estimate when predicting the delay of a previously unseen routing configuration (1150% of error). This is due to the internal architecture of the MLP. During training, the MLP performs overfitting, meaning that the model only learns about the initial network topology used for training and not for any others. When we input a new topology, it does not have sufficient information to make an accurate prediction.
 
-Likewise, Table II shows the error of predicting the delay for the datasets with the same/different routing and link failures. We can see that the MLP cannot offer an accurate estimate when predicting the delay of a previously unseen routing configuration (1150% of error). This is due to the internal architecture of the MLP. During training, the MLP performs overfitting, meaning that the model only learns about the initial network topology used for training and not for any others. When we input a new topology, it does not have sufficient information to make an accurate prediction.
-
-### D. Recurrent Neural Networks
+### Recurrent Neural Networks
 
 Recurrent Neural Networks (RNN) are a more advanced type of NN. They have shown excellent performance when processing sequential data. This is mainly because they connect some layers to the previous ones, which gives them the ability to keep the state along sequences.  
 
-- **Design:** Several works propose RNNs as a way to predict network performance. In this experiment, we build a sequential model with an RNN (Figure 4). Particularly, we choose a Gated Recurrent Unit (GRU). We initialise the state of each path with the sequence of nodes in the path and the features of the traffic model (e.g., packets, bandwidth, $\lambda$, $\epsilon$, $\alpha$, or on-off time), and we update the state of each link across the path. As an example, Figure 4 shows the structure of an RNN to model the sample network from Figure 3. We can see that the path of $flow_1$ is composed of $L_1$ and $L_3$. Once the path state has been computed, an MLP with 2 hidden layers computes the final output.
-- **Evaluation:** We train the RNN with the same datasets as the previous subsection. Although the RNN supports better different traffic models than the MLP (Table I), it still struggles to produce accurate predictions when there are routing or topology changes (Table II), especially for different routing configurations (30% error), or when removing links (63%).
+![Sample Topology with 5 nodes, three links, and two flows.](Fig_3.png)
+*Fig. 3 Sample Topology with 5 nodes, three links, and two flows.*
 
-The reason behind the lack of capability of RNNs to understand routing changes and link failures is due to its internal architecture. RNNs can accommodate different end-to-end paths in the network (i.e., series of routers and links), thereby, making it easier to perform predictions for paths never seen in the training phase. However, this structure cannot store and update the status of individual links in the topology due to the inter-dependency between links and traffic flows (i.e., routing). In other words, if the status of a link changes, it affects several flows, and vice-versa. This generates circular dependencies that RNNs are not able to model (see more details in Sec. IV).
+![Recurrent Neural Network model for the Sample Topologys](Fig_4.png)
+*Fig. 4 Recurrent Neural Network model for the Sample Topology*
 
-### E. Graph Neural Networks
+- **Design:** Several works propose RNNs as a way to predict network performance. In this experiment, we build a sequential model with an RNN (**Figure 4**). Particularly, we choose a Gated Recurrent Unit (GRU). We initialise the state of each path with the sequence of nodes in the path and the features of the traffic model (e.g., packets, bandwidth, $\lambda$, $\epsilon$, $\alpha$, or on-off time), and we update the state of each link across the path. As an example, Figure 4 shows the structure of an RNN to model the sample network from **Figure 3**. We can see that the path of $flow_1$ is composed of $L_1$ and $L_3$. Once the path state has been computed, an MLP with 2 hidden layers computes the final output.
+- **Evaluation:** We train the RNN with the same datasets as the previous subsection. Although the RNN supports better different traffic models than the MLP (**Table I**), it still struggles to produce accurate predictions when there are routing or topology changes (**Table II**), especially for different routing configurations (30% error), or when removing links (63%).
+
+The reason behind the lack of capability of RNNs to understand routing changes and link failures is due to its internal architecture. RNNs can accommodate different end-to-end paths in the network (i.e., series of routers and links), thereby, making it easier to perform predictions for paths never seen in the training phase. However, this structure cannot store and update the status of individual links in the topology due to the inter-dependency between links and traffic flows (i.e., routing). In other words, if the status of a link changes, it affects several flows, and vice-versa. This generates circular dependencies that RNNs are not able to model (see more details in **Sec. IV-C**).
+
+### Graph Neural Networks
 
 Networks are fundamentally represented as graphs, where networking devices are the graph nodes and the links connecting devices are the graph edges. This interconnection translates to the fact that the **different elements in the network are dependent on each other**. Since most standard DL models (e.g., MLP, RNN) assume independent flow-level data points. This renders them inaccurate for our use case. Hence, a model that is capable of processing directly the network graph is arguably more desirable for network modeling, because **it will be able, not only to obtain information from the individual nodes and edges but also from the underlying data structure** (i.e., the relationships between the different elements).
 
+![](Table_III.png)
 GNNs are a type of neural network designed to work with graph-structured data. They have two key characteristics that make them a good candidate for a network model. First, GNNs have the ability to store node-level hidden states and update them in each iteration. Second, they process the input data directly as a graph, both during training and inference. This means that the internal structure of the neural network depends on the input graph. Hence, they can dynamically adapt to the underlying dependencies between the different elements of a network. The latter is of special importance, since changes in the network graph (e.g., routing modifications, link failures) are the main limitation of other DL-based models, such as MLPs and RNNs, as we have seen in the previous subsections.
 
 In this section, we build a standard GNN model to predict the mean per-flow delay in networks.
@@ -196,19 +204,22 @@ In this section, we build a standard GNN model to predict the mean per-flow dela
 **Design:** We implement a Message-Passing Neural Network (MPNN), a powerful state-of-the-art GNN architecture that can efficiently capture dependencies between the elements of input graphs. We define a graph $G$ described as a set of vertices (or nodes) $E$ and a set of edges (or links) $V$. Each node has a set of features $x_v$, and edges also have some features $e_{vw}$. The execution of an MPNN can be divided into three phases, an initialisation phase, a message-passing phase, and a readout phase. The first one defines a hidden state ($h_v^0$) using the node features ($x_v$). The second one is an iterative process that runs for $T$ time steps and that is defined by two functions: the message function $M_t$ and the update function $U_t$. During this phase, node hidden states ($h_v^t$), represented as fixed-size vectors, attempt to encode some meaningful information, and are iteratively updated by exchanging messages $m_v^{t+1}$ with their neighbours:
 
 $$
-m_v^{t+1} = \sum_{w \in N(v)}{M_t(h_v^t,h_w^t,e_{vw})}
+m_v^{t+1} = \sum_{w \in N(v)}{M_t(h_v^t,h_w^t,e_{vw})}\quad(1)
 $$
 $$
-h_v^{t+1} = U_t(h_v^t,m_v^{t+1})
+h_v^{t+1} = U_t(h_v^t,m_v^{t+1})\quad(2)
 $$
 
 where $N(v)$ represents the neighbours of $v$ in graph $G$. Finally, the readout phase computes the output vector using a readout function $R$ that takes as input the final hidden states $h_v^T$:  
 
 $$
-\hat{y} = R(\{h_v^T | v \in G\})
+\hat{y} = R(\{h_v^T | v \in G\})\quad(3)
 $$
 
 In our case, the input of the MPNN is the network topology graph. It performs $T$$=$$4$ message-passing iterations and the hidden state dimension is 32. The readout function is implemented with a two-layer fully connected NN with ReLUs as activation functions for the hidden layers and a linear activation for the output layer.
+
+![Delay prediction using an MPNN for the same and different routing configurations w.r.t those seen during training, and considering various link failures. The error is relative to simulation results.](Table_III.png)
+*Table. III Delay prediction using an MPNN for the same and different routing configurations w.r.t those seen during training, and considering various link failures. The error is relative to simulation results.*
 
 **Evaluation:** We evaluate the accuracy of the MPNN model when predicting the mean flow-level delay, as in previous subsections. Table III presents the delay prediction errors in the same scenarios of the previous experiments: routing configurations, both seen and not seen during training, and link failures. Unfortunately, the results are similar to those of the RNN: the routing configurations from the training dataset are easy to predict, with an error as low as 3%, while new routing configurations and link failures increase the error significantly (respectively, 50% and 125% of MAPE), thus showing even larger errors than the RNN model.  
 
@@ -221,6 +232,148 @@ Knowing this, we can see how there is a circular dependency between the flows an
 If we apply a standard GNN over this example, the state of each flow is not updated at each hop. Therefore, the GNN does not have a structure that represents how the delay depends on both the links (topology) and the flows that go through each specific router.
 
 Hence, we conclude that feeding the MPNN directly with the network topology graph is not sufficient to accurately perform network modeling. However, more complex and customised GNN-based architectures can still be powerful for modeling the inter-dependencies between the different network elements and generalising over new network scenarios by exploiting the underlying graph structure.
+
+## RouteNet-Fermi
+
+This section describes the internal GNN architecture of RouteNet-Fermi (hereafter referred to as RouteNet-F). This GNN-based model implements a custom three-stage message-passing algorithm that represents key elements for network modeling (e.g., topology, queues, traffic flows). RouteNet-F supports a wide variety of features present in real-world networks, such as multi-queue QoS scheduling policies or complex traffic models.
+
+**Figure 1** shows a black-box representation of RouteNet-F. The input of this model is a network sample, defined by: a network topology, a routing scheme (flow level), a queuing configuration (interface level), and a set of traffic flows characterised by some parameters. As output, the model produces estimates of relevant performance metrics at a flow-level granularity (e.g., delay, jitter, packet loss). **Figure 5** shows the end-to-end workflow to train, validate, and use RouteNet-Fermi.
+
+![End-to-end workflow of RouteNet-F. 1) Collection of small-scale observations coming from a controlled environment, 2) Model training, 3) Model testing with various configurations (e.g., routing, scheduling) never seen during the training phase, 4) hyper-parameter tunning to balance highly accurate predictions with performance, 5) Simulation of large-scale production networks. One of the main advantages of RouteNet-F is that usually time-consuming steps like 1), 2), 3), and 4) are all done at small scales and, therefore, are fast as well.](Fig_5.png)
+*Fig. 5 End-to-end workflow of RouteNet-F. 1) Collection of small-scale observations coming from a controlled environment, 2) Model training, 3) Model testing with various configurations (e.g., routing, scheduling) never seen during the training phase, 4) hyper-parameter tunning to balance highly accurate predictions with performance, 5) Simulation of large-scale production networks. One of the main advantages of RouteNet-F is that usually time-consuming steps like 1), 2), 3), and 4) are all done at small scales and, therefore, are fast as well.*
+
+### Model Description
+
+RouteNet-F is based on two main design principles: $(i)$ finding a good representation of the network components supported by the model (e.g., traffic models, routing, queue scheduling), and $(ii)$ exploit scale-independent features of networks to accurately scale to larger networks unseen during training. These two aspects are further discussed in the next two subsections.
+
+### Representing network components and their relationships
+
+First, let us define a network as a set of source-destination flows $\mathcal{F}=\{f_i:i\in(1,...,n_f)\}$, a set of queues on $\mathcal{Q}=\{q_j: j \in (1,...,n_q)\}$, and a set of links $\mathcal{L} = \{l_k: k\in(1,...,n_l)\}$. According to the routing configuration, flows follow a source-destination path. Hence, we define flows as sequences of tuples with the queues and links they traverse $f_i=\{(q^{i,1},l^{i,1}),...,(q^{i,M},l^{i,M})\}$, where $M$ is the path length of the flow (number of links). Let us also define $Q_f(q_j)$ and $L_f(l_k)$ as functions that respectively return all the flows passing through a queue $q_j$ or a link $l_k$. Also, $L_q(l_k)$ is defined as a function that returns the queues $q_{l_k}\in \mathcal{Q}$ injecting traffic into link $l_k$ (i.e., the queues at the output port to which the link is connected).
+
+Following the previous notation, RouteNet-F considers an input graph with three main components: $(i)$ the physical links $\mathcal{L}$ that shape the network topology, $(ii)$ the queues $\mathcal{Q}$ at each output port of network devices, and $(iii)$ the active flows $\mathcal{F}$ in the network, which follow some specific src-dst path (i.e., sequences of queues and links). Traffic in flows is generated from a given traffic model. From this, we can extract three basic principles:
+
+- The state of flows (e.g., delay, throughput, packet loss) is affected by the state of the queues and links they traverse (e.g., queue/link utilization).
+- The state of queues (e.g., occupation) depends on the state of the flows passing through them (e.g., traffic volume, burstiness).
+- The state of links (e.g., utilization) depends on the states of the queues that can potentially inject traffic into the link, and the queue scheduling policy applied over these queues (e.g., Strict Priority, Weighted Fair Queuing).
+
+Formally, these principles can be formulated as follows:
+
+$$h_{f_i}=G_f(h_{q^{i,1}},h_{l^{i,1}},...,h_{q^{i,M}},h_{l^{i,M}})\quad(4)$$
+
+$$h_{q_j} = G_q(h_{f_1},...,h_{f_I}), \quad f_i \in Q_f(q_j)\quad(5)$$
+
+$$h_{l_k} = G_l(h_{q_1},...,h_{q_J}), \quad q_j \in L_q(l_j)\quad(6)$$
+
+Where $G_f$, $G_q$, and $G_l$ are some unknown functions, and $h_f$, $h_q$ and $h_l$ are latent variables that encode information about the state of flows $\mathcal{F}$, queues $\mathcal{Q}$, and links $\mathcal{L}$ respectively. Note that these principles define a circular dependency between the three network components ($\mathcal{F}$, $\mathcal{Q}$, and $\mathcal{L}$) that must be solved to find latent representations satisfying the equations above.
+
+To solve the circular dependencies defined in Equations $(4)-(6)$, RouteNet-F implements a three-stage message passing algorithm that combines the states of flows $\mathcal{F}$, queues $\mathcal{Q}$, and links $\mathcal{L}$, and updates them iteratively. Finally, it combines these states to estimate flow-level delays, jitters, and packet loss. **Figure 6** shows a schematic representation of the internal three-stage message-passing architecture of this model.
+
+![Schematic representation of RouteNet-F.](Fig_6.png)
+*Fig. 6 Schematic representation of RouteNet-F.*
+
+**Algorithm 1** describes the architecture of RouteNet-F. First, hidden states $h_f$, $h_q$, and $h_l$ are initialised using the functions $HS_f$, $HS_q$, and $HS_l$ respectively (lines 1-3). These functions encode the initial features $x_{f}$, $x_{q}$, and $x_{l}$ into fixed-size vectors that represent feature embeddings. The initial features of flows $x_f$ are defined as an n-element vector that characterises the flow's traffic. For example, in our case, this vector includes the average traffic volume transmitted in the flow $\lambda$, and some specific parameters of the traffic model, such as $t_{on}$ and $t_{off}$ for On-Off traffic distributions or $\alpha$ and $\beta$ for exponential models. We set the initial features of links $x_l$ as $(i)$ the link load $x_{l_{load}}$, and $(ii)$ the scheduling policy at the output port of the link (FIFO, Strict Priority, Weighted Fair Queuing, or Deficit Round Robin). For the scheduling policy, we use a one-hot encoding. The calculation of the link load $x_{l_{load}}$ is defined in more detail later (**Sec. IV-C**). Lastly, the initial features of queues $x_q$ include: $(i)$ the buffer size, $(ii)$ the queue order/priority level (one-hot encoding), and $(iii)$ the weight (only for Weighted Fair Queuing or Deficit Round Robin configurations).
+
+Once all the hidden states are initialised, the message-passing phase starts. This phase is executed for $T$ iterations (loop from line 4), where $T$ is a configurable parameter of the model. Each message passing iteration is divided into three stages, which represent respectively the message exchanges and updates of the hidden states of flows $h_f$ (lines 5-10), queues $h_q$ (lines 11-14), and links $h_l$ (lines 15-19).
+
+Finally, the loop from line 20 computes the different flow-level performance metrics. Here, function $R_{f_d}$ (line 24) and $R_{f_j}$ (line 28) represent a readout function that is individually applied to the hidden states of flows as they pass through a specific link ($h_{f,l}$). The output of these functions is the average queue occupancy and the delay variation (i.e., jitter) seen by the flow at that link. Note that different flows may experience different queue occupancies and jitter depending on their traffic properties (e.g., traffic volume, burstiness). Lastly, these link-level delay and jitter estimates are combined to compute the final flow-level delay $\hat{y_{f_d}}$ and jitter $\hat{y_{f_j}}$. This calculation is further described in **Section IV**. Similarly, $R_{f_l}$ (line 29) is applied to the hidden states of flows $h_f$ to compute the per-flow packet loss rate.
+
+![](Algorithm_1.png)
+
+Data-driven models typically need to see edge cases that are uncommon in real-world production networks (e.g., link failures). This means that collecting data directly from production networks requires testing configurations that might break the correct operation of the network. As a result, data-driven network models should be typically trained with data from controlled network testbeds. However, network testbeds are usually much smaller than real networks. In this context, it is essential for our model to effectively scale to larger networks than those seen during the training phase.
+
+  
+
+It is well-known that GNN models have an unprecedented capability to generalize over graph-structured. In the context of scaling to larger graphs, it is also known that GNNs keep good generalisation capabilities as long as the spectral properties of graphs are similar to those seen during training. In our particular case, the internal message passing architecture of RouteNet-F generalizes accurately to graphs with similar structures (e.g., a similar number of queues at output ports, or a similar number of flows aggregated in queues). In practice, this means that RouteNet-F should be able to generalize to larger topologies when trained with smaller ones, as long as the networks used for training had the same spectral properties as the larger ones. More details about this can be found in **Section V**, which presents an empirical evaluation of RouteNet-F's generalisation capabilities).
+
+However, scaling to larger networks often entails other aspects beyond the topology size. Two key elements require special attention: link capacities and the range of output variables. First, larger networks naturally have larger link capacities. This in turn results in larger traffic aggregates on core links of the network. Such traffic intensities may fall in ranges not seen in smaller topologies.
+
+Second, as the network scales, it inherently has longer end-to-end paths, which result in increased end-to-end path delays. Again, some of these delays may fall outside the range of delays used when training with smaller topologies. These out-of-range parameters require devising mechanisms to effectively scale on them.
+
+**Scaling to larger link capacities**: In RouteNet-F (**Algorithm 1**), the most straightforward way to represent the link capacity $x_{l_c}$ would be as an initial feature of the links' hidden states $x_l$. However, the fact that $x_{l_c}$ would be encoded as a numerical input value would then introduce inherent limitations to scale to larger capacity values. Indeed, scaling to out-of-distribution numerical values is recognized as a generalized limiting factor among all neural network models.
+
+Our approach is to exploit particularities from the network domain to find scale-independent representations for link capacities. These representations define link capacities and how they relate to other link-level features that impact performance (e.g., the aggregated traffic in the link), so they can be used to accurately estimate performance metrics (e.g., delay, jitter, packet loss). Inspired by traditional QT methods, we aim to encode in RouteNet-F the relative ratio between the arrival rates on links (based on the traffic aggregated in the link) and the service times (based on the link capacity). This enables the possibility to infer the output performance metrics of our model from scale-independent values. As a result, instead of directly using the numerical link capacity values, we introduce the link load $x_{l_{load}}$ in the initial feature vector of links $x_{l}$. Particularly, we compute the link load as follows:
+
+$$x_{l_{load}} = \frac{1}{x_{l_c}} \sum_{f \in L_f(l_j)} \lambda_f\quad(7)$$
+
+Where $\lambda_f$ is the average traffic volume of the flows that traverse the link $l_j$, and $x_{l_c}$ is the link capacity. In other words, we compute the link load as the summation of all the traffic that would traverse the link without considering possible losses and divide it by the link capacity. Then, through the iterative message-passing process, the GNN model updates the load values after estimating the packet loss.
+
+**Different output ranges**: The previous mechanism enables us to keep scale-independent features along with the message-passing phase of our model (loop lines 4-19 in **Algorithm 1**), while it is still needed to extend the scale independence to the output layer of the model. Note that in larger networks, delay values can vary with respect to those seen during the training in smaller networks. This is because flows can go through links with higher capacities, or because flows can potentially traverse longer paths. This again poses the challenge of generalising to ranges of delays not seen in the training phase. Equivalently, this also applies to the prediction of flow jitter and packet loss.
+
+To overcome this potential limitation, RouteNet-F infers delays indirectly from the mean queue occupancy on forwarding devices. Based on traditional QT models, RouteNet-F infers the flow delay as a linear combination of the estimated queuing delays (line 24) and the transmission delays after crossing a link (line 25). Note that a potential advantage with respect to traditional QT models is that the queue occupancy estimates produced by RouteNet-F can be more accurate, especially for autocorrelated and heavy-tail traffic models.
+
+We call the values produced by the $R_{f_d}$ function the effective queue occupancy, which is defined as the mean queue occupancy experienced by a given flow $f_i$ as it passes through a specific forwarding device. More precisely, this value is the average number of bits that have to be served on a specific output port before the packets of flow $f_i$ are transmitted. As an example, let us consider the case of packets from a flow with low priority, which are mapped to low-priority queues. If forwarding devices implement a multi-queue Strict Priority scheduling policy, the effective queue occupancy seen by those low-priority packets should include all the bits to be served in the queues with higher priority.
+
+The prediction of this effective queue occupancy - instead of directly predicting delays - helps overcome the practical limitation of producing out-of-range delay values with the readout function $R_{f_d}$. In this case, the values produced by $R_{f_d}$ are bounded between 0 and the maximum buffer size at the output ports of forwarding devices. Note that the buffer size is a device-specific feature that is independent of the network size.
+
+Lastly, RouteNet-F produces flow-level delay predictions $\hat{y_{f_d}}$ by combining the estimated queuing and transmission delays. The queuing delay $\hat{d_q}$ is indirectly estimated by using the effective queue occupancies (in bits) on queues for a particular flow. Particularly, queue occupancy values are estimated by the readout function $R_{f_d}(h^T_{f,l})$. Then, they are divided by the capacity of the link connected to the output port $x_{l_c}$ to eventually produce a queuing delay estimate $\hat{d_q}$. Likewise, the transmission delay $\hat{d_t}$ is computed by dividing the mean flow packet size $x_{f_{ps}}$ by the link capacity $x_{l_c}$. With this, RouteNet-F estimates the delay of a flow after passing through a specific forwarding device and a link ($\hat{d_{link}}$):
+
+$$\hat{d_q} = \frac{R_{f_d}(h^T_{f,l})}{x_{l_c}}\quad(8)$$
+$$\hat{d_t} = \frac{x_{f_{ps}}}{x_{l_c}}\quad(9)$$
+$$\hat{d_{link}} = \hat{d_q} + \hat{d_t}\quad(10)$$
+
+Hence, we can compute end-to-end flow delays as the sum of all the link delays $\hat{d}_{link}$ along the flow (loop lines 20-27 in **Algorithm 1**). Note that the function responsible for computing the effective queue occupancy, $R_{f_d}(h^T_{f,l}$) takes as input the hidden state of the flow at a specific link $h^T_{f,l}$, instead of directly considering queue states $h^T_{q}$. This is because each flow can experience a different queuing behavior depending on its properties (e.g., traffic burstiness).
+
+Likewise, jitter estimates $\hat{y}_{f_j}$ are produced by combining the jitter predictions of all links along the flow. These predictions are made by the $R_{f_j}$ function, which takes as input the hidden state of the flow at a specific link $h^T_{f,l}$. Note that we define the jitter as the relative fluctuation with respect to the mean delay, that is, the ratio between the delay variance divided by the flow mean delay.
+
+In the case of packet loss, RouteNet-F makes predictions directly on flows' hidden states $h_f^T$. We define the packet loss as the relative ratio of packets dropped with respect to the packets transmitted by the source; hence it is a bounded value $\hat{y_{f_l}}\in[0,1]$. We estimate it with the $R_{f_l}$ function (line 29 in **Algorithm 1**).
+
+### Training and Implementation
+
+We implement RouteNet-Fermi in TensorFlow and it is publicly available at [Github](https://github.com/BNN-UPC/Papers/wiki/RouteNet_Fermi).
+
+As in any other ML model, fine-tuning the hyper parameters of RouteNet-F is crucial for achieving optimal performance and accuracy. Two key parameters to consider are the hidden state vectors ($h_f$, $h_q$, $h_l$) and the number of message passing iterations ($T$). The size of the hidden state vectors determines how much information the model can encode, with larger sizes allowing for more information but also harming performance. Similarly, a larger number of message-passing iterations can help the model reach a higher level of convergence, but at the cost of increased computation. Through grid search experiments, we selected a set of hyper parameters that provide good accuracy while also being efficient. Specifically, we set the size of all the hidden state vectors to 32 elements and $T$ to 8 message-passing iterations.
+
+We implement the functions $FRNN$ (Flow-Level RNN), $LRNN$ (Link-Level RNN), and $U_q$ (Queue Update Function) as Gated Recurrent Units (GRU). Functions $HS_f$, $HS_q$, and $HS_l$ are implemented as 2-layer fully-connected neural networks with ReLU activation functions with 32 units each. Similarly, functions $R_{f_d}$, $R_{f_j}$, and $R_{f_l}$ are implemented as a 3-layer fully-connected neural networks with ReLU activation function for the hidden layers, and a linear one for the output layer (except for $R_{f_l}$ that uses a Sigmoid activation function). Note that, the whole architecture of RouteNet-F (**Algorithm 1**) constitutes a fully-differentiable function. This means that it can be trained end-to-end using as input the network samples and as output the different flow-level performance metrics (e.g., delay, jitter, packet loss) as illustrated in the black box diagram of **Figure 1**.
+
+For each set of experiments, we train RouteNet-F during 150 epochs of 2,000 samples each. We set as loss function the Mean Absolute Percentage Error for the delay experiments, the Mean Squared Error for jitter, and the Mean Absolute Error for the packet loss. In all the cases, we use an Adam optimiser with an initial learning rate of 0.001.
+
+## Evaluation
+
+In this section, we evaluate the performance of RouteNet-F in a wide range of relevant scenarios. First, we evaluate RouteNet-F in a variety of scenarios with complex traffic models and scheduling policies and compare it to a state-of-the-art Queuing Theory (QT) benchmark from RouteNet-Erlang. In it, the network is modeled as a $M/M/1/b$ system where each queue along a path is treated independently. Note that the baseline, like the majority of QT models, assumes that arrivals to each queue are approximated by a Poisson process and that service times are exponentially distributed. Under these assumptions, the model derives analytical results for queue throughput, delay distributions, and blocking probabilities. A public implementation of the QT model can be found at [Queunix](https://github.com/krzysztofrusek/queuinx).
+
+Then, we evaluate RouteNet-F's generalisation capabilities when evaluated in topologies x30 times larger than the ones seen during training and compare its inference times. Finally, we benchmark RouteNet-F in real-world scenarios with data from a real testbed, with traffic coming from real-world networks, and compare its performance with MimicNet a state-of-the-art DL-based model.
+
+### A. Performance Analysis
+
+**Methodology**: In all the experiments (except for **subsection V-C1** that comes from a real testbed), the ground truth is obtained using a packet-level simulator (**Section V-A2**). Unless specified, in each evaluation we perform 50k experiments with a random configuration (src-dst routing, traffic intensity, per-interface scheduling policy, queue size, and traffic model), and compute the mean average delay, jitter, and packet loss. Then we compute the error of RouteNet-F's and QT's estimates with respect to the results of the packet simulator. For a fair comparison, the evaluation samples have not been used in the training phase of RouteNet-F.
+
+**Dataset**: We generate our dataset by simulating a wide range of network scenarios with the OMNet++ network simulator, v5.5.1. An image of the simulator is publicly available and can be found at [BNNetSimulator](https://github.com/BNN-UPC/BNNetSimulator). Each dataset sample corresponds to a single simulation, and we record the mean delay, jitter, and packet loss for all the flows in the network, as well as queue-level statistics(e.g., mean occupancy, average packet loss, or average packet size). We select the different scenarios to simulate by randomly sampling from the possible values of all the input variables (**Table IV**). The traffic models autocorrelated exponentials and modulated exponentials reproduce realistic Internet traffic. We define the traffic intensity ($TI$) as a tunable parameter that defines the overall traffic load in the network scenario. $TI$ represents how congested is the network. In our dataset, it ranges from 400 to 2000 bits per time unit, with 400 being the lowest congested network (0% avg. packet loss) and 2000 a highly congested network ($\approx$ 3% avg. packet loss).
+
+**Traffic Models**: This section analyses the accuracy of RouteNet-F in a wide range of traffic models. The experiment is organised such that, for each traffic model, we add a degree of complexity by changing its first and second-order statistics (i.e., variance and autocorrelation). We start with simple traffic models such as Poisson or Constant Bitrate and end by testing more complex models that are better approximations of traffic seen in Internet links.
+
+**Tables V** and **VI** show the errors of the delay and jitter for both, RouteNet-F and QT, with respect to the values obtained using the simulator. We can see that RouteNet-F achieves excellent accuracy results, producing very accurate estimates of delay and jitter in all traffic models: the worst cases are 5.21% and 10.40% for delay and jitter, respectively.
+
+| Simulation Variables  |                                                                                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Topology              | NSFNET, GEANT, GBN, and scale-free synthetic topologies following the Power-Law Out-Degree algorithm.                                                        |
+| Traffic Model         | 6 options: Poisson, On-Off, Constant Bitrate, Autocorrelated Exponentials, Modulated Exponentials (according to RouteNet-Erlang), and all models mixed.      |
+| Traffic Intensity     | Random traffic intensities to generate packet loss between 0% and 3%.                                                                                        |
+| Queuing Configuration | 1, 2, or 3 queues per port. Queue size: 8, 16, 32, or 64 kbits. Policy: First In First Out, Strict Priority, Weighted Fair Queuing, and Deficit Round Robin. |
+
+*Table. IV Simulation Variables*
+
+|                 | QT         |       |       |       |
+| --------------- | ---------- | ----- | ----- | ----- |
+|                 | MAPE       | MSE   | MAE   | $R^2$ |
+| Poisson         | 12.6%      | 0.001 | 0.017 | 0.998 |
+| Deterministic   | 22.4%      | 0.715 | 0.321 | 0.611 |
+| On-Off          | 23.1%      | 0.784 | 0.363 | 0.613 |
+| A. Exponentials | 21.1%      | 0.686 | 0.361 | 0.618 |
+| M. Exponentials | 68.1%      | 1.10  | 0.798 | 0.145 |
+| Mixed           | 35.1%      | 0.721 | 0.430 | 0.560 |
+
+*Table. V*
+
+|                 | RouteNet-F |       |       |       |
+| --------------- | ---------- | ----- | ----- | ----- |
+|                 | MAPE       | MSE   | MAE   | $R^2$ |
+| Poisson         | 2.1%       | 0.001 | 0.017 | 0.999 |
+| Deterministic   | 4.43%      | 0.029 | 0.048 | 0.984 |
+| On-Off          | 2.90%      | 0.009 | 0.035 | 0.995 |
+| A. Exponentials | 2.62%      | 0.010 | 0.030 | 0.994 |
+| M. Exponentials | 5.21%      | 0.013 | 0.061 | 0.989 |
+| Mixed           | 4.71%      | 0.018 | 0.054 | 0.988 |
+
 ]]></content>
       <categories>
         <category>论文</category>
@@ -231,62 +384,61 @@ Hence, we conclude that feeding the MPNN directly with the network topology grap
       </tags>
   </entry>
   <entry>
-    <title>Présentation de soi.</title>
-    <url>/2023/06/06/about-FR/</url>
+    <title>關於我自己</title>
+    <url>/2023/06/06/about-TCN/</url>
     <content><![CDATA[
-Français | [English](../about/index.html) | [繁體中文](../about-TCN/index.html) | [简体中文](../about-CN/index.html)
+繁體中文 | [简体中文](../about-CN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
 
 ![Programming is art.](code.png)
 
-# Bonjour!
+# 你好！
 
-Bienvenue sur ma page d'accueil personnelle, et je suis heureux de rencontrer une âme aussi intéressante que vous.
+歡迎訪問我嘅個人主頁，我都非常榮幸能夠同你咁有趣嘅靈魂在此相遇。
 
-# Expérience
+# 學習經歷
 
-- 2017 - 2020, Premier Lycée de Bozhou, Province d'Anhui
-- 2020 - 2024, Collège d'informatique et de technologie, Université de Jilin
+- 2017 - 2020，高中，安徽省亳州市第一中學
+- 2020 - 至今，本科，吉林大學計算機科學與技術學院
 
-# Projets
+# 參與項目
 
-- Émulateur basé sur RISC-V
-- Robot de prélèvement intelligent utilisant YOLOv5
-- Certains Github Repositories
+- RISC-V 指令集軟件仿真
+- 基於 YOLOv5 嘅智能撿拾機械人
+- 我自己嘅 Repositories
   - [Heartbeat](https://github.com/created4u/heartbeat.git)
   - [Coursea](https://github.com/created4u/Coursea.git)
 
-# Récompenses et Honneurs
+# 所獲榮譽
 
-(Mise à jour le 29, Août, 2023)
+（截止至 2023 年 8 月）
 
-- 2020 - 2021, Bourse de deuxième classe, Université de Jilin
-- 2021 - 2022, Bourse de troisième classe, Université de Jilin
-- 2021 - 2022, Excellent étudiant universitaire, Université de Jilin
-- 2023, [Concours national de conception IoT](http://iot.sjtu.edu.cn/Default.aspx), Premier Prix de la Région Nord-Est, Deuxième Prix de la Finale Nationale
+- 2020 - 2021，吉林大學三等獎學金
+- 2021 - 2022，吉林大學二等獎學金
+- 2021 - 2022，吉林大學計算機科學與技術學院院優秀學生
+- 2023，[全國大學生物聯網設計競賽](http://iot.sjtu.edu.cn/Default.aspx)，東北賽區一等獎，全國總決賽二等獎
 
-# Compétence
+# 個人能力
 
-- Bon niveau d'anglais, avoir réussi les CET-4 et CET-6 avec d'excellentes notes et savoir lire couramment la littérature étrangère.
-- Familier avec C, C++, Java, Python, Kotlin, Swift, Go et d'autres langages de programmation, avec une bonne capacité de programmation.
-- Familier avec HTML, CSS, JavaScript, Node.js, Vue, Bootstrap et d'autres technologies, capable de créer de manière indépendante des pages Web.
-- Capable de développer de manière indépendante des applications iOS/iPadOS/macOS et Android.
-- Etude approfondie des logiciels et du matériel, familiarisé avec le développement embarqué.
+- 英語水平良好，四六級均以優秀成績通過，正在備考 TOEFL，能夠流暢地閱讀外文文獻。
+- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等編程語言，有良好的編程能力。
+- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技術，能夠獨立搭建網頁。
+- 有一定的開發經驗，能夠獨立開發 iOS/iPadOS/macOS 和 Android 應用程序。
+- 廣泛接觸軟硬件，基礎較為紮實，熟悉嵌入式開發。
 
-# Loisirs
+# 興趣愛好
 
-- Apprendre des langues. Quand je suis libre, apprendre différentes langues est une merveilleuse façon de gagner du temps, Français, Русский, Español... ce sont mes préférées.
-- Peinture. Juste pour le fun :P.
-- En lisant. [Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) et [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) sont parmi mes auteurs préférés. Bien que parfois je ne comprenne pas entièrement leur travail brillant, cela me rend encore plus captivé.
-- Concevez toutes sortes de choses intéressantes, insistez pour créer des choses extraordinaires avec des matériaux ordinaires et exprimez des émotions avec des couleurs.
-- La photographie. Enregistrement de chaque instant de la vie normale avec caméra.
+- 語言學習。空餘時間會學習各種有趣嘅語言，例如 Français，Русский，Español 等語言。
+- 繪畫（約等於~亂畫）。冇系統咁學過相關知識，就係想畫啥畫啥。
+- 閱讀文學。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 同 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 係我最鍾意嘅作家之一，雖然有時候睇唔係幾明，但係更令我癡迷不已。
+- 設計各種有意思嘅嘢，執著于用平凡嘅材料創造出不平凡嘅嘢，用顏色表達情感。
+- 攝影。用相機記錄的每一個值得回憶嘅瞬間。
 
-## Ma Création :)
+## 個人作品 :)
 
-Voici la première œuvre que j'ai peinte il y a plusieurs années.
+係幾年前我畫嘅第一幅畫。
 
 ![The first man I drew.](him.PNG)
-
-Et c'est une fleur de cactus chez moi.
+係我屋企仙人掌開嘅花。
 
 ![Cactus flower.](cactus.jpeg)
 ]]></content>
@@ -560,6 +712,159 @@ b、p、m、f、d、t、n、l、g、k、w 的發音與普通話大致相同。
       <tags>
         <tag>粤语</tag>
         <tag>语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基本数据结构 template</title>
+    <url>/2023/06/22/data-structure/</url>
+    <content><![CDATA[
+# 线性表
+
+## 顺序存储
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+#define MAX_SIZE 66
+
+template<class T>
+struct SqList {
+    T data[MAX_SIZE];
+    int length;
+};
+
+// 插入
+template<class T>
+bool ListInsert(SqList<T> &L, int i, T e) {
+    // i 取值为 1 <= i <= length + 1
+    if (i < 1 || i > L.length + 1) {
+        return false;
+    }
+    if (i >= MAX_SIZE)
+        return false;
+    for (int j = L.length; j >= i; j--)
+        L.data[j] = L.data[j - 1];
+    L.data[i - 1] = e;
+    L.length++;
+    return true;
+}
+
+// 删除
+template<class T>
+bool ListDelete(SqList<T> &L, int i, T &e) {
+    if (i < 1 || i > L.length)
+        return false;
+    e = L.data[i - 1];
+    for (int j = i; j < L.length; j++)
+        L.data[j - 1] = L.data[j];
+    L.length--;
+    return true;
+}
+
+// 查找
+template<class T>
+int LocateElem(const SqList<T> &L, T &e) {
+    for (int i = 0; i < L.length; i++)
+        if (L.data[i] == e)
+            return i + 1;
+    return 0;
+}
+
+// 遍历
+template<class T>
+void Print(const SqList<T> &L) {
+    cout << "This is SqList: ";
+    for (int i = 0; i < L.length; i++)
+        cout << L.data[i] << " ";
+    cout << endl;
+}
+```
+
+## 链式存储
+
+]]></content>
+      <tags>
+        <tag>Cpp</tag>
+        <tag>Data-Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Theme Ideas</title>
+    <url>/2024/03/31/hexo-theme-ideas/</url>
+    <content><![CDATA[## Newspaper-like
+
+
+## Notebook-like]]></content>
+      <tags>
+        <tag>Design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 基础回顾</title>
+    <url>/2023/06/21/cpp-basic/</url>
+    <content><![CDATA[
+# 类和面向对象
+
+## 静态成员
+
+如果一个成员变量被声明为 `static`，则该类的所有对象均可以访问该变量。如果一个成员函数被声明为 `static`，则它可以在类的任何实例被定义之前调用。
+
+**静态成员变量必须在类中声明，在类外部定义。**
+
+## 友元
+
+## 派生
+
+### 构造与析构
+
+派生类对象构造时，先调用基类的构造函数，再调用自身的构造函数。
+派生类对象析构时，先调用自身的析构函数，再调用基类的析构函数。
+
+```cpp
+#include <iostream>
+
+struct A {
+    A() {
+        std::cout << "Hello A" << std::endl;
+    }
+    ~A() {
+        std::cout << "Bye A" << std::endl;
+    }
+};
+
+struct B: public A{
+    B() {
+        std::cout << "Hello B" << std::endl;
+    }
+    ~B() {
+        std::cout << "Bye B" << std::endl;
+    }
+};
+
+int main() {
+    A a;
+    B b;
+    return 0;
+}
+```
+
+输出结果为
+
+```
+Hello A
+Hello A
+Hello B
+Bye B
+Bye A
+Bye A
+```
+
+## 多态
+]]></content>
+      <tags>
+        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
@@ -1080,132 +1385,455 @@ int main() {
 # multimap
 ]]></content>
       <tags>
-        <tag>STL</tag>
         <tag>Cpp</tag>
+        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
-    <title>C++ 基础回顾</title>
-    <url>/2023/06/21/cpp-basic/</url>
+    <title>无线传输技术</title>
+    <url>/2023/06/24/wireless-network-basic/</url>
     <content><![CDATA[
-# 类和面向对象
+# 无线传输媒体
 
-## 静态成员
+- 导向的
+- 非导向的
 
-如果一个成员变量被声明为 `static`，则该类的所有对象均可以访问该变量。如果一个成员函数被声明为 `static`，则它可以在类的任何实例被定义之前调用。
+## 常用频段
 
-**静态成员变量必须在类中声明，在类外部定义。**
+- 1GHz - 100GHz，微波，可用于点对点传输以及卫星通信
+- 30MHz - 1GHz，无线电广播
+- $3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用
 
-## 友元
+## 衰减
 
-## 派生
+微波传输衰减公式
 
-### 构造与析构
+$$L=10\lg{\left(\frac{4\pi d}{\lambda}\right)^2}$$
 
-派生类对象构造时，先调用基类的构造函数，再调用自身的构造函数。
-派生类对象析构时，先调用自身的析构函数，再调用基类的析构函数。
+# 天线
 
-```cpp
-#include <iostream>
+## 类型
 
-struct A {
-    A() {
-        std::cout << "Hello A" << std::endl;
-    }
-    ~A() {
-        std::cout << "Bye A" << std::endl;
-    }
-};
+- 偶极天线
+- 抛物反射天线
 
-struct B: public A{
-    B() {
-        std::cout << "Hello B" << std::endl;
-    }
-    ~B() {
-        std::cout << "Bye B" << std::endl;
-    }
-};
+## 天线增益
 
-int main() {
-    A a;
-    B b;
-    return 0;
-}
-```
+天线增益和有效面积之间的关系
 
-输出结果为
+$$G=\frac{4\pi A_e}{\lambda^2}=\frac{4\pi f^2A_e}{c^2}$$
 
-```
-Hello A
-Hello A
-Hello B
-Bye B
-Bye A
-Bye A
-```
+- $G$ 为天线的增益
+- $A_e$ 为天线的有效面积
+- $f$ 为载波频率
+- $c$ 为光速
+- $\lambda$ 为载波波长
 
-## 多态
+# 传播方式
+
+- 天波传播（<2MHz）
+- 地波传播（2-30MHz）
+- 直线传播（>30MHz）
+
+# 传输损耗
+
+- 衰减和衰减失真
+- 自由空间损耗
+- 噪声
+  - 热噪声
+  - 互调噪声
+  - 串扰
+  - 脉冲噪声
+- 大气吸收
+- 多径
+- 折射
+
+# 移动环境中的衰退
+
+衰退类型
+
+- 平面/非选择性衰退
+- 选择性衰退
+
+差错补偿
+
+- 前向纠错
+- 适应性均衡
+- 分集技术
+
+
+# 多普勒效应
+
+在无线电通信中，多普勒效应是指由于移动设备（如移动电话、无人机、雷达等）和基站之间的相对运动而导致信号频率发生变化的现象。这种变化可能会对通信系统的性能和可靠性产生影响，因此需要考虑和处理多普勒效应。
+
+当移动设备和基站之间相对运动时，根据多普勒效应的原理，信号的频率会发生变化。具体而言，如果移动设备向基站靠近，观测者（基站）会感知到信号频率变高，称为正多普勒效应。相反，如果移动设备远离基站，观测者会感知到信号频率变低，称为负多普勒效应。
+
+在无线电通信系统中，多普勒效应的处理是至关重要的，特别是对于高速移动设备或基站的情况。以下是一些常见的处理多普勒效应的方法：
+
+1. 频率补偿
+   基站可以根据移动设备和基站之间的相对速度，对接收到的信号频率进行补偿。通过测量相对速度并应用适当的频率偏移，可以消除多普勒效应引起的频率偏差，从而保持通信的可靠性。
+
+2. 盲速估计和补偿
+   在某些情况下，移动设备可能无法直接提供其运动信息。此时，基站可以使用盲速估计算法来估计移动设备的相对速度，并相应地对接收到的信号进行频率补偿。
+
+3. 多天线技术
+   多天线技术（如天线阵列）可以通过空间分集和波束成形的方法减轻多普勒效应的影响。通过多路径传播的信号可以从多个方向接收，并在接收端进行合并处理，以降低多普勒效应带来的干扰。
+
+4. 自适应调制
+   自适应调制技术可以根据信道条件的变化，自动调整调制方式和参数。通过根据多普勒效应的影响来选择适当的调制方式，可以提高信号的可靠性和传输效率。
+
+# 扩频
+
+扩频技术（Spread Spectrum）是一种在无线通信中广泛应用的技术，它通过将信号在更宽的频带上进行传输，以提高通信的可靠性、抗干扰性和安全性。
+
+## 原理
+
+扩频技术基于信号的频谱扩展原理，通过将原始信号与一个宽带的扩频码进行数学运算，使信号在更大的频带范围内传输。这个扩频码可以是一个伪随机序列，也称为扩频序列或码片。
+
+## 扩频序列
+
+扩频序列是一串伪随机的二进制码片序列，其特点是具有较好的互相关性。发送端使用扩频序列将原始数据进行编码，接收端使用相同的扩频序列进行解码，以还原出原始数据。常用的扩频序列包括加法扩频码（例如 N 序列）和乘法扩频码（例如 Gold 码）。
+
+## 扩频方式
+
+- 直接序列扩频（Direct Sequence Spread Spectrum，DSSS）：发送端将原始信号与扩频码进行逐位的直接相乘，从而实现频谱的扩展。接收端通过与发送端使用相同的扩频码进行相关运算，将扩展的信号还原为原始信号。
+- 跳频扩频（Frequency Hopping Spread Spectrum，FHSS）：发送端在一个较宽的频带内划分多个子信道，并按照一定的规律，周期性地在这些子信道之间进行切换。接收端需要与发送端保持同步，并按照相同的规律进行频道的切换，以恢复原始信号。
+- 跳时扩频（Time Hopping Spread Spectrum，THSS）基于时间域上的扩频原理，在信号传输过程中，将原始信号分割成短时隙，并根据扩频码的规则进行时隙的跳跃。在每个时隙中，信号以窄带方式传输，并在不同的时隙中通过改变扩频码进行频谱扩展。
+- 脉冲调频。使用调频脉冲进行数据传输，扩频函数控制调频模式。
+- 混合扩频。
+
+## 优点
+
+- 抗干扰性：扩频技术可以有效抵抗窄带干扰，因为干扰信号只会在整个频带范围内被均匀分布，而且接收端只有在正确的扩频序列下才能还原出原始信号。
+- 安全性：由于扩频码是伪随机的，只有知道正确的扩频序列的接收端才能正确解码，从而实现了一定的安全性。
+- 高可靠性：由于信号在更宽的频带上传输，扩频技术对信道衰落和多径效应具有较好的容忍性，提供了更可靠的通信连接。
+
+扩频技术在许多应用中得到广泛应用，包括无线局域网（WLAN）、蓝牙、CDMA 手机通信等。通过扩展信号的频谱，扩频技术提高了通信系统的性能和可靠性，使得无线通信更加稳定和安全。
+
+# 差错控制
+
+## 差错检测码
+
+差错检测码（Error Detection Code）是一种用于检测数据传输过程中错误的编码技术。它通过在数据中添加冗余位（校验位）来帮助接收方检测传输过程中可能发生的错误。差错检测码广泛应用于计算机网络、通信系统和存储介质等领域，以确保数据的可靠性和完整性。
+
+1. 奇偶校验（Parity Check）
+   奇偶校验是一种基本的差错检测码。在奇偶校验中，发送方在数据中添加一个奇偶位，使得数据中 1 的个数为奇数（奇校验）或偶数（偶校验）。接收方在接收数据后重新计算奇偶位，并与接收到的校验位进行比较，以检测错误。奇偶校验可以检测到单比特错误，但无法纠正错误。
+
+2. 循环冗余检验（Cyclic Redundancy Check，CRC）
+   CRC 是一种常见的差错检测码，也可以用于纠正错误。CRC 通过除法运算将数据进行多项式编码，并将编码后的冗余校验码添加到数据中。接收方通过再次进行多项式除法运算，并检查接收到的冗余校验码是否匹配，以确定是否有错误发生。CRC 可以检测和纠正多比特错误。
+
+3. 奇偶纠错码（BCH Code）
+   奇偶纠错码是一种用于检测和纠正多比特错误的差错检测码。它在数据中添加冗余位，并使用数学算法来检测和纠正错误。奇偶纠错码可以根据不同的需求和纠错能力进行选择。
+
+4. 校验和（Checksum）
+   校验和是一种简单的差错检测码，常用于网络传输中。发送方将数据分成较小的块，对每个块计算校验和，并将校验和添加到数据中。接收方在接收到数据后，再次计算校验和，并与接收到的校验和进行比较。如果校验和不匹配，则认为数据存在错误。
+
+差错检测码在数据传输过程中起着重要的作用，可以帮助接收方检测传输中的错误。通过选择适当的差错检测码，可以提高数据传输的可靠性，并及时发现和处理错误。
+
+## 差错纠错码
+
+差错纠错码（Error Correction Code）是一种用于检测和纠正数据传输中的错误的编码技术。与差错检测码只能检测错误不同，差错纠错码能够在一定范围内检测错误并纠正它们，从而提高数据的可靠性和完整性。
+
+1. 海明码（Hamming Code）
+   海明码是一种常用的差错纠错码。它通过在数据中添加冗余位（校验位）来纠正错误。海明码使用特定的编码规则，在数据中插入校验位，使得校验位与数据中的比特按照一定规则进行排列。接收方通过比较接收到的数据和校验位，可以检测并纠正单比特错误。海明码可以纠正单比特错误，并检测多比特错误。
+
+2. 重复编码
+   重复编码是一种简单的差错纠错码方法。发送方将每个比特重复发送多次，接收方通过多次接收并比较来检测和纠正错误。例如，将每个比特发送三次，如果接收到的比特中有两个或三个相同，则接收方将判断为正确。重复编码可以纠正少量的比特错误，但会增加传输的开销。
+
+3. BCH 码（Bose-Chaudhuri-Hocquenghem Code）
+   BCH 码是一类常见的差错纠错码，用于纠正多比特错误。BCH 码根据所需的纠错能力和数据长度选择不同的参数。它利用数学算法将数据进行编码，并在接收方使用纠错算法对接收到的数据进行解码和纠正。BCH 码能够纠正多比特错误，具有较高的纠错能力。
+
+4. RS 码（Reed-Solomon Code）
+   RS 码是一种常用的差错纠错码，被广泛应用于数据存储和通信系统中。RS 码使用多项式运算来进行编码和解码，具有强大的纠错能力。它可以纠正多比特错误，包括突发错误和随机错误。
+
+差错纠错码通过添加冗余位和利用纠错算法来提供数据纠正能力。它们在数据通信中起着重要的作用，可以检测和纠正传输过程中的错误，提高数据的可靠性和完整性。选择适当的差错纠错码取决于纠错能力要求和系统的特定需求。
+
+## ARQ
+
+自动重发请求（Automatic Repeat Request，ARQ）是一种差错控制技术，用于在计算机网络中检测和纠正数据传输中的错误。ARQ 通过发送方发送数据包并等待接收方的确认（ACK）来实现错误检测和纠正。
+
+1. 发送方工作流程：
+
+   - 发送数据：发送方将数据分成较小的数据包，并通过网络发送给接收方。
+   - 等待确认：发送方等待接收方发送确认（ACK）信号，表示数据包已正确接收。
+   - 超时重发：如果发送方在一定时间内未收到确认信号，即发生超时，发送方会假设数据包丢失或损坏，并重新发送相同的数据包。
+
+2. 接收方工作流程：
+
+   - 接收数据：接收方接收发送方发送的数据包。
+   - 校验数据：接收方对接收到的数据包进行校验，以检测是否有错误发生。
+   - 发送确认：如果数据包没有错误，接收方发送确认信号（ACK）给发送方。
+   - 检测和丢弃重复数据包：接收方检测重复的数据包，并将其丢弃，以防止重复处理。
+
+3. ARQ 的重发机制：
+
+   - 确认丢失：如果发送方发送了数据包但未收到确认信号，发送方假设数据包丢失，并重新发送相同的数据包。
+   - 错误检测：接收方在校验数据包时发现错误，将不发送确认信号，以指示发送方需要重新发送数据包。
+   - 超时重发：发送方设置一个超时定时器，如果在规定的时间内未收到确认信号，则认为数据包丢失，并重新发送数据包。
+
+ARQ 的优点是能够在数据传输过程中检测和纠正错误，提高了数据的可靠性。然而，ARQ 的缺点是增加了网络的延迟和带宽开销，因为需要重复发送数据包和等待确认信号。
+
+在 ARQ 中，还存在多种变体，如停止等待 ARQ 和连续 ARQ。停止等待 ARQ 是一种简单的 ARQ 方法，发送方在发送数据包后，等待接收到确认信号后才发送下一个数据包。连续 ARQ 是一种更高效的 ARQ 方法，允许发送方连续发送多个数据包，而无需等待每个数据包的确认信号。]]></content>
+      <tags>
+        <tag>Wireless-Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Wireless Network Conclusion</title>
+    <url>/2023/06/25/wireless-network-conclusion/</url>
+    <content><![CDATA[
+# 英文缩写
+
+- WAN, Wide Area Network
+- LAN, Local Area Network
+- WWAN, Wireless Wide Area Network
+- WPAN, Wireless Personal Area Network
+- WSN, Wireless Sensor Network
+- WMN, Wireless Mesh Network
+- IEEE, the Institute of Electrical and Electronics Engineers, 电气电子工程师学会
+- ITU, International Telecommunication Union, 国际电信联盟
+- ISO, International Standards Organization
+- IETF, Internet Engineering Task Force, Internet 工程任务组
+- IAB, Internet Architecture Board, Internet 体系结构委员会
+- IRTF, Internet Research Task Force, Internet 研究任务组
+- ANSI, American National Standards Institute, 美国国家标准协会
+- 3GPP, The 3rd Generation Partnership Project
+- IPDR, The Internet Protocol Detail Record
+- CDMA, Code Division Multiple Access, 码分多路复用
+- ETSI, European Telecommunications Standards Institute
+- Wi-Fi, Wireless Fidelity
+- BSS, Basic Service Set
+- IBSS, Independent Basic Service Set
+- AP, Access Point
+- ESS, Extended Service Set
+- IESS, Independent Extended Service Set
+- DHCP, Dynamic Host Configuration Protocol
+- WAPI, Wireless LAN Authentication and Privacy Infrastructure, 无线局域网鉴别和保密基础结构
+- WEP, Wire Equivalent Privacy, 有线等效加密
+
+# 名词
+
+- 无线穿戴网，基于短距离无线通信技术与可穿戴式计算机技术，穿戴在人体上具有智能收集人体和周围环境信息的一种新型个域网
+- 无线体域网 BAN，是由依附于身体的各种传感器构成的网络
+- OSI RM
+  - 物理层
+  - 数据链路层
+  - 网络层
+  - 传输层
+  - 会话层
+  - 表示层
+  - 应用层
+- 微波，频率在 300MHz - 300GHz 之间的电磁波
+- 天线，实现无线传输最基本的设备，可以看做为一条电子导线或导线系统，该导线系统或用于将电磁能辐射到太空，或用于将太空中的电磁能收集起来
+- 天线增益，天线定向性的度量，与有理论的全向天线在各个方向所产生的输出相比，天线增益定义为在一特定方向上的功率输出
+- 衰减，信号的强度随着跨越的传输媒介的距离而降低
+- 自由空间损耗，信号会随着距离发散，具有固定面积的天线离发射天线越远，接收的信号功率越低
+
+# 部分知识点
+
+## 无线网络的分类（应用）
+
+- 无线传感器网络
+- 无线 Mesh 网络
+- 无线穿戴网络
+- 无线体域网络
+
+## 无线网络的协议模型特点
+
+- 基于分层体系结构
+- 不关注路由问题，没有网络层的协议，采用传统的 IP
+- 存在共享访问介质的问题，因此 MAC 协议是无线网络协议的重点
+
+## ISM 频段
+
+- 902MHz~928MHz
+- 2.4GHz~2.4835GHz
+- 5.735GHz~5.860GHz
+
+## 直线传输系统中的损伤
+
+- 衰减和衰减失真
+- 自由空间损耗
+- 噪声
+- 大气吸收
+- 多径
+- 折射
+
+## 不同 IFS 的作用
+
+- SIFS，用于所有立即响应的动作
+- PIFS，在发布轮询时，被中央控制器用于 PCF 模式
+- DIFS，非同步侦的接入竞争
+
+## WLAN 的拓扑结构
+
+- 分布对等式拓扑
+- 基础结构集中式拓扑
+- ESS 网络拓扑
+- 中继或桥接型网络拓扑
+
+## WLAN 的服务
+
+- STA 服务（SS）
+  - 认证
+  - 解除认证
+  - 保密
+  - MAC 服务数据单元传送
+- 分布式系统服务（DSS）
+  - 联结
+  - 重新联结
+  - 解除联结
+  - 分布
+  - 集成
+
+## 无线 Mesh 网络与蜂窝网络的主要区别
+
+- 可靠性提高，自愈性强
+- 传输速率大大提高
+- 投资成本降低
+- 网络配置和维护简便快捷
+
+## 无线 Mesh 网络与 WLAN 的主要区别
+
+- 从拓扑结构上看，WLAN 是典型的点对多点（P2MP，Point to Multiple Points）网络，而且采取单跳方式，因而数据不可转发。WMN 可以通过 WR 对数据进行智能转发（需要对 WLAN 传统的 AP 功能进行扩展和改进）。
+- 从协议上看，WMN 与移动 Ad Hoc 网络基本类似。WLAN 的 MAC 协议完成的是本地业务的接入，而 WMN 则有两种可能，一种是本地业务的接入，另一种是其他节点业务的转发。对于路由协议，WLAN 是静态的因特网路由协议和移动 IP；但 WMN 则主要是动态的按需发现的路由协议，只具有较短暂的生命周期。
+
+## 无线 Mesh 网络与 Ad Hoc 的主要区别
+
+- WMN 由无线路由器构成的无线骨干网组成。该无线骨干网提供了大范围的信号覆盖与节点连接。移动 Ad Hoc 网络的节点都兼有独立路由和主机功能，节点地位平等，接通性是依赖端节点的平等合作实现的，健壮性比 WMN 差。
+- WMN 节点移动性低于移动 Ad Hoc 网络中的节点，所以 WMN 注重的是“无线”，而移动 Ad Hoc 网络更强调的是“移动”。
+- 从网络结构来看，WMN 多为静态或弱移动的拓扑，而移动 Ad Hoc 网络多为随意移动(包括高速移动)的网络拓扑。
+- WMN 与移动 Ad Hoc 网络的业务模式不同，前者节点的主要业务是来往于因特网的业务，后者节点的主要业务是任意一对节点之间的业务流。
+- 从应用来看，WMN 主要是因特网或宽带多媒体通信业务的接入，而移动 Ad Hoc 网络主要用于军事或其他专业通信。
+
+## WMN 的优缺点
+
+- 优点
+  - 可靠性大大增强
+  - 具有冲突保护机制
+  - 简化链路设计
+  - 网络的覆盖范围增大
+  - 组网灵活、维护方便
+  - 投资成本低、风险小
+- 缺点
+  - 对于不同射频信道的 WMN 的研究还处于试验研制阶段，性能改善总体来说还不太满
+  - 在 WMN 路由准则和选择算法等方面，目前提出的特别适用于 WMN 的路由协议寥寥无几
+  - 在 WMN 连接性和多路支持方面，每个节点链路连接度也是一个至关重要的问题，并非使用射频信道数越多，网络性能越好，射频信道数增加会带来设备开销和成本上升，同时可能会带来更多的干扰问题
+  - 在 WMN 带宽利用和资源分配算法方面，目前还没有提出非常有效的可用算法和协议，相关问题还有待研究
+
+# 计算
+
+## 信道容量
+
+在信号平均功率有限的⽩噪声（指通信系统内部本身产⽣的噪声）信道中，信道的极限数据传输率（即信道容量）为
+
+$$C=W\log_2(1+\frac{S}{N})\;bps$$
+
+- $S$ 表示信号功率
+- $N$ 表示噪声功率
+- $W$ 为信道带宽
+- $C$ 为信道容量
+
+## Nyquist 准则
+
+离散⽆噪声的数字信道信道容量为
+
+$$C=2W\log_2L$$
+
+- $W$ 为信道的带宽（Hz）
+- $L$ 为代码采⽤的进制数
 ]]></content>
       <tags>
-        <tag>Cpp</tag>
+        <tag>Wireless-Network</tag>
       </tags>
   </entry>
   <entry>
-    <title>關於我自己</title>
-    <url>/2023/06/06/about-TCN/</url>
+    <title>WLAN</title>
+    <url>/2023/06/24/wireless-network-wlan/</url>
     <content><![CDATA[
-繁體中文 | [简体中文](../about-CN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
+# 组成
+
+- 站 Station, STA
+  - 终端用户设备
+  - 无线网络接口
+  - 网络软件
+- 无线介质 Wireless Medium, VM
+- 基站/接入点 Base Station, BS / Access Point, AP
+- 分布式系统 Distribution System, DS
+
+# 拓扑结构
+
+- 分布对等式拓扑
+- 基础结构集中式拓扑
+- ESS 网络拓扑
+- 中继或桥接型网络拓扑
+
+# 服务
+
+- STA 服务 SS
+- 分布式系统服务 DSS
+]]></content>
+      <tags>
+        <tag>Wireless-Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Présentation de soi.</title>
+    <url>/2023/06/06/about-FR/</url>
+    <content><![CDATA[
+Français | [English](../about/index.html) | [繁體中文](../about-TCN/index.html) | [简体中文](../about-CN/index.html)
 
 ![Programming is art.](code.png)
 
-# 你好！
+# Bonjour!
 
-歡迎訪問我嘅個人主頁，我都非常榮幸能夠同你咁有趣嘅靈魂在此相遇。
+Bienvenue sur ma page d'accueil personnelle, et je suis heureux de rencontrer une âme aussi intéressante que vous.
 
-# 學習經歷
+# Expérience
 
-- 2017 - 2020，高中，安徽省亳州市第一中學
-- 2020 - 至今，本科，吉林大學計算機科學與技術學院
+- 2017 - 2020, Premier Lycée de Bozhou, Province d'Anhui
+- 2020 - 2024, Collège d'informatique et de technologie, Université de Jilin
 
-# 參與項目
+# Projets
 
-- RISC-V 指令集軟件仿真
-- 基於 YOLOv5 嘅智能撿拾機械人
-- 我自己嘅 Repositories
+- Émulateur basé sur RISC-V
+- Robot de prélèvement intelligent utilisant YOLOv5
+- Certains Github Repositories
   - [Heartbeat](https://github.com/created4u/heartbeat.git)
   - [Coursea](https://github.com/created4u/Coursea.git)
 
-# 所獲榮譽
+# Récompenses et Honneurs
 
-（截止至 2023 年 8 月）
+(Mise à jour le 29, Août, 2023)
 
-- 2020 - 2021，吉林大學三等獎學金
-- 2021 - 2022，吉林大學二等獎學金
-- 2021 - 2022，吉林大學計算機科學與技術學院院優秀學生
-- 2023，[全國大學生物聯網設計競賽](http://iot.sjtu.edu.cn/Default.aspx)，東北賽區一等獎，全國總決賽二等獎
+- 2020 - 2021, Bourse de deuxième classe, Université de Jilin
+- 2021 - 2022, Bourse de troisième classe, Université de Jilin
+- 2021 - 2022, Excellent étudiant universitaire, Université de Jilin
+- 2023, [Concours national de conception IoT](http://iot.sjtu.edu.cn/Default.aspx), Premier Prix de la Région Nord-Est, Deuxième Prix de la Finale Nationale
 
-# 個人能力
+# Compétence
 
-- 英語水平良好，四六級均以優秀成績通過，正在備考 TOEFL，能夠流暢地閱讀外文文獻。
-- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等編程語言，有良好的編程能力。
-- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技術，能夠獨立搭建網頁。
-- 有一定的開發經驗，能夠獨立開發 iOS/iPadOS/macOS 和 Android 應用程序。
-- 廣泛接觸軟硬件，基礎較為紮實，熟悉嵌入式開發。
+- Bon niveau d'anglais, avoir réussi les CET-4 et CET-6 avec d'excellentes notes et savoir lire couramment la littérature étrangère.
+- Familier avec C, C++, Java, Python, Kotlin, Swift, Go et d'autres langages de programmation, avec une bonne capacité de programmation.
+- Familier avec HTML, CSS, JavaScript, Node.js, Vue, Bootstrap et d'autres technologies, capable de créer de manière indépendante des pages Web.
+- Capable de développer de manière indépendante des applications iOS/iPadOS/macOS et Android.
+- Etude approfondie des logiciels et du matériel, familiarisé avec le développement embarqué.
 
-# 興趣愛好
+# Loisirs
 
-- 語言學習。空餘時間會學習各種有趣嘅語言，例如 Français，Русский，Español 等語言。
-- 繪畫（約等於~亂畫）。冇系統咁學過相關知識，就係想畫啥畫啥。
-- 閱讀文學。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 同 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 係我最鍾意嘅作家之一，雖然有時候睇唔係幾明，但係更令我癡迷不已。
-- 設計各種有意思嘅嘢，執著于用平凡嘅材料創造出不平凡嘅嘢，用顏色表達情感。
-- 攝影。用相機記錄的每一個值得回憶嘅瞬間。
+- Apprendre des langues. Quand je suis libre, apprendre différentes langues est une merveilleuse façon de gagner du temps, Français, Русский, Español... ce sont mes préférées.
+- Peinture. Juste pour le fun :P.
+- En lisant. [Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) et [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) sont parmi mes auteurs préférés. Bien que parfois je ne comprenne pas entièrement leur travail brillant, cela me rend encore plus captivé.
+- Concevez toutes sortes de choses intéressantes, insistez pour créer des choses extraordinaires avec des matériaux ordinaires et exprimez des émotions avec des couleurs.
+- La photographie. Enregistrement de chaque instant de la vie normale avec caméra.
 
-## 個人作品 :)
+## Ma Création :)
 
-係幾年前我畫嘅第一幅畫。
+Voici la première œuvre que j'ai peinte il y a plusieurs années.
 
 ![The first man I drew.](him.PNG)
-係我屋企仙人掌開嘅花。
+
+Et c'est une fleur de cactus chez moi.
 
 ![Cactus flower.](cactus.jpeg)
 ]]></content>
@@ -1214,79 +1842,17 @@ Bye A
       </categories>
   </entry>
   <entry>
-    <title>基本数据结构 template</title>
-    <url>/2023/06/22/data-structure/</url>
-    <content><![CDATA[
-# 线性表
-
-## 顺序存储
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-#define MAX_SIZE 66
-
-template<class T>
-struct SqList {
-    T data[MAX_SIZE];
-    int length;
-};
-
-// 插入
-template<class T>
-bool ListInsert(SqList<T> &L, int i, T e) {
-    // i 取值为 1 <= i <= length + 1
-    if (i < 1 || i > L.length + 1) {
-        return false;
-    }
-    if (i >= MAX_SIZE)
-        return false;
-    for (int j = L.length; j >= i; j--)
-        L.data[j] = L.data[j - 1];
-    L.data[i - 1] = e;
-    L.length++;
-    return true;
-}
-
-// 删除
-template<class T>
-bool ListDelete(SqList<T> &L, int i, T &e) {
-    if (i < 1 || i > L.length)
-        return false;
-    e = L.data[i - 1];
-    for (int j = i; j < L.length; j++)
-        L.data[j - 1] = L.data[j];
-    L.length--;
-    return true;
-}
-
-// 查找
-template<class T>
-int LocateElem(const SqList<T> &L, T &e) {
-    for (int i = 0; i < L.length; i++)
-        if (L.data[i] == e)
-            return i + 1;
-    return 0;
-}
-
-// 遍历
-template<class T>
-void Print(const SqList<T> &L) {
-    cout << "This is SqList: ";
-    for (int i = 0; i < L.length; i++)
-        cout << L.data[i] << " ";
-    cout << endl;
-}
-```
-
-## 链式存储
-
+    <title>每日幾句</title>
+    <url>/2024/03/27/%E6%AF%8F%E6%97%A5%E5%B9%BE%E5%8F%A5/</url>
+    <content><![CDATA[- **三月二十七日，週三**
+	- nei5 hou2 aa1，gam1 jat6 jau6 mou5 soeng2 ngo5。
+	- 你好啊，今日又冇想我。 
+	- m4 zi1 dou6 soeng2 jiu3 sik6 mat1 je5。
+	- 唔知道想要食乜嘢。
 ]]></content>
       <tags>
-        <tag>Cpp</tag>
-        <tag>Data-Structure</tag>
+        <tag>粤语</tag>
+        <tag>语言</tag>
       </tags>
   </entry>
   <entry>
@@ -1607,421 +2173,8 @@ int main()
 ```
 ]]></content>
       <tags>
-        <tag>STL</tag>
         <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无线传输技术</title>
-    <url>/2023/06/24/wireless-network-basic/</url>
-    <content><![CDATA[
-# 无线传输媒体
-
-- 导向的
-- 非导向的
-
-## 常用频段
-
-- 1GHz - 100GHz，微波，可用于点对点传输以及卫星通信
-- 30MHz - 1GHz，无线电广播
-- $3\times10^{11}$Hz - $2\times10^{14}$Hz，红外，本地应用
-
-## 衰减
-
-微波传输衰减公式
-
-$$L=10\lg{\left(\frac{4\pi d}{\lambda}\right)^2}$$
-
-# 天线
-
-## 类型
-
-- 偶极天线
-- 抛物反射天线
-
-## 天线增益
-
-天线增益和有效面积之间的关系
-
-$$G=\frac{4\pi A_e}{\lambda^2}=\frac{4\pi f^2A_e}{c^2}$$
-
-- $G$ 为天线的增益
-- $A_e$ 为天线的有效面积
-- $f$ 为载波频率
-- $c$ 为光速
-- $\lambda$ 为载波波长
-
-# 传播方式
-
-- 天波传播（<2MHz）
-- 地波传播（2-30MHz）
-- 直线传播（>30MHz）
-
-# 传输损耗
-
-- 衰减和衰减失真
-- 自由空间损耗
-- 噪声
-  - 热噪声
-  - 互调噪声
-  - 串扰
-  - 脉冲噪声
-- 大气吸收
-- 多径
-- 折射
-
-# 移动环境中的衰退
-
-衰退类型
-
-- 平面/非选择性衰退
-- 选择性衰退
-
-差错补偿
-
-- 前向纠错
-- 适应性均衡
-- 分集技术
-
-
-# 多普勒效应
-
-在无线电通信中，多普勒效应是指由于移动设备（如移动电话、无人机、雷达等）和基站之间的相对运动而导致信号频率发生变化的现象。这种变化可能会对通信系统的性能和可靠性产生影响，因此需要考虑和处理多普勒效应。
-
-当移动设备和基站之间相对运动时，根据多普勒效应的原理，信号的频率会发生变化。具体而言，如果移动设备向基站靠近，观测者（基站）会感知到信号频率变高，称为正多普勒效应。相反，如果移动设备远离基站，观测者会感知到信号频率变低，称为负多普勒效应。
-
-在无线电通信系统中，多普勒效应的处理是至关重要的，特别是对于高速移动设备或基站的情况。以下是一些常见的处理多普勒效应的方法：
-
-1. 频率补偿
-   基站可以根据移动设备和基站之间的相对速度，对接收到的信号频率进行补偿。通过测量相对速度并应用适当的频率偏移，可以消除多普勒效应引起的频率偏差，从而保持通信的可靠性。
-
-2. 盲速估计和补偿
-   在某些情况下，移动设备可能无法直接提供其运动信息。此时，基站可以使用盲速估计算法来估计移动设备的相对速度，并相应地对接收到的信号进行频率补偿。
-
-3. 多天线技术
-   多天线技术（如天线阵列）可以通过空间分集和波束成形的方法减轻多普勒效应的影响。通过多路径传播的信号可以从多个方向接收，并在接收端进行合并处理，以降低多普勒效应带来的干扰。
-
-4. 自适应调制
-   自适应调制技术可以根据信道条件的变化，自动调整调制方式和参数。通过根据多普勒效应的影响来选择适当的调制方式，可以提高信号的可靠性和传输效率。
-
-# 扩频
-
-扩频技术（Spread Spectrum）是一种在无线通信中广泛应用的技术，它通过将信号在更宽的频带上进行传输，以提高通信的可靠性、抗干扰性和安全性。
-
-## 原理
-
-扩频技术基于信号的频谱扩展原理，通过将原始信号与一个宽带的扩频码进行数学运算，使信号在更大的频带范围内传输。这个扩频码可以是一个伪随机序列，也称为扩频序列或码片。
-
-## 扩频序列
-
-扩频序列是一串伪随机的二进制码片序列，其特点是具有较好的互相关性。发送端使用扩频序列将原始数据进行编码，接收端使用相同的扩频序列进行解码，以还原出原始数据。常用的扩频序列包括加法扩频码（例如 N 序列）和乘法扩频码（例如 Gold 码）。
-
-## 扩频方式
-
-- 直接序列扩频（Direct Sequence Spread Spectrum，DSSS）：发送端将原始信号与扩频码进行逐位的直接相乘，从而实现频谱的扩展。接收端通过与发送端使用相同的扩频码进行相关运算，将扩展的信号还原为原始信号。
-- 跳频扩频（Frequency Hopping Spread Spectrum，FHSS）：发送端在一个较宽的频带内划分多个子信道，并按照一定的规律，周期性地在这些子信道之间进行切换。接收端需要与发送端保持同步，并按照相同的规律进行频道的切换，以恢复原始信号。
-- 跳时扩频（Time Hopping Spread Spectrum，THSS）基于时间域上的扩频原理，在信号传输过程中，将原始信号分割成短时隙，并根据扩频码的规则进行时隙的跳跃。在每个时隙中，信号以窄带方式传输，并在不同的时隙中通过改变扩频码进行频谱扩展。
-- 脉冲调频。使用调频脉冲进行数据传输，扩频函数控制调频模式。
-- 混合扩频。
-
-## 优点
-
-- 抗干扰性：扩频技术可以有效抵抗窄带干扰，因为干扰信号只会在整个频带范围内被均匀分布，而且接收端只有在正确的扩频序列下才能还原出原始信号。
-- 安全性：由于扩频码是伪随机的，只有知道正确的扩频序列的接收端才能正确解码，从而实现了一定的安全性。
-- 高可靠性：由于信号在更宽的频带上传输，扩频技术对信道衰落和多径效应具有较好的容忍性，提供了更可靠的通信连接。
-
-扩频技术在许多应用中得到广泛应用，包括无线局域网（WLAN）、蓝牙、CDMA 手机通信等。通过扩展信号的频谱，扩频技术提高了通信系统的性能和可靠性，使得无线通信更加稳定和安全。
-
-# 差错控制
-
-## 差错检测码
-
-差错检测码（Error Detection Code）是一种用于检测数据传输过程中错误的编码技术。它通过在数据中添加冗余位（校验位）来帮助接收方检测传输过程中可能发生的错误。差错检测码广泛应用于计算机网络、通信系统和存储介质等领域，以确保数据的可靠性和完整性。
-
-1. 奇偶校验（Parity Check）
-   奇偶校验是一种基本的差错检测码。在奇偶校验中，发送方在数据中添加一个奇偶位，使得数据中 1 的个数为奇数（奇校验）或偶数（偶校验）。接收方在接收数据后重新计算奇偶位，并与接收到的校验位进行比较，以检测错误。奇偶校验可以检测到单比特错误，但无法纠正错误。
-
-2. 循环冗余检验（Cyclic Redundancy Check，CRC）
-   CRC 是一种常见的差错检测码，也可以用于纠正错误。CRC 通过除法运算将数据进行多项式编码，并将编码后的冗余校验码添加到数据中。接收方通过再次进行多项式除法运算，并检查接收到的冗余校验码是否匹配，以确定是否有错误发生。CRC 可以检测和纠正多比特错误。
-
-3. 奇偶纠错码（BCH Code）
-   奇偶纠错码是一种用于检测和纠正多比特错误的差错检测码。它在数据中添加冗余位，并使用数学算法来检测和纠正错误。奇偶纠错码可以根据不同的需求和纠错能力进行选择。
-
-4. 校验和（Checksum）
-   校验和是一种简单的差错检测码，常用于网络传输中。发送方将数据分成较小的块，对每个块计算校验和，并将校验和添加到数据中。接收方在接收到数据后，再次计算校验和，并与接收到的校验和进行比较。如果校验和不匹配，则认为数据存在错误。
-
-差错检测码在数据传输过程中起着重要的作用，可以帮助接收方检测传输中的错误。通过选择适当的差错检测码，可以提高数据传输的可靠性，并及时发现和处理错误。
-
-## 差错纠错码
-
-差错纠错码（Error Correction Code）是一种用于检测和纠正数据传输中的错误的编码技术。与差错检测码只能检测错误不同，差错纠错码能够在一定范围内检测错误并纠正它们，从而提高数据的可靠性和完整性。
-
-1. 海明码（Hamming Code）
-   海明码是一种常用的差错纠错码。它通过在数据中添加冗余位（校验位）来纠正错误。海明码使用特定的编码规则，在数据中插入校验位，使得校验位与数据中的比特按照一定规则进行排列。接收方通过比较接收到的数据和校验位，可以检测并纠正单比特错误。海明码可以纠正单比特错误，并检测多比特错误。
-
-2. 重复编码
-   重复编码是一种简单的差错纠错码方法。发送方将每个比特重复发送多次，接收方通过多次接收并比较来检测和纠正错误。例如，将每个比特发送三次，如果接收到的比特中有两个或三个相同，则接收方将判断为正确。重复编码可以纠正少量的比特错误，但会增加传输的开销。
-
-3. BCH 码（Bose-Chaudhuri-Hocquenghem Code）
-   BCH 码是一类常见的差错纠错码，用于纠正多比特错误。BCH 码根据所需的纠错能力和数据长度选择不同的参数。它利用数学算法将数据进行编码，并在接收方使用纠错算法对接收到的数据进行解码和纠正。BCH 码能够纠正多比特错误，具有较高的纠错能力。
-
-4. RS 码（Reed-Solomon Code）
-   RS 码是一种常用的差错纠错码，被广泛应用于数据存储和通信系统中。RS 码使用多项式运算来进行编码和解码，具有强大的纠错能力。它可以纠正多比特错误，包括突发错误和随机错误。
-
-差错纠错码通过添加冗余位和利用纠错算法来提供数据纠正能力。它们在数据通信中起着重要的作用，可以检测和纠正传输过程中的错误，提高数据的可靠性和完整性。选择适当的差错纠错码取决于纠错能力要求和系统的特定需求。
-
-## ARQ
-
-自动重发请求（Automatic Repeat Request，ARQ）是一种差错控制技术，用于在计算机网络中检测和纠正数据传输中的错误。ARQ 通过发送方发送数据包并等待接收方的确认（ACK）来实现错误检测和纠正。
-
-1. 发送方工作流程：
-
-   - 发送数据：发送方将数据分成较小的数据包，并通过网络发送给接收方。
-   - 等待确认：发送方等待接收方发送确认（ACK）信号，表示数据包已正确接收。
-   - 超时重发：如果发送方在一定时间内未收到确认信号，即发生超时，发送方会假设数据包丢失或损坏，并重新发送相同的数据包。
-
-2. 接收方工作流程：
-
-   - 接收数据：接收方接收发送方发送的数据包。
-   - 校验数据：接收方对接收到的数据包进行校验，以检测是否有错误发生。
-   - 发送确认：如果数据包没有错误，接收方发送确认信号（ACK）给发送方。
-   - 检测和丢弃重复数据包：接收方检测重复的数据包，并将其丢弃，以防止重复处理。
-
-3. ARQ 的重发机制：
-
-   - 确认丢失：如果发送方发送了数据包但未收到确认信号，发送方假设数据包丢失，并重新发送相同的数据包。
-   - 错误检测：接收方在校验数据包时发现错误，将不发送确认信号，以指示发送方需要重新发送数据包。
-   - 超时重发：发送方设置一个超时定时器，如果在规定的时间内未收到确认信号，则认为数据包丢失，并重新发送数据包。
-
-ARQ 的优点是能够在数据传输过程中检测和纠正错误，提高了数据的可靠性。然而，ARQ 的缺点是增加了网络的延迟和带宽开销，因为需要重复发送数据包和等待确认信号。
-
-在 ARQ 中，还存在多种变体，如停止等待 ARQ 和连续 ARQ。停止等待 ARQ 是一种简单的 ARQ 方法，发送方在发送数据包后，等待接收到确认信号后才发送下一个数据包。连续 ARQ 是一种更高效的 ARQ 方法，允许发送方连续发送多个数据包，而无需等待每个数据包的确认信号。]]></content>
-      <tags>
-        <tag>Wireless-Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WLAN</title>
-    <url>/2023/06/24/wireless-network-wlan/</url>
-    <content><![CDATA[
-# 组成
-
-- 站 Station, STA
-  - 终端用户设备
-  - 无线网络接口
-  - 网络软件
-- 无线介质 Wireless Medium, VM
-- 基站/接入点 Base Station, BS / Access Point, AP
-- 分布式系统 Distribution System, DS
-
-# 拓扑结构
-
-- 分布对等式拓扑
-- 基础结构集中式拓扑
-- ESS 网络拓扑
-- 中继或桥接型网络拓扑
-
-# 服务
-
-- STA 服务 SS
-- 分布式系统服务 DSS
-]]></content>
-      <tags>
-        <tag>Wireless-Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>每日幾句</title>
-    <url>/2024/03/27/%E6%AF%8F%E6%97%A5%E5%B9%BE%E5%8F%A5/</url>
-    <content><![CDATA[- **三月二十七日，週三**
-	- nei5 hou2 aa1，gam1 jat6 jau6 mou5 soeng2 ngo5。
-	- 你好啊，今日又冇想我。 
-	- m4 zi1 dou6 soeng2 jiu3 sik6 mat1 je5。
-	- 唔知道想要食乜嘢。
-]]></content>
-      <tags>
-        <tag>粤语</tag>
-        <tag>语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Wireless Network Conclusion</title>
-    <url>/2023/06/25/wireless-network-conclusion/</url>
-    <content><![CDATA[
-# 英文缩写
-
-- WAN, Wide Area Network
-- LAN, Local Area Network
-- WWAN, Wireless Wide Area Network
-- WPAN, Wireless Personal Area Network
-- WSN, Wireless Sensor Network
-- WMN, Wireless Mesh Network
-- IEEE, the Institute of Electrical and Electronics Engineers, 电气电子工程师学会
-- ITU, International Telecommunication Union, 国际电信联盟
-- ISO, International Standards Organization
-- IETF, Internet Engineering Task Force, Internet 工程任务组
-- IAB, Internet Architecture Board, Internet 体系结构委员会
-- IRTF, Internet Research Task Force, Internet 研究任务组
-- ANSI, American National Standards Institute, 美国国家标准协会
-- 3GPP, The 3rd Generation Partnership Project
-- IPDR, The Internet Protocol Detail Record
-- CDMA, Code Division Multiple Access, 码分多路复用
-- ETSI, European Telecommunications Standards Institute
-- Wi-Fi, Wireless Fidelity
-- BSS, Basic Service Set
-- IBSS, Independent Basic Service Set
-- AP, Access Point
-- ESS, Extended Service Set
-- IESS, Independent Extended Service Set
-- DHCP, Dynamic Host Configuration Protocol
-- WAPI, Wireless LAN Authentication and Privacy Infrastructure, 无线局域网鉴别和保密基础结构
-- WEP, Wire Equivalent Privacy, 有线等效加密
-
-# 名词
-
-- 无线穿戴网，基于短距离无线通信技术与可穿戴式计算机技术，穿戴在人体上具有智能收集人体和周围环境信息的一种新型个域网
-- 无线体域网 BAN，是由依附于身体的各种传感器构成的网络
-- OSI RM
-  - 物理层
-  - 数据链路层
-  - 网络层
-  - 传输层
-  - 会话层
-  - 表示层
-  - 应用层
-- 微波，频率在 300MHz - 300GHz 之间的电磁波
-- 天线，实现无线传输最基本的设备，可以看做为一条电子导线或导线系统，该导线系统或用于将电磁能辐射到太空，或用于将太空中的电磁能收集起来
-- 天线增益，天线定向性的度量，与有理论的全向天线在各个方向所产生的输出相比，天线增益定义为在一特定方向上的功率输出
-- 衰减，信号的强度随着跨越的传输媒介的距离而降低
-- 自由空间损耗，信号会随着距离发散，具有固定面积的天线离发射天线越远，接收的信号功率越低
-
-# 部分知识点
-
-## 无线网络的分类（应用）
-
-- 无线传感器网络
-- 无线 Mesh 网络
-- 无线穿戴网络
-- 无线体域网络
-
-## 无线网络的协议模型特点
-
-- 基于分层体系结构
-- 不关注路由问题，没有网络层的协议，采用传统的 IP
-- 存在共享访问介质的问题，因此 MAC 协议是无线网络协议的重点
-
-## ISM 频段
-
-- 902MHz~928MHz
-- 2.4GHz~2.4835GHz
-- 5.735GHz~5.860GHz
-
-## 直线传输系统中的损伤
-
-- 衰减和衰减失真
-- 自由空间损耗
-- 噪声
-- 大气吸收
-- 多径
-- 折射
-
-## 不同 IFS 的作用
-
-- SIFS，用于所有立即响应的动作
-- PIFS，在发布轮询时，被中央控制器用于 PCF 模式
-- DIFS，非同步侦的接入竞争
-
-## WLAN 的拓扑结构
-
-- 分布对等式拓扑
-- 基础结构集中式拓扑
-- ESS 网络拓扑
-- 中继或桥接型网络拓扑
-
-## WLAN 的服务
-
-- STA 服务（SS）
-  - 认证
-  - 解除认证
-  - 保密
-  - MAC 服务数据单元传送
-- 分布式系统服务（DSS）
-  - 联结
-  - 重新联结
-  - 解除联结
-  - 分布
-  - 集成
-
-## 无线 Mesh 网络与蜂窝网络的主要区别
-
-- 可靠性提高，自愈性强
-- 传输速率大大提高
-- 投资成本降低
-- 网络配置和维护简便快捷
-
-## 无线 Mesh 网络与 WLAN 的主要区别
-
-- 从拓扑结构上看，WLAN 是典型的点对多点（P2MP，Point to Multiple Points）网络，而且采取单跳方式，因而数据不可转发。WMN 可以通过 WR 对数据进行智能转发（需要对 WLAN 传统的 AP 功能进行扩展和改进）。
-- 从协议上看，WMN 与移动 Ad Hoc 网络基本类似。WLAN 的 MAC 协议完成的是本地业务的接入，而 WMN 则有两种可能，一种是本地业务的接入，另一种是其他节点业务的转发。对于路由协议，WLAN 是静态的因特网路由协议和移动 IP；但 WMN 则主要是动态的按需发现的路由协议，只具有较短暂的生命周期。
-
-## 无线 Mesh 网络与 Ad Hoc 的主要区别
-
-- WMN 由无线路由器构成的无线骨干网组成。该无线骨干网提供了大范围的信号覆盖与节点连接。移动 Ad Hoc 网络的节点都兼有独立路由和主机功能，节点地位平等，接通性是依赖端节点的平等合作实现的，健壮性比 WMN 差。
-- WMN 节点移动性低于移动 Ad Hoc 网络中的节点，所以 WMN 注重的是“无线”，而移动 Ad Hoc 网络更强调的是“移动”。
-- 从网络结构来看，WMN 多为静态或弱移动的拓扑，而移动 Ad Hoc 网络多为随意移动(包括高速移动)的网络拓扑。
-- WMN 与移动 Ad Hoc 网络的业务模式不同，前者节点的主要业务是来往于因特网的业务，后者节点的主要业务是任意一对节点之间的业务流。
-- 从应用来看，WMN 主要是因特网或宽带多媒体通信业务的接入，而移动 Ad Hoc 网络主要用于军事或其他专业通信。
-
-## WMN 的优缺点
-
-- 优点
-  - 可靠性大大增强
-  - 具有冲突保护机制
-  - 简化链路设计
-  - 网络的覆盖范围增大
-  - 组网灵活、维护方便
-  - 投资成本低、风险小
-- 缺点
-  - 对于不同射频信道的 WMN 的研究还处于试验研制阶段，性能改善总体来说还不太满
-  - 在 WMN 路由准则和选择算法等方面，目前提出的特别适用于 WMN 的路由协议寥寥无几
-  - 在 WMN 连接性和多路支持方面，每个节点链路连接度也是一个至关重要的问题，并非使用射频信道数越多，网络性能越好，射频信道数增加会带来设备开销和成本上升，同时可能会带来更多的干扰问题
-  - 在 WMN 带宽利用和资源分配算法方面，目前还没有提出非常有效的可用算法和协议，相关问题还有待研究
-
-# 计算
-
-## 信道容量
-
-在信号平均功率有限的⽩噪声（指通信系统内部本身产⽣的噪声）信道中，信道的极限数据传输率（即信道容量）为
-
-$$C=W\log_2(1+\frac{S}{N})\;bps$$
-
-- $S$ 表示信号功率
-- $N$ 表示噪声功率
-- $W$ 为信道带宽
-- $C$ 为信道容量
-
-## Nyquist 准则
-
-离散⽆噪声的数字信道信道容量为
-
-$$C=2W\log_2L$$
-
-- $W$ 为信道的带宽（Hz）
-- $L$ 为代码采⽤的进制数
-]]></content>
-      <tags>
-        <tag>Wireless-Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Theme Ideas</title>
-    <url>/2024/03/31/hexo-theme-ideas/</url>
-    <content><![CDATA[## Newspaper-like
-
-
-## Notebook-like]]></content>
-      <tags>
-        <tag>Design</tag>
+        <tag>STL</tag>
       </tags>
   </entry>
   <entry>
