@@ -305,7 +305,7 @@ mjx-container[display="true"] + br {
 </ul>
 <p>We trained and test the three neural networks with the same dataset, obtained from simulations with Omnet++. The input values are the network characteristics (topology, routing configuration, traffic model and intensity, etc), and the output values are the delay for each path. Hence, all the errors are computed with respect to values of the simulator. We use four different datasets:</p>
 <ul>
-<li><strong>Traffic Models:</strong> In it, we consider traffic models that are non-Poisson, auto-correlated, and with heavy tails. Table IV（此处表格应该不是 IV） details the different traffic models.</li>
+<li><strong>Traffic Models:</strong> In it, we consider traffic models that are non-Poisson, auto-correlated, and with heavy tails. Table IV details the different traffic models.</li>
 <li><strong>Same Routing:</strong> Where the testing and training datasets contain networks with the same routing configurations.</li>
 <li><strong>Different Routing:</strong> Where the training and testing datasets contain networks with different routing configurations.</li>
 <li><strong>Link failures:</strong> Here, we iteratively remove one link of the topology to replicate a link failure, until we transform the network graph into a connected acyclic graph. This scenario is the most complex since a link failure triggers a change both in the routing and the topology.</li>
@@ -322,6 +322,8 @@ mjx-container[display="true"] + br {
 <li><strong>Design:</strong> Several works have leveraged an MLP to predict network performance metrics. Based on this work, we have built an MLP to predict the mean delay for each source-destination pair of nodes of a given network. The MLP has 8,280 inputs and two hidden layers with 4096 neurons and uses Rectified Linear Units (ReLU) as activation functions.</li>
 <li><strong>Evaluation:</strong> Table I presents the error when predicting the network delay with respect to the results produced by the network simulator, including several traffic models. We can see that the MLP offers good accuracy for Poisson traffic, but the error increases significantly for the rest of the traffic models showing a MAPE between 23% and 84%.</li>
 </ul>
+<p><img src="/2024/03/14/RouteNet-Fermi/Table_I.png"><br><em>Table. I Delay prediction using an MLP and an RNN for different traffic models. The error is computed w.r.t simulation results.</em></p>
+<p><img src="/2024/03/14/RouteNet-Fermi/Table_II.png"></p>
 <p>Likewise, Table II shows the error of predicting the delay for the datasets with the same/different routing and link failures. We can see that the MLP cannot offer an accurate estimate when predicting the delay of a previously unseen routing configuration (1150% of error). This is due to the internal architecture of the MLP. During training, the MLP performs overfitting, meaning that the model only learns about the initial network topology used for training and not for any others. When we input a new topology, it does not have sufficient information to make an accurate prediction.</p>
 <h3 id="D-Recurrent-Neural-Networks"><a href="#D-Recurrent-Neural-Networks" class="headerlink" title="D. Recurrent Neural Networks"></a>D. Recurrent Neural Networks</h3><p>Recurrent Neural Networks (RNN) are a more advanced type of NN. They have shown excellent performance when processing sequential data. This is mainly because they connect some layers to the previous ones, which gives them the ability to keep the state along sequences.  </p>
 <ul>

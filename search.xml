@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于我自己</title>
+    <url>/2023/06/06/about-CN/</url>
+    <content><![CDATA[
+简体中文 | [繁體中文](../about-TCN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
+
+![Programming is art.](code.png)
+
+# 你好！
+
+欢迎访问我的个人主页，我也非常荣幸能够同你这样有趣的灵魂在此相遇。
+
+# 学习经历
+
+- 2017 - 2020，高中，安徽省亳州市第一中学
+- 2020 - 至今，本科，吉林大学计算机科学与技术学院
+
+# 参与项目
+
+- RISC-V 指令集软件仿真
+- 基于 YOLOv5 的智能捡拾机器人
+- 我自己的 Repositories
+  - [Heartbeat](https://github.com/created4u/heartbeat.git)
+  - [Coursea](https://github.com/created4u/Coursea.git)
+
+# 所获荣誉
+
+（截止至 2023 年 8 月）
+
+- 2020 - 2021，吉林大学三等奖学金
+- 2021 - 2022，吉林大学二等奖学金
+- 2021 - 2022，吉林大学计算机科学与技术学院院优秀学生
+- 2023，[全国大学生物联网设计竞赛](http://iot.sjtu.edu.cn/Default.aspx)，东北赛区一等奖，全国总决赛二等奖
+
+# 个人能力
+
+- 英语水平良好，四六级均以优秀成绩通过，正在备考 TOEFL，能够流畅地阅读外文文献。
+- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等编程语言，有良好的编程能力。
+- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技术，能够独立搭建网页。
+- 有一定的开发经验，能够独立开发 iOS/iPadOS/macOS 和 Android 应用程序。
+- 广泛接触软硬件，基础较为扎实，熟悉嵌入式开发。
+
+# 兴趣爱好
+
+- 语言学习。空余时间会学习各种有趣的语言，例如 Français，Русский，Español 等语言。
+- 绘画（约等于～乱画）。没有系统地学过相关知识，就是想画啥画啥。
+- 阅读文学。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 和 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 是我最喜欢的作家之一，虽然有时候看不太懂，但是更让我痴迷不已。
+- 设计各种有意思的东西，执着于用平凡的材料创造出不平凡的事物，用颜色表达情感。
+- 摄影。用相机记录下每一个值得回忆的瞬间。
+
+## 我的小作品 :)
+
+这是几年前我画的第一幅画。
+
+![The first man I drew.](him.PNG)
+
+这是我家仙人掌开的花。
+
+![Cactus flower.](cactus.jpeg)
+]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
+  <entry>
     <title>RouteNet-Fermi, Network Modeling with Graph Neural Networks</title>
     <url>/2024/03/14/RouteNet-Fermi/</url>
     <content><![CDATA[**Authors**
@@ -86,7 +150,7 @@ The following sections review the performance of three common Neural Network (NN
 
 We trained and test the three neural networks with the same dataset, obtained from simulations with Omnet++. The input values are the network characteristics (topology, routing configuration, traffic model and intensity, etc), and the output values are the delay for each path. Hence, all the errors are computed with respect to values of the simulator. We use four different datasets:
 
-- **Traffic Models:** In it, we consider traffic models that are non-Poisson, auto-correlated, and with heavy tails. Table IV（此处表格应该不是 IV） details the different traffic models.
+- **Traffic Models:** In it, we consider traffic models that are non-Poisson, auto-correlated, and with heavy tails. Table IV details the different traffic models.
 - **Same Routing:** Where the testing and training datasets contain networks with the same routing configurations.
 - **Different Routing:** Where the training and testing datasets contain networks with different routing configurations.
 - **Link failures:** Here, we iteratively remove one link of the topology to replicate a link failure, until we transform the network graph into a connected acyclic graph. This scenario is the most complex since a link failure triggers a change both in the routing and the topology.
@@ -104,7 +168,12 @@ A Multilayer Perceptron (MLP) is a basic kind of NN from the family of feedforwa
 
 - **Design:** Several works have leveraged an MLP to predict network performance metrics. Based on this work, we have built an MLP to predict the mean delay for each source-destination pair of nodes of a given network. The MLP has 8,280 inputs and two hidden layers with 4096 neurons and uses Rectified Linear Units (ReLU) as activation functions.
 - **Evaluation:** Table I presents the error when predicting the network delay with respect to the results produced by the network simulator, including several traffic models. We can see that the MLP offers good accuracy for Poisson traffic, but the error increases significantly for the rest of the traffic models showing a MAPE between 23% and 84%.
-  
+
+![](Table_I.png)
+*Table. I Delay prediction using an MLP and an RNN for different traffic models. The error is computed w.r.t simulation results.*
+
+![](Table_II.png)
+
 Likewise, Table II shows the error of predicting the delay for the datasets with the same/different routing and link failures. We can see that the MLP cannot offer an accurate estimate when predicting the delay of a previously unseen routing configuration (1150% of error). This is due to the internal architecture of the MLP. During training, the MLP performs overfitting, meaning that the model only learns about the initial network topology used for training and not for any others. When we input a new topology, it does not have sufficient information to make an accurate prediction.
 
 ### D. Recurrent Neural Networks
@@ -160,70 +229,6 @@ Hence, we conclude that feeding the MPNN directly with the network topology grap
         <tag>GNN</tag>
         <tag>Network-Modeling</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>关于我自己</title>
-    <url>/2023/06/06/about-CN/</url>
-    <content><![CDATA[
-简体中文 | [繁體中文](../about-TCN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
-
-![Programming is art.](code.png)
-
-# 你好！
-
-欢迎访问我的个人主页，我也非常荣幸能够同你这样有趣的灵魂在此相遇。
-
-# 学习经历
-
-- 2017 - 2020，高中，安徽省亳州市第一中学
-- 2020 - 至今，本科，吉林大学计算机科学与技术学院
-
-# 参与项目
-
-- RISC-V 指令集软件仿真
-- 基于 YOLOv5 的智能捡拾机器人
-- 我自己的 Repositories
-  - [Heartbeat](https://github.com/created4u/heartbeat.git)
-  - [Coursea](https://github.com/created4u/Coursea.git)
-
-# 所获荣誉
-
-（截止至 2023 年 8 月）
-
-- 2020 - 2021，吉林大学三等奖学金
-- 2021 - 2022，吉林大学二等奖学金
-- 2021 - 2022，吉林大学计算机科学与技术学院院优秀学生
-- 2023，[全国大学生物联网设计竞赛](http://iot.sjtu.edu.cn/Default.aspx)，东北赛区一等奖，全国总决赛二等奖
-
-# 个人能力
-
-- 英语水平良好，四六级均以优秀成绩通过，正在备考 TOEFL，能够流畅地阅读外文文献。
-- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等编程语言，有良好的编程能力。
-- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技术，能够独立搭建网页。
-- 有一定的开发经验，能够独立开发 iOS/iPadOS/macOS 和 Android 应用程序。
-- 广泛接触软硬件，基础较为扎实，熟悉嵌入式开发。
-
-# 兴趣爱好
-
-- 语言学习。空余时间会学习各种有趣的语言，例如 Français，Русский，Español 等语言。
-- 绘画（约等于～乱画）。没有系统地学过相关知识，就是想画啥画啥。
-- 阅读文学。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 和 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 是我最喜欢的作家之一，虽然有时候看不太懂，但是更让我痴迷不已。
-- 设计各种有意思的东西，执着于用平凡的材料创造出不平凡的事物，用颜色表达情感。
-- 摄影。用相机记录下每一个值得回忆的瞬间。
-
-## 我的小作品 :)
-
-这是几年前我画的第一幅画。
-
-![The first man I drew.](him.PNG)
-
-这是我家仙人掌开的花。
-
-![Cactus flower.](cactus.jpeg)
-]]></content>
-      <categories>
-        <category>-[about]</category>
-      </categories>
   </entry>
   <entry>
     <title>Présentation de soi.</title>
@@ -282,69 +287,6 @@ Voici la première œuvre que j'ai peinte il y a plusieurs années.
 ![The first man I drew.](him.PNG)
 
 Et c'est une fleur de cactus chez moi.
-
-![Cactus flower.](cactus.jpeg)
-]]></content>
-      <categories>
-        <category>-[about]</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>關於我自己</title>
-    <url>/2023/06/06/about-TCN/</url>
-    <content><![CDATA[
-繁體中文 | [简体中文](../about-CN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
-
-![Programming is art.](code.png)
-
-# 你好！
-
-歡迎訪問我嘅個人主頁，我都非常榮幸能夠同你咁有趣嘅靈魂在此相遇。
-
-# 學習經歷
-
-- 2017 - 2020，高中，安徽省亳州市第一中學
-- 2020 - 至今，本科，吉林大學計算機科學與技術學院
-
-# 參與項目
-
-- RISC-V 指令集軟件仿真
-- 基於 YOLOv5 嘅智能撿拾機械人
-- 我自己嘅 Repositories
-  - [Heartbeat](https://github.com/created4u/heartbeat.git)
-  - [Coursea](https://github.com/created4u/Coursea.git)
-
-# 所獲榮譽
-
-（截止至 2023 年 8 月）
-
-- 2020 - 2021，吉林大學三等獎學金
-- 2021 - 2022，吉林大學二等獎學金
-- 2021 - 2022，吉林大學計算機科學與技術學院院優秀學生
-- 2023，[全國大學生物聯網設計競賽](http://iot.sjtu.edu.cn/Default.aspx)，東北賽區一等獎，全國總決賽二等獎
-
-# 個人能力
-
-- 英語水平良好，四六級均以優秀成績通過，正在備考 TOEFL，能夠流暢地閱讀外文文獻。
-- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等編程語言，有良好的編程能力。
-- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技術，能夠獨立搭建網頁。
-- 有一定的開發經驗，能夠獨立開發 iOS/iPadOS/macOS 和 Android 應用程序。
-- 廣泛接觸軟硬件，基礎較為紮實，熟悉嵌入式開發。
-
-# 興趣愛好
-
-- 語言學習。空餘時間會學習各種有趣嘅語言，例如 Français，Русский，Español 等語言。
-- 繪畫（約等於~亂畫）。冇系統咁學過相關知識，就係想畫啥畫啥。
-- 閱讀文學。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 同 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 係我最鍾意嘅作家之一，雖然有時候睇唔係幾明，但係更令我癡迷不已。
-- 設計各種有意思嘅嘢，執著于用平凡嘅材料創造出不平凡嘅嘢，用顏色表達情感。
-- 攝影。用相機記錄的每一個值得回憶嘅瞬間。
-
-## 個人作品 :)
-
-係幾年前我畫嘅第一幅畫。
-
-![The first man I drew.](him.PNG)
-係我屋企仙人掌開嘅花。
 
 ![Cactus flower.](cactus.jpeg)
 ]]></content>
@@ -1209,6 +1151,69 @@ Bye A
       </tags>
   </entry>
   <entry>
+    <title>關於我自己</title>
+    <url>/2023/06/06/about-TCN/</url>
+    <content><![CDATA[
+繁體中文 | [简体中文](../about-CN/index.html) | [English](../about/index.html) | [Français](../about-FR/index.html)
+
+![Programming is art.](code.png)
+
+# 你好！
+
+歡迎訪問我嘅個人主頁，我都非常榮幸能夠同你咁有趣嘅靈魂在此相遇。
+
+# 學習經歷
+
+- 2017 - 2020，高中，安徽省亳州市第一中學
+- 2020 - 至今，本科，吉林大學計算機科學與技術學院
+
+# 參與項目
+
+- RISC-V 指令集軟件仿真
+- 基於 YOLOv5 嘅智能撿拾機械人
+- 我自己嘅 Repositories
+  - [Heartbeat](https://github.com/created4u/heartbeat.git)
+  - [Coursea](https://github.com/created4u/Coursea.git)
+
+# 所獲榮譽
+
+（截止至 2023 年 8 月）
+
+- 2020 - 2021，吉林大學三等獎學金
+- 2021 - 2022，吉林大學二等獎學金
+- 2021 - 2022，吉林大學計算機科學與技術學院院優秀學生
+- 2023，[全國大學生物聯網設計競賽](http://iot.sjtu.edu.cn/Default.aspx)，東北賽區一等獎，全國總決賽二等獎
+
+# 個人能力
+
+- 英語水平良好，四六級均以優秀成績通過，正在備考 TOEFL，能夠流暢地閱讀外文文獻。
+- 熟悉 C，C++，Java，Python，Kotlin，Swift，Go 等編程語言，有良好的編程能力。
+- 熟悉 HTML，CSS，JavaScript，Node.js，Vue，Bootstrap 等技術，能夠獨立搭建網頁。
+- 有一定的開發經驗，能夠獨立開發 iOS/iPadOS/macOS 和 Android 應用程序。
+- 廣泛接觸軟硬件，基礎較為紮實，熟悉嵌入式開發。
+
+# 興趣愛好
+
+- 語言學習。空餘時間會學習各種有趣嘅語言，例如 Français，Русский，Español 等語言。
+- 繪畫（約等於~亂畫）。冇系統咁學過相關知識，就係想畫啥畫啥。
+- 閱讀文學。[Kafka](https://en.wikipedia.org/wiki/Franz_Kafka) 同 [Woolf](https://en.wikipedia.org/wiki/Virginia_Woolf) 係我最鍾意嘅作家之一，雖然有時候睇唔係幾明，但係更令我癡迷不已。
+- 設計各種有意思嘅嘢，執著于用平凡嘅材料創造出不平凡嘅嘢，用顏色表達情感。
+- 攝影。用相機記錄的每一個值得回憶嘅瞬間。
+
+## 個人作品 :)
+
+係幾年前我畫嘅第一幅畫。
+
+![The first man I drew.](him.PNG)
+係我屋企仙人掌開嘅花。
+
+![Cactus flower.](cactus.jpeg)
+]]></content>
+      <categories>
+        <category>-[about]</category>
+      </categories>
+  </entry>
+  <entry>
     <title>基本数据结构 template</title>
     <url>/2023/06/22/data-structure/</url>
     <content><![CDATA[
@@ -1796,6 +1801,50 @@ ARQ 的优点是能够在数据传输过程中检测和纠正错误，提高了�
       </tags>
   </entry>
   <entry>
+    <title>WLAN</title>
+    <url>/2023/06/24/wireless-network-wlan/</url>
+    <content><![CDATA[
+# 组成
+
+- 站 Station, STA
+  - 终端用户设备
+  - 无线网络接口
+  - 网络软件
+- 无线介质 Wireless Medium, VM
+- 基站/接入点 Base Station, BS / Access Point, AP
+- 分布式系统 Distribution System, DS
+
+# 拓扑结构
+
+- 分布对等式拓扑
+- 基础结构集中式拓扑
+- ESS 网络拓扑
+- 中继或桥接型网络拓扑
+
+# 服务
+
+- STA 服务 SS
+- 分布式系统服务 DSS
+]]></content>
+      <tags>
+        <tag>Wireless-Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>每日幾句</title>
+    <url>/2024/03/27/%E6%AF%8F%E6%97%A5%E5%B9%BE%E5%8F%A5/</url>
+    <content><![CDATA[- **三月二十七日，週三**
+	- nei5 hou2 aa1，gam1 jat6 jau6 mou5 soeng2 ngo5。
+	- 你好啊，今日又冇想我。 
+	- m4 zi1 dou6 soeng2 jiu3 sik6 mat1 je5。
+	- 唔知道想要食乜嘢。
+]]></content>
+      <tags>
+        <tag>粤语</tag>
+        <tag>语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Wireless Network Conclusion</title>
     <url>/2023/06/25/wireless-network-conclusion/</url>
     <content><![CDATA[
@@ -1965,47 +2014,14 @@ $$C=2W\log_2L$$
       </tags>
   </entry>
   <entry>
-    <title>每日幾句</title>
-    <url>/2024/03/27/%E6%AF%8F%E6%97%A5%E5%B9%BE%E5%8F%A5/</url>
-    <content><![CDATA[- **三月二十七日，週三**
-	- nei5 hou2 aa1，gam1 jat6 jau6 mou5 soeng2 ngo5。
-	- 你好啊，今日又冇想我。 
-	- m4 zi1 dou6 soeng2 jiu3 sik6 mat1 je5。
-	- 唔知道想要食乜嘢。
-]]></content>
+    <title>Hexo Theme Ideas</title>
+    <url>/2024/03/31/hexo-theme-ideas/</url>
+    <content><![CDATA[## Newspaper-like
+
+
+## Notebook-like]]></content>
       <tags>
-        <tag>粤语</tag>
-        <tag>语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WLAN</title>
-    <url>/2023/06/24/wireless-network-wlan/</url>
-    <content><![CDATA[
-# 组成
-
-- 站 Station, STA
-  - 终端用户设备
-  - 无线网络接口
-  - 网络软件
-- 无线介质 Wireless Medium, VM
-- 基站/接入点 Base Station, BS / Access Point, AP
-- 分布式系统 Distribution System, DS
-
-# 拓扑结构
-
-- 分布对等式拓扑
-- 基础结构集中式拓扑
-- ESS 网络拓扑
-- 中继或桥接型网络拓扑
-
-# 服务
-
-- STA 服务 SS
-- 分布式系统服务 DSS
-]]></content>
-      <tags>
-        <tag>Wireless-Network</tag>
+        <tag>Design</tag>
       </tags>
   </entry>
   <entry>
